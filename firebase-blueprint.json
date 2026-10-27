@@ -1,0 +1,180 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "type": "object",
+      "description": "User profile with persistent wallet balance, commission, investment, withdrawal, and payout details",
+      "properties": {
+        "id": { "type": "string" },
+        "userCode": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "phone": { "type": "string" },
+        "password": { "type": "string" },
+        "passwordHash": { "type": "string" },
+        "avatar": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "balance": { "type": "number" },
+        "totalCommission": { "type": "number" },
+        "totalInvestment": { "type": "number" },
+        "totalWithdrawal": { "type": "number" },
+        "totalTransactions": { "type": "number" },
+        "referralCode": { "type": "string" },
+        "referredBy": { "type": "string" },
+        "referredByCode": { "type": "string" },
+        "referralCount": { "type": "number" },
+        "totalReferralCommission": { "type": "number" },
+        "upiId": { "type": "string" },
+        "upiVerifiedName": { "type": "string" },
+        "payoutVerified": { "type": "boolean" },
+        "bankAccount": { "type": "object" },
+        "createdAt": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "role", "balance", "createdAt"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "type": "object",
+      "description": "Financial wallet transaction ledger record",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["deposit", "withdrawal", "commission", "transfer", "reward"] },
+        "amount": { "type": "number" },
+        "status": { "type": "string", "enum": ["Successful", "Pending", "Rejected"] },
+        "date": { "type": "string" },
+        "utr": { "type": "string" },
+        "commission": { "type": "number" },
+        "details": { "type": "string" },
+        "recipient": { "type": "object" },
+        "payoutDetails": { "type": "object" }
+      },
+      "required": ["id", "userId", "type", "amount", "status", "date"]
+    },
+    "Withdrawal": {
+      "title": "Withdrawal",
+      "type": "object",
+      "description": "Payout and withdrawal request record",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "amount": { "type": "number" },
+        "method": { "type": "string", "enum": ["UPI", "Bank"] },
+        "payoutDetails": { "type": "object" },
+        "status": { "type": "string", "enum": ["Pending", "Approved", "Rejected"] },
+        "createdAt": { "type": "string" },
+        "reviewedAt": { "type": "string" },
+        "adminRemarks": { "type": "string" }
+      },
+      "required": ["id", "userId", "amount", "method", "status", "createdAt"]
+    },
+    "Deposit": {
+      "title": "Deposit",
+      "type": "object",
+      "description": "User deposit / claim recharge record",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "amount": { "type": "number" },
+        "method": { "type": "string" },
+        "utr": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Approved", "Rejected"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "amount", "status", "createdAt"]
+    },
+    "Referral": {
+      "title": "Referral",
+      "type": "object",
+      "description": "User referral tracking and 3% commission record",
+      "properties": {
+        "id": { "type": "string" },
+        "referrerId": { "type": "string" },
+        "referrerCode": { "type": "string" },
+        "referredUserId": { "type": "string" },
+        "referredUserName": { "type": "string" },
+        "referredUserEmail": { "type": "string" },
+        "totalRechargeAmount": { "type": "number" },
+        "totalReferralCommission": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "referrerId", "referredUserId", "createdAt"]
+    },
+    "SystemSettings": {
+      "title": "SystemSettings",
+      "type": "object",
+      "description": "Global application configuration",
+      "properties": {
+        "minAmount": { "type": "number" },
+        "maxAmount": { "type": "number" },
+        "depositUpiId": { "type": "string" },
+        "depositUpiName": { "type": "string" },
+        "withdrawalsEnabled": { "type": "boolean" },
+        "instantPayoutEnabled": { "type": "boolean" },
+        "helpPhone": { "type": "string" },
+        "helpEmail": { "type": "string" }
+      },
+      "required": ["depositUpiId", "depositUpiName"]
+    },
+    "UserCredential": {
+      "title": "UserCredential",
+      "type": "object",
+      "description": "User mobile phone and login password credential store",
+      "properties": {
+        "userId": { "type": "string" },
+        "mobile": { "type": "string" },
+        "phone": { "type": "string" },
+        "password": { "type": "string" },
+        "passwordHash": { "type": "string" },
+        "name": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "mobile", "password"]
+    }
+  },
+  "firestore": {
+    "/credentials/{credentialId}": {
+      "schema": "UserCredential",
+      "description": "Direct phone number and password lookup credentials store"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user accounts with persistent balance, commission, investment, withdrawal, and payout details"
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "User specific financial ledger transactions"
+    },
+    "/users/{userId}/withdrawals/{withdrawalId}": {
+      "schema": "Withdrawal",
+      "description": "User specific withdrawal and payout requests"
+    },
+    "/users/{userId}/deposits/{depositId}": {
+      "schema": "Deposit",
+      "description": "User specific deposits and payment claims"
+    },
+    "/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "Global transactions collection for user and admin queries"
+    },
+    "/withdrawals/{withdrawalId}": {
+      "schema": "Withdrawal",
+      "description": "Global withdrawals collection for admin settlement and user tracking"
+    },
+    "/deposits/{depositId}": {
+      "schema": "Deposit",
+      "description": "Global deposits collection for payment verification"
+    },
+    "/referrals/{referralId}": {
+      "schema": "Referral",
+      "description": "Global user referrals collection for tracking 3% recharge commissions"
+    },
+    "/settings/{settingId}": {
+      "schema": "SystemSettings",
+      "description": "Global system configuration document"
+    }
+  }
+}

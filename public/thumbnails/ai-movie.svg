@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="amvBg" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#1e1035"/>
+      <stop offset="50%" stop-color="#0e061a"/>
+      <stop offset="100%" stop-color="#04010a"/>
+    </radialGradient>
+    <linearGradient id="amvNeon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="amvGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="amvGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#amvBg)"/>
+
+  <!-- Futuristic Sci-Fi Cinema Projector Beams & Clapperboard -->
+  <g opacity="0.25">
+    <polygon points="600,280 0,0 200,0" fill="#8b5cf6"/>
+    <polygon points="600,280 1000,0 1200,0" fill="#3b82f6"/>
+    <polygon points="600,280 1200,800 1000,800" fill="#c084fc"/>
+    <polygon points="600,280 0,800 200,800" fill="#8b5cf6"/>
+  </g>
+
+  <!-- Cinema Camera & AI Film Centerpiece -->
+  <g transform="translate(600, 300)">
+    <!-- Glowing AI Cyber Lens -->
+    <circle cx="0" cy="0" r="130" fill="#090514" stroke="url(#amvNeon)" stroke-width="8" filter="url(#amvGlow)"/>
+    <circle cx="0" cy="0" r="95" fill="#170d2c" stroke="#c084fc" stroke-width="4"/>
+    <circle cx="0" cy="0" r="60" fill="#2e1065" stroke="#3b82f6" stroke-width="3"/>
+    <circle cx="0" cy="0" r="25" fill="#ffffff" filter="url(#amvGlow)"/>
+    
+    <!-- Film Reel Sprockets -->
+    <rect x="-180" y="-120" width="80" height="80" rx="40" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="4"/>
+    <rect x="100" y="-120" width="80" height="80" rx="40" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="4"/>
+    <circle cx="-140" cy="-80" r="15" fill="#c084fc"/>
+    <circle cx="140" cy="-80" r="15" fill="#c084fc"/>
+
+    <!-- Widescreen 21:9 Framing Bars -->
+    <rect x="-240" y="-140" width="480" height="280" rx="20" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="16 12" opacity="0.6"/>
+  </g>
+
+  <!-- Top Badges -->
+  <g transform="translate(100, 90)">
+    <rect x="0" y="0" width="260" height="54" rx="27" fill="#8b5cf6" opacity="0.2" stroke="#8b5cf6" stroke-width="2"/>
+    <circle cx="28" cy="27" r="12" fill="#8b5cf6"/>
+    <text x="54" y="34" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" letter-spacing="1">200+ VIDEOS</text>
+  </g>
+
+  <g transform="translate(840, 90)">
+    <rect x="0" y="0" width="260" height="54" rx="27" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="2"/>
+    <text x="130" y="34" fill="#93c5fd" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" text-anchor="middle" letter-spacing="1">⏱️ 1 HOUR EACH</text>
+  </g>
+
+  <!-- Title: AI MOVIE -->
+  <text x="600" y="580" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="76" font-weight="950" letter-spacing="4" stroke="#000000" stroke-width="6" paint-order="stroke fill">
+    AI MOVIE
+  </text>
+  <text x="600" y="635" text-anchor="middle" fill="url(#amvNeon)" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800" letter-spacing="4">
+    FULL-LENGTH CINEMATIC FEATURE FILMS
+  </text>
+
+  <!-- Price Pill -->
+  <g transform="translate(460, 670)">
+    <rect x="0" y="0" width="280" height="74" rx="37" fill="#7c3aed" stroke="#c084fc" stroke-width="4" filter="url(#amvGlow)"/>
+    <text x="140" y="49" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="950" text-anchor="middle">
+      ONLY ₹500
+    </text>
+  </g>
+</svg>

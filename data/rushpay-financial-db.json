@@ -1,0 +1,490 @@
+{
+  "users": {
+    "usr_rush_demo_001": {
+      "profile": {
+        "id": "usr_rush_demo_001",
+        "mobile": "9876543210",
+        "email": "demo@rushpay.network",
+        "fullName": "Vikram Malhotra",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "verified",
+        "referralCode": "RP-VIKRAM88",
+        "hasPin": true,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-21T16:49:40.004Z",
+        "twoFactorEnabled": false,
+        "lastLoginAt": "2026-10-27T03:20:28.718Z",
+        "upiId": "9876543210@paytm",
+        "upiHolderName": "Vikram Malhotra"
+      },
+      "passwordHash": "8bd797c7ae47ba5c5b5c44ba62037dd3b0e78cd13ed99948f297488447b038c104f72225a53d78ce4334eb904e72d4b3d392ac7e70eac288307041cac5515b5b",
+      "pinHash": "e41174cf170d861a2ee6a204c1b2cb91bb024bfab3c03afe79e275311181c927a5c585e65c030c78c51dd1378584aa9c9d4063ede49e48555a6c5bd52f67a85c",
+      "pinSalt": "da672ccc28ed3bbc7c85e6e2bb48edcf",
+      "salt": "1439aaa73da34e6feff00647ba264b89",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 0,
+        "updatedAt": "2026-10-27T03:19:14.815Z"
+      }
+    },
+    "usr_3cb3b331440afa06": {
+      "profile": {
+        "id": "usr_3cb3b331440afa06",
+        "mobile": "9942064299",
+        "email": "9942064299@rushpay.network",
+        "fullName": "Vip",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-4299198C",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-24T12:55:26.342Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "7c7041538da87e2238ab61a08c27799acfa6a43a9d8cbacde87b855fd40db0dc5acf4d6744ef18128c11e2b3779b8b255565115c21f3074139dd3a89cf716ddf",
+      "salt": "14df1fa634915383f4c5d22ff5c822a4",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 0,
+        "updatedAt": "2026-10-24T12:55:26.342Z"
+      }
+    },
+    "usr_77da4daf345d5b00": {
+      "profile": {
+        "id": "usr_77da4daf345d5b00",
+        "mobile": "9169878893",
+        "email": "9169878893@rushpay.network",
+        "fullName": "Deep Testing User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-8893FF6F",
+        "hasPin": true,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-27T02:41:13.590Z",
+        "twoFactorEnabled": false,
+        "upiId": "tester@okaxis",
+        "upiHolderName": "Deep Testing User"
+      },
+      "passwordHash": "67016d3029da97c40701a09fbb88f1d94e7a4de076182f78bbbe853f002f62ca2244ce3847727801d0beb92a86e500b8d6997f47e691bcaae91c059849e1dc0c",
+      "salt": "3afae5970f4d11d886c8d1f54a194c05",
+      "wallet": {
+        "availablePaise": 50050,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 42500,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 0,
+        "updatedAt": "2026-10-27T02:41:13.614Z"
+      },
+      "pinHash": "bfa4009ee1c2e754ee42ee02b9c825f58648536866c2d40b49bb65823ee3560f37b7a6ca5f2eb82f02d186176ccde0f16465fabe924375bd98b51010f1a4b480",
+      "pinSalt": "ce6365264ec2ba7898005c8953bbf7c0"
+    },
+    "usr_ee5d841df1e20c60": {
+      "profile": {
+        "id": "usr_ee5d841df1e20c60",
+        "mobile": "9213341592",
+        "email": "9213341592@rushpay.network",
+        "fullName": "Wd Tester",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-1592CAD1",
+        "hasPin": true,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-27T02:41:24.932Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "c65a3ea62a9eca850cfdb1fb533c0bd22282ddd49e1f232534d4f4ad7679db8c582ec11874f609e835ca2af87ab67a318681bc592b48446053b073f8a9851881",
+      "salt": "ff0515fa0f6b992e5ff98be92d0222a1",
+      "wallet": {
+        "availablePaise": 111000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 100000,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 0,
+        "updatedAt": "2026-10-27T02:41:24.952Z"
+      },
+      "pinHash": "eeb92eb84cf5fcaa23981b76bac7a50e266b0caeaf6937b9748b884460bb93edbcad727c1f4ee2a112c79e5eed66a4410cadd2552cb2da0fbf5b328d980a7f4e",
+      "pinSalt": "b3cbdec2d921f3b4f99b6d0f21d0683a"
+    },
+    "usr_5ffe308ec6ead450": {
+      "profile": {
+        "id": "usr_5ffe308ec6ead450",
+        "mobile": "9175704385",
+        "email": "9175704385@rushpay.network",
+        "fullName": "Wd Tester",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-4385FBAB",
+        "hasPin": true,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-27T02:41:31.583Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "67352d3c68a0002bf10c0f756e9c6ca7aa5cf607650548919794e23bcce95f9922a43d4bfd501168e656aff34ba8b41e38a46d8454783b31a9b8a668bdb16468",
+      "salt": "27f4e49407799b1b3880f5f22de2e16e",
+      "wallet": {
+        "availablePaise": 56275,
+        "inReviewPaise": 54725,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 100000,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 0,
+        "updatedAt": "2026-10-27T02:41:31.624Z"
+      },
+      "pinHash": "bdcb2c2bfef48069047ff27129c964e15fbd91a8cde81177571466421dac5c2d526aa567e7dfbe97a773e907ca9388449d58cc279043e5a4f9b38422706b3c11",
+      "pinSalt": "3261784478b5d2b1c4f49a5530857057"
+    },
+    "usr_c876421ea29819d1": {
+      "profile": {
+        "id": "usr_c876421ea29819d1",
+        "mobile": "9813780320",
+        "email": "9813780320@rushpay.network",
+        "fullName": "Strict Ledger User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-03201B74",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-27T02:58:27.738Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "99add35b8c32bdbbfaa6952c12d16fd59905b39f3c3a198765c3c450c8b130ffbe9fe34919979d15c696f5d0fb46a6e9fcc99423c80ee8f8ce612863cce85bd8",
+      "salt": "43551292803ef5ff26a9adbe0baaece3",
+      "wallet": {
+        "availablePaise": 60650,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 52500,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 0,
+        "updatedAt": "2026-10-27T02:58:27.769Z"
+      }
+    }
+  },
+  "mobileIndex": {
+    "9876543210": "usr_rush_demo_001",
+    "9942064299": "usr_3cb3b331440afa06",
+    "9169878893": "usr_77da4daf345d5b00",
+    "9213341592": "usr_ee5d841df1e20c60",
+    "9175704385": "usr_5ffe308ec6ead450",
+    "9813780320": "usr_c876421ea29819d1"
+  },
+  "referralCodeIndex": {
+    "RP-VIKRAM88": "usr_rush_demo_001",
+    "RP-4299198C": "usr_3cb3b331440afa06",
+    "RP-8893FF6F": "usr_77da4daf345d5b00",
+    "RP-1592CAD1": "usr_ee5d841df1e20c60",
+    "RP-4385FBAB": "usr_5ffe308ec6ead450",
+    "RP-03201B74": "usr_c876421ea29819d1"
+  },
+  "orders": [
+    {
+      "id": "ORD-907765-BCED",
+      "userId": "usr_c876421ea29819d1",
+      "userName": "Strict Ledger User",
+      "userMobile": "9813780320",
+      "orderType": "buy",
+      "inrAmountPaise": 10000,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 106,
+      "feePaise": 0,
+      "netAmountPaise": 10600,
+      "paymentMethod": "razorpay",
+      "status": "approved",
+      "createdAt": "2026-10-27T02:58:27.765Z",
+      "updatedAt": "2026-10-27T02:58:27.769Z",
+      "paymentReference": "UTR-REAL-889901"
+    },
+    {
+      "id": "ORD-907756-012A",
+      "userId": "usr_c876421ea29819d1",
+      "userName": "Strict Ledger User",
+      "userMobile": "9813780320",
+      "orderType": "buy",
+      "inrAmountPaise": 42500,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 450.5,
+      "feePaise": 0,
+      "netAmountPaise": 45050,
+      "paymentMethod": "razorpay",
+      "status": "approved",
+      "createdAt": "2026-10-27T02:58:27.756Z",
+      "updatedAt": "2026-10-27T02:58:27.760Z",
+      "paymentReference": "UTR-REAL-889900"
+    },
+    {
+      "id": "ORD-891598-3B1A",
+      "userId": "usr_5ffe308ec6ead450",
+      "userName": "Wd Tester",
+      "userMobile": "9175704385",
+      "orderType": "buy",
+      "inrAmountPaise": 100000,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 1060,
+      "feePaise": 0,
+      "netAmountPaise": 106000,
+      "paymentMethod": "razorpay",
+      "status": "approved",
+      "createdAt": "2026-10-27T02:41:31.598Z",
+      "updatedAt": "2026-10-27T02:41:31.602Z",
+      "paymentReference": "112233445566"
+    },
+    {
+      "id": "ORD-884947-32D3",
+      "userId": "usr_ee5d841df1e20c60",
+      "userName": "Wd Tester",
+      "userMobile": "9213341592",
+      "orderType": "buy",
+      "inrAmountPaise": 100000,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 1060,
+      "feePaise": 0,
+      "netAmountPaise": 106000,
+      "paymentMethod": "razorpay",
+      "status": "approved",
+      "createdAt": "2026-10-27T02:41:24.947Z",
+      "updatedAt": "2026-10-27T02:41:24.952Z",
+      "paymentReference": "112233445566"
+    },
+    {
+      "id": "ORD-873609-59B2",
+      "userId": "usr_77da4daf345d5b00",
+      "userName": "Deep Testing User",
+      "userMobile": "9169878893",
+      "orderType": "buy",
+      "inrAmountPaise": 42500,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 450.5,
+      "feePaise": 0,
+      "netAmountPaise": 45050,
+      "paymentMethod": "razorpay",
+      "status": "approved",
+      "createdAt": "2026-10-27T02:41:13.609Z",
+      "updatedAt": "2026-10-27T02:41:13.614Z",
+      "paymentReference": "987654321098"
+    },
+    {
+      "id": "ORD-569264-5788",
+      "userId": "usr_rush_demo_001",
+      "userName": "Vikram Malhotra",
+      "userMobile": "9876543210",
+      "orderType": "buy",
+      "inrAmountPaise": 35200,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 350.24,
+      "feePaise": 176,
+      "netAmountPaise": 35024,
+      "paymentMethod": "razorpay",
+      "status": "pending",
+      "createdAt": "2026-10-23T10:49:29.264Z",
+      "updatedAt": "2026-10-23T10:49:29.264Z"
+    }
+  ],
+  "withdrawals": [
+    {
+      "id": "WTH-891624-2285",
+      "userId": "usr_5ffe308ec6ead450",
+      "userName": "Wd Tester",
+      "userMobile": "9175704385",
+      "unitsToSell": 550,
+      "rateInrPerUnit": 0.995,
+      "grossAmountPaise": 54725,
+      "feePaise": 410,
+      "netAmountPaise": 54315,
+      "payoutMethod": "upi",
+      "destinationAccount": {
+        "upiId": "tester@okaxis",
+        "accountHolderName": "Wd Tester"
+      },
+      "status": "pending",
+      "reservedPaise": 54725,
+      "createdAt": "2026-10-27T02:41:31.625Z",
+      "updatedAt": "2026-10-27T02:41:31.625Z"
+    }
+  ],
+  "ledger": [
+    {
+      "id": "led_1793069907769",
+      "userId": "usr_c876421ea29819d1",
+      "relatedOrderId": "ORD-907765-BCED",
+      "entryType": "BUY_CREDIT",
+      "amountPaise": 10600,
+      "balanceBeforePaise": 50050,
+      "balanceAfterPaise": 60650,
+      "description": "Order ORD-907765-BCED verified credit (UTR-REAL-889901)",
+      "referenceId": "UTR-REAL-889901",
+      "createdAt": "2026-10-27T02:58:27.769Z"
+    },
+    {
+      "id": "led_1793069907760",
+      "userId": "usr_c876421ea29819d1",
+      "relatedOrderId": "ORD-907756-012A",
+      "entryType": "BUY_CREDIT",
+      "amountPaise": 45050,
+      "balanceBeforePaise": 5000,
+      "balanceAfterPaise": 50050,
+      "description": "Order ORD-907756-012A verified credit (UTR-REAL-889900)",
+      "referenceId": "UTR-REAL-889900",
+      "createdAt": "2026-10-27T02:58:27.760Z"
+    },
+    {
+      "id": "led_hold_1793068891625",
+      "userId": "usr_5ffe308ec6ead450",
+      "relatedOrderId": "WTH-891624-2285",
+      "entryType": "SELL_HOLD",
+      "amountPaise": -54725,
+      "balanceBeforePaise": 111000,
+      "balanceAfterPaise": 56275,
+      "description": "Funds reserved for withdrawal request WTH-891624-2285",
+      "referenceId": "WTH-891624-2285",
+      "createdAt": "2026-10-27T02:41:31.625Z"
+    },
+    {
+      "id": "led_1793068891602",
+      "userId": "usr_5ffe308ec6ead450",
+      "relatedOrderId": "ORD-891598-3B1A",
+      "entryType": "BUY_CREDIT",
+      "amountPaise": 106000,
+      "balanceBeforePaise": 5000,
+      "balanceAfterPaise": 111000,
+      "description": "Order ORD-891598-3B1A verified credit (112233445566)",
+      "referenceId": "112233445566",
+      "createdAt": "2026-10-27T02:41:31.602Z"
+    },
+    {
+      "id": "led_1793068884952",
+      "userId": "usr_ee5d841df1e20c60",
+      "relatedOrderId": "ORD-884947-32D3",
+      "entryType": "BUY_CREDIT",
+      "amountPaise": 106000,
+      "balanceBeforePaise": 5000,
+      "balanceAfterPaise": 111000,
+      "description": "Order ORD-884947-32D3 verified credit (112233445566)",
+      "referenceId": "112233445566",
+      "createdAt": "2026-10-27T02:41:24.952Z"
+    },
+    {
+      "id": "led_1793068873614",
+      "userId": "usr_77da4daf345d5b00",
+      "relatedOrderId": "ORD-873609-59B2",
+      "entryType": "BUY_CREDIT",
+      "amountPaise": 45050,
+      "balanceBeforePaise": 5000,
+      "balanceAfterPaise": 50050,
+      "description": "Order ORD-873609-59B2 verified credit (987654321098)",
+      "referenceId": "987654321098",
+      "createdAt": "2026-10-27T02:41:13.614Z"
+    }
+  ],
+  "rates": {
+    "id": "INR_STABLE_V1",
+    "pair": "INR / PAY UNIT",
+    "buyRate": 1,
+    "sellRate": 0.995,
+    "buyFeePercent": 0.5,
+    "sellFeePercent": 0.75,
+    "minBuyInr": 100,
+    "maxBuyInr": 500000,
+    "minSellInr": 500,
+    "maxSellInr": 200000,
+    "lastUpdated": "2026-10-21T16:49:40.004Z",
+    "updatedBy": "System Auto-Engine"
+  },
+  "referrals": [],
+  "tickets": [],
+  "config": {
+    "brandName": "Razy Pay Network",
+    "tagline": "High-Performance Financial Operating System & Verified INR Settlement",
+    "supportEmail": "support@razypay.network",
+    "supportPhone": "+91 9572918366",
+    "telegramSupportUrl": "https://t.me/Chandanstoresupport",
+    "minDepositInr": 100,
+    "maxDepositInr": 500000,
+    "minWithdrawInr": 500,
+    "maxWithdrawInr": 200000,
+    "defaultBuyFeePercent": 0.5,
+    "defaultSellFeePercent": 0.75,
+    "referralRewardPaise": 10000,
+    "depositUpiId": "razypey@ptyes",
+    "merchantName": "Razy Pay Global Services",
+    "isMaintenanceMode": false
+  },
+  "sessions": {
+    "rps_9ca8dd61f2c3679e42d7baec23d4038f09bcc57118de25192e193a2650512e11": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-21T16:49:57.085Z",
+      "expiresAt": "2026-10-28T16:49:57.085Z"
+    },
+    "rps_0d27f68089d4e5861e33fcb7fac015c5dfcbe48a655a98520a80a11bd24214cd": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-22T14:40:53.583Z",
+      "expiresAt": "2026-10-29T14:40:53.583Z"
+    },
+    "rps_2ecaec6ed404965928ea9ee8b73806ef381f6fd0c910bb3b68dea5d82d9ef4fd": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-22T15:25:35.213Z",
+      "expiresAt": "2026-10-29T15:25:35.213Z"
+    },
+    "rps_7f368cfebad7651d9a202f39d6168d4cc02dc4f2f5dabe523b7b15aa5fabd683": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-23T10:48:46.345Z",
+      "expiresAt": "2026-10-30T10:48:46.345Z"
+    },
+    "rps_502b11987f2393c140e37b1fb97046db0bf86dad66cf7b854c2375355dac30d9": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-24T01:33:04.001Z",
+      "expiresAt": "2026-10-31T01:33:04.001Z"
+    },
+    "rps_57179e3dd67c18921731d347ca4dbe2b2ada375bebc89a0e0af74b9ef79e037c": {
+      "userId": "usr_3cb3b331440afa06",
+      "createdAt": "2026-10-24T12:55:26.342Z",
+      "expiresAt": "2026-10-31T12:55:26.342Z"
+    },
+    "rps_8b6420a53b8338a9a262deeb445810c9ffe3e7544e9b1968cfc1deb9796de48b": {
+      "userId": "usr_77da4daf345d5b00",
+      "createdAt": "2026-10-27T02:41:13.590Z",
+      "expiresAt": "2026-11-03T02:41:13.590Z"
+    },
+    "rps_60458eb1fb8804b05fc84b4f74e2ac1870cfa49c506eeeb889c1ecdf2bd6144f": {
+      "userId": "usr_ee5d841df1e20c60",
+      "createdAt": "2026-10-27T02:41:24.932Z",
+      "expiresAt": "2026-11-03T02:41:24.932Z"
+    },
+    "rps_6ffab8c15ab642fdd7cd9614880309c84898356172c725dbff50747f27e6296f": {
+      "userId": "usr_5ffe308ec6ead450",
+      "createdAt": "2026-10-27T02:41:31.583Z",
+      "expiresAt": "2026-11-03T02:41:31.583Z"
+    },
+    "rps_15401e335a96667613c0451e54f0ccc872f28a1ff183003a723b3415ccde550f": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-27T02:57:12.040Z",
+      "expiresAt": "2026-11-03T02:57:12.040Z"
+    },
+    "rps_1579c3af4b42443b8bf65dc740a44ee7830a1ff9057b7907f568925a3e07bd89": {
+      "userId": "usr_c876421ea29819d1",
+      "createdAt": "2026-10-27T02:58:27.738Z",
+      "expiresAt": "2026-11-03T02:58:27.738Z"
+    },
+    "rps_09eb8c6b43da593bdbceb6702ba11a1e37af5410f49b636600a398e03ede43ac": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-27T03:20:28.718Z",
+      "expiresAt": "2026-11-03T03:20:28.718Z"
+    }
+  },
+  "otps": {}
+}

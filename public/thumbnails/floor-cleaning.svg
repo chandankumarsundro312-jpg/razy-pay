@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="fcBg" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#063228"/>
+      <stop offset="50%" stop-color="#021712"/>
+      <stop offset="100%" stop-color="#010a08"/>
+    </radialGradient>
+    <linearGradient id="fcCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="fcFoam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#a7f3d0"/>
+    </linearGradient>
+    <filter id="fcGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="800" fill="url(#fcBg)"/>
+
+  <!-- Satisfying Tiled Grid & Clean Reflection Floor -->
+  <g opacity="0.2">
+    <path d="M 0 500 L 1200 500 M 0 570 L 1200 570 M 0 650 L 1200 650 M 0 740 L 1200 740" stroke="#22d3ee" stroke-width="2"/>
+    <path d="M 150 480 L 0 800 M 350 480 L 200 800 M 600 480 L 600 800 M 850 480 L 1000 800 M 1050 480 L 1200 800" stroke="#34d399" stroke-width="2"/>
+  </g>
+
+  <!-- Modern Pressure Washer / Rotary Scrub Machine Graphic -->
+  <g transform="translate(600, 310)">
+    <!-- Water Splash & Cleaning Foam Waves -->
+    <ellipse cx="0" cy="110" rx="280" ry="40" fill="#22d3ee" opacity="0.25" filter="url(#fcGlow)"/>
+    <ellipse cx="0" cy="110" rx="200" ry="25" fill="#34d399" opacity="0.4"/>
+    <ellipse cx="0" cy="110" rx="120" ry="15" fill="#ffffff" opacity="0.8"/>
+
+    <!-- High Pressure Water Jet Beams -->
+    <polygon points="-80,-60 -240,110 -160,110" fill="url(#fcCyan)" opacity="0.45"/>
+    <polygon points="80,-60 240,110 160,110" fill="url(#fcCyan)" opacity="0.45"/>
+
+    <!-- Heavy Pressure Cleaner Head -->
+    <circle cx="0" cy="20" r="110" fill="#0f172a" stroke="#22d3ee" stroke-width="6"/>
+    <circle cx="0" cy="20" r="85" fill="#1e293b" stroke="#34d399" stroke-width="4"/>
+    <circle cx="0" cy="20" r="40" fill="#0284c7"/>
+    
+    <!-- Sparkle & Water Droplet Orbs -->
+    <circle cx="-130" cy="-20" r="8" fill="#ffffff" filter="url(#fcGlow)"/>
+    <circle cx="150" cy="10" r="10" fill="#22d3ee" filter="url(#fcGlow)"/>
+    <circle cx="-180" cy="70" r="6" fill="#34d399"/>
+    <circle cx="190" cy="80" r="7" fill="#ffffff"/>
+  </g>
+
+  <!-- Top Badges -->
+  <g transform="translate(100, 90)">
+    <rect x="0" y="0" width="260" height="54" rx="27" fill="#10b981" opacity="0.2" stroke="#10b981" stroke-width="2"/>
+    <circle cx="28" cy="27" r="12" fill="#10b981"/>
+    <text x="54" y="34" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" letter-spacing="1">700+ AI VIDEOS</text>
+  </g>
+
+  <g transform="translate(840, 90)">
+    <rect x="0" y="0" width="260" height="54" rx="27" fill="#06b6d4" opacity="0.2" stroke="#06b6d4" stroke-width="2"/>
+    <text x="130" y="34" fill="#67e8f9" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" text-anchor="middle" letter-spacing="1">⏱️ 5 MINUTES</text>
+  </g>
+
+  <!-- Title: FLOOR CLEANING -->
+  <text x="600" y="580" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="68" font-weight="950" letter-spacing="3" stroke="#000000" stroke-width="6" paint-order="stroke fill">
+    FLOOR CLEANING
+  </text>
+  <text x="600" y="635" text-anchor="middle" fill="url(#fcCyan)" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" letter-spacing="4">
+    ODDLY SATISFYING RESTORATION &amp; WASH
+  </text>
+
+  <!-- Price Pill -->
+  <g transform="translate(460, 670)">
+    <rect x="0" y="0" width="280" height="74" rx="37" fill="#059669" stroke="#34d399" stroke-width="4" filter="url(#fcGlow)"/>
+    <text x="140" y="49" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="950" text-anchor="middle">
+      ONLY ₹70
+    </text>
+  </g>
+</svg>

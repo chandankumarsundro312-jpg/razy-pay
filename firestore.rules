@@ -1,0 +1,74 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        request.auth.token.email != null &&
+        request.auth.token.email.lower() == 'chandankumarsundro312@gmail.com';
+    }
+
+    // User Profiles & Wallets (Permanent persistence)
+    match /users/{userId} {
+      allow read, write: if true;
+      match /{allSubcollections=**} {
+        allow read, write: if true;
+      }
+    }
+
+    // Direct User Credentials
+    match /user_credentials/{credId} {
+      allow read, write: if true;
+    }
+
+    // Buy Orders
+    match /orders/{orderId} {
+      allow read, write: if true;
+    }
+
+    // Withdrawals & Payout Requests
+    match /withdrawals/{withdrawalId} {
+      allow read, write: if true;
+    }
+
+    // Financial Ledger Records
+    match /ledger/{ledgerId} {
+      allow read, write: if true;
+    }
+
+    // Phone Listings
+    match /phones/{phoneId} {
+      allow read, write: if true;
+    }
+
+    // Rental Bookings
+    match /bookings/{bookingId} {
+      allow read, write: if true;
+    }
+
+    // UPI Payment Claims
+    match /payments/{paymentId} {
+      allow read, write: if true;
+    }
+
+    // Store & QR Settings
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+
+    // System Audit Logs
+    match /auditLogs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Connection ping
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+}

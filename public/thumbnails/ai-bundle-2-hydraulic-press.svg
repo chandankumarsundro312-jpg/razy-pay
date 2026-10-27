@@ -1,0 +1,401 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <defs>
+    <!-- Background Industrial Dark Gradient -->
+    <radialGradient id="industrialBg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#182333"/>
+      <stop offset="45%" stop-color="#0e1522"/>
+      <stop offset="85%" stop-color="#06090e"/>
+      <stop offset="100%" stop-color="#020406"/>
+    </radialGradient>
+
+    <!-- Metallic Piston Gradients -->
+    <linearGradient id="chromeMetalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1c222e"/>
+      <stop offset="15%" stop-color="#3d495d"/>
+      <stop offset="35%" stop-color="#7a8d9f"/>
+      <stop offset="50%" stop-color="#d1e0ea"/>
+      <stop offset="65%" stop-color="#607185"/>
+      <stop offset="85%" stop-color="#2a3342"/>
+      <stop offset="100%" stop-color="#141923"/>
+    </linearGradient>
+
+    <linearGradient id="polishedShaftGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#344154"/>
+      <stop offset="20%" stop-color="#697d98"/>
+      <stop offset="45%" stop-color="#e8f3fa"/>
+      <stop offset="55%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#8ba1be"/>
+      <stop offset="90%" stop-color="#3b4b60"/>
+      <stop offset="100%" stop-color="#1f2835"/>
+    </linearGradient>
+
+    <!-- Hazard Stripes Pattern -->
+    <pattern id="hazardStripes" width="55" height="55" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="27.5" height="55" fill="#f5af00"/>
+      <rect x="27.5" width="27.5" height="55" fill="#141414"/>
+    </pattern>
+
+    <!-- 3D Neon Yellow-Orange Extrusion for 2000+ -->
+    <linearGradient id="textYellow3D" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff866"/>
+      <stop offset="30%" stop-color="#ffcc00"/>
+      <stop offset="70%" stop-color="#ff9000"/>
+      <stop offset="100%" stop-color="#d65000"/>
+    </linearGradient>
+
+    <!-- Red Distressed Banner Gradient -->
+    <linearGradient id="redSlashGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#80000a"/>
+      <stop offset="25%" stop-color="#e00015"/>
+      <stop offset="75%" stop-color="#ff1c28"/>
+      <stop offset="100%" stop-color="#b00010"/>
+    </linearGradient>
+
+    <!-- Drop Shadows and Glows -->
+    <filter id="crushGlowYellow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#ff9900" flood-opacity="0.85"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#ffea00" flood-opacity="0.95"/>
+    </filter>
+
+    <filter id="heavyDistress" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.95"/>
+    </filter>
+
+    <filter id="hazardGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#ffaa00" flood-opacity="0.6"/>
+    </filter>
+
+    <filter id="cardNeonYellow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ffcc00" flood-opacity="0.8"/>
+    </filter>
+
+    <clipPath id="iphoneClip"><rect x="420" y="550" width="280" height="180" rx="24"/></clipPath>
+    <clipPath id="leftCard1Clip"><rect x="20" y="515" width="185" height="115" rx="14"/></clipPath>
+    <clipPath id="leftCard2Clip"><rect x="20" y="645" width="185" height="115" rx="14"/></clipPath>
+    <clipPath id="leftCard3Clip"><rect x="20" y="775" width="185" height="110" rx="14"/></clipPath>
+
+    <clipPath id="rightCard1Clip"><rect x="815" y="340" width="185" height="135" rx="14"/></clipPath>
+    <clipPath id="rightCard2Clip"><rect x="815" y="490" width="185" height="145" rx="14"/></clipPath>
+    <clipPath id="rightCard3Clip"><rect x="815" y="650" width="185" height="145" rx="14"/></clipPath>
+  </defs>
+
+  <!-- Dark Atmospheric Industrial Workshop Background -->
+  <rect width="1200" height="900" fill="url(#industrialBg)"/>
+
+  <!-- Dramatic warm & orange ambient backlight behind press -->
+  <circle cx="560" cy="380" r="320" fill="#ff4d00" opacity="0.22" filter="blur(80px)"/>
+  <circle cx="280" cy="220" r="240" fill="#ff9000" opacity="0.28" filter="blur(70px)"/>
+  <circle cx="900" cy="480" r="260" fill="#ff5500" opacity="0.16" filter="blur(70px)"/>
+
+  <!-- ============================================================== -->
+  <!-- CENTER HYDRAULIC CRUSHER PRESS MACHINE -->
+  <!-- ============================================================== -->
+
+  <!-- Upper Ram Main Piston (Top Dark Cylinder) -->
+  <rect x="470" y="0" width="220" height="160" fill="url(#chromeMetalGrad)"/>
+  <!-- Polished Chrome Hydraulic Cylinder Shaft -->
+  <rect x="510" y="380" width="140" height="150" fill="url(#polishedShaftGrad)"/>
+
+  <!-- UPPER HAZARD PRESS HEAD (Massive Steel Collar with Hazard Stripes) -->
+  <g filter="url(#hazardGlow)">
+    <!-- Hazard Collar Base -->
+    <rect x="430" y="150" width="300" height="230" rx="16" fill="url(#hazardStripes)"/>
+    <!-- Top & Bottom Steel Rim Caps -->
+    <rect x="420" y="140" width="320" height="22" rx="6" fill="url(#chromeMetalGrad)"/>
+    <rect x="420" y="360" width="320" height="22" rx="6" fill="url(#chromeMetalGrad)"/>
+    <!-- Steel Bevel Lighting overlay -->
+    <rect x="430" y="150" width="300" height="230" fill="#000000" opacity="0.18"/>
+  </g>
+
+  <!-- LOWER MOVING PRESS STAMP (Directly Crushing Phone) -->
+  <g filter="url(#heavyDistress)">
+    <rect x="400" y="515" width="360" height="85" rx="10" fill="url(#chromeMetalGrad)"/>
+    <!-- Heavy Industrial Texture Grooves -->
+    <line x1="410" y1="535" x2="750" y2="535" stroke="#161c26" stroke-width="4"/>
+    <line x1="410" y1="575" x2="750" y2="575" stroke="#161c26" stroke-width="4"/>
+  </g>
+
+  <!-- LOWER SOLID HAZARD ANVIL BASE -->
+  <g filter="url(#hazardGlow)">
+    <rect x="280" y="790" width="600" height="130" rx="18" fill="url(#hazardStripes)"/>
+    <rect x="260" y="775" width="640" height="24" rx="6" fill="url(#chromeMetalGrad)"/>
+    <!-- Shadow beneath anvil -->
+    <rect x="250" y="880" width="660" height="25" fill="#030508"/>
+  </g>
+
+  <!-- WORKSHOP FLOOR REFLECTIONS & OIL SURFACE -->
+  <rect x="0" y="870" width="1200" height="30" fill="#05080e"/>
+  <ellipse cx="580" cy="880" rx="420" ry="18" fill="#ff7700" opacity="0.3" filter="blur(12px)"/>
+
+  <!-- ============================================================== -->
+  <!-- CRUSHED APPLE IPHONE PRO (WITH SHATTERED GLASS & FLYING SHARDS) -->
+  <!-- ============================================================== -->
+
+  <g transform="rotate(-8 580 670)">
+    <!-- iPhone Titanium Frame (Bent & Crushed) -->
+    <rect x="430" y="585" width="300" height="175" rx="28" fill="#1b1e24" stroke="#4b5563" stroke-width="6"/>
+    <!-- Shattered Glass Back Surface -->
+    <rect x="435" y="590" width="290" height="165" rx="24" fill="#2d333f"/>
+
+    <!-- Camera Island with 3 Lenses -->
+    <g transform="translate(450, 605)">
+      <rect width="65" height="70" rx="16" fill="#181c24" stroke="#374151" stroke-width="3"/>
+      <!-- Lens 1 -->
+      <circle cx="20" cy="22" r="12" fill="#0b0d13" stroke="#4b5563" stroke-width="3"/>
+      <circle cx="20" cy="22" r="5" fill="#00e5ff" opacity="0.7"/>
+      <!-- Lens 2 -->
+      <circle cx="45" cy="35" r="12" fill="#0b0d13" stroke="#4b5563" stroke-width="3"/>
+      <circle cx="45" cy="35" r="5" fill="#00e5ff" opacity="0.7"/>
+      <!-- Lens 3 -->
+      <circle cx="20" cy="48" r="12" fill="#0b0d13" stroke="#4b5563" stroke-width="3"/>
+      <circle cx="20" cy="48" r="5" fill="#00e5ff" opacity="0.7"/>
+    </g>
+
+    <!-- Iconic Apple Logo in Center -->
+    <g transform="translate(600, 665) scale(0.9)">
+      <!-- Leaf -->
+      <path d="M 12,-18 C 12,-25 18,-30 24,-31 C 24,-24 19,-18 12,-18 Z" fill="#ffffff" opacity="0.9"/>
+      <!-- Apple Body with Bite -->
+      <path d="M 15,-14 C 20,-14 26,-18 33,-18 C 42,-18 47,-11 47,-11 C 47,-11 38,-6 38,5 C 38,18 49,22 49,22 C 49,22 42,38 31,38 C 25,38 21,34 14,34 C 8,34 2,38 -4,38 C -15,38 -24,20 -24,4 C -24,-13 -13,-23 -3,-23 C 4,-23 10,-14 15,-14 Z" fill="#ffffff" opacity="0.9"/>
+    </g>
+
+    <!-- Spiderweb Glass Fractures Across Phone -->
+    <path d="M 600,665 L 440,600 M 600,665 L 510,740 M 600,665 L 720,620 M 600,665 L 710,730 M 600,665 L 580,590 M 600,665 L 650,750" stroke="#ffffff" stroke-width="2.5" opacity="0.85"/>
+    <path d="M 520,630 L 480,670 L 530,710 L 590,690 L 580,630 Z" fill="none" stroke="#e2e8f0" stroke-width="1.8" opacity="0.7"/>
+    <path d="M 630,620 L 690,640 L 680,700 L 620,710 Z" fill="none" stroke="#e2e8f0" stroke-width="1.8" opacity="0.7"/>
+    <path d="M 470,610 L 440,650 M 680,610 L 725,650 M 550,730 L 570,755" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+  </g>
+
+  <!-- EXPLODING GLASS & STEEL SHARDS IN MID AIR -->
+  <!-- Sparks and Glass Splinters -->
+  <polygon points="760,570 780,560 775,585" fill="#ffffff" opacity="0.95"/>
+  <polygon points="785,610 815,600 805,625" fill="#a0c4e2" opacity="0.8"/>
+  <polygon points="750,670 780,660 765,690" fill="#ffffff" opacity="0.9"/>
+  <polygon points="730,730 760,740 735,760" fill="#ffd700" opacity="0.9"/>
+  <polygon points="410,580 380,560 395,595" fill="#ffffff" opacity="0.9"/>
+  <polygon points="370,630 350,650 380,660" fill="#d1e0ea" opacity="0.85"/>
+  <polygon points="380,720 355,735 375,750" fill="#ffb700" opacity="0.9"/>
+  <circle cx="770" cy="630" r="3" fill="#ffffff"/>
+  <circle cx="790" cy="680" r="4" fill="#ffcc00"/>
+  <circle cx="740" cy="550" r="3" fill="#ffffff"/>
+  <circle cx="390" cy="680" r="3" fill="#ff9900"/>
+  <circle cx="360" cy="610" r="4" fill="#ffffff"/>
+
+  <!-- ============================================================== -->
+  <!-- LEFT SIDE: 3 VERTICAL CRUSH PREVIEW CARDS (WITH NEON YELLOW BORDER) -->
+  <!-- ============================================================== -->
+
+  <!-- CARD 1 (Top Left): Red Gas Cylinder / Fire Extinguisher Under Press -->
+  <g filter="url(#cardNeonYellow)">
+    <rect x="20" y="515" width="185" height="115" rx="14" fill="#080c14" stroke="#ffea00" stroke-width="3"/>
+    <g clip-path="url(#leftCard1Clip)">
+      <rect x="20" y="515" width="185" height="115" fill="#141a26"/>
+      <!-- Top mini press piston -->
+      <rect x="75" y="515" width="75" height="25" fill="#556070"/>
+      <!-- Red LPG Cylinder -->
+      <rect x="45" y="570" width="105" height="50" rx="18" fill="#d11a0a"/>
+      <ellipse cx="50" cy="595" rx="12" ry="22" fill="#ff3b20"/>
+      <!-- Valve on top -->
+      <rect x="145" y="585" width="16" height="16" rx="4" fill="#ffbb00"/>
+      <line x1="85" y1="540" x2="85" y2="570" stroke="#333f50" stroke-width="12"/>
+      <!-- Exploding Sparks -->
+      <circle cx="120" cy="565" r="3" fill="#ffffff"/>
+      <circle cx="140" cy="555" r="4" fill="#ffcc00"/>
+      <circle cx="110" cy="580" r="2" fill="#ff8800"/>
+    </g>
+  </g>
+
+  <!-- CARD 2 (Middle Left): Nike Sneaker Being Squashed -->
+  <g filter="url(#cardNeonYellow)">
+    <rect x="20" y="645" width="185" height="115" rx="14" fill="#080c14" stroke="#ffea00" stroke-width="3"/>
+    <g clip-path="url(#leftCard2Clip)">
+      <rect x="20" y="645" width="185" height="115" fill="#121722"/>
+      <!-- Press Head coming down -->
+      <rect x="70" y="645" width="80" height="22" fill="#4a5568"/>
+      <!-- Nike Dunk / Air Jordan Sneaker Silhouette -->
+      <path d="M 30,735 Q 50,740 100,740 L 180,740 Q 185,725 175,700 L 140,685 L 115,705 L 75,715 L 35,720 Z" fill="#e2e8f0"/>
+      <!-- Nike Swoosh in Navy/Black -->
+      <path d="M 65,720 Q 95,705 135,695 Q 110,725 75,728 Z" fill="#1e293b"/>
+      <!-- Sneaker Sole (Rubber) -->
+      <rect x="30" y="735" width="150" height="10" rx="3" fill="#cbd5e1"/>
+    </g>
+  </g>
+
+  <!-- CARD 3 (Bottom Left): Black BMW Luxury Car Crushed -->
+  <g filter="url(#cardNeonYellow)">
+    <rect x="20" y="775" width="185" height="110" rx="14" fill="#080c14" stroke="#ffea00" stroke-width="3"/>
+    <g clip-path="url(#leftCard3Clip)">
+      <rect x="20" y="775" width="185" height="110" fill="#0d121c"/>
+      <!-- Heavy Press Stamp -->
+      <rect x="65" y="775" width="90" height="20" fill="#475569"/>
+      <!-- BMW Front Grille & Crushed Roof -->
+      <path d="M 40,865 Q 60,820 110,810 Q 160,820 180,865 Z" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+      <!-- Dual Kidney Grille -->
+      <rect x="90" y="845" width="16" height="20" rx="6" fill="#000000" stroke="#94a3b8" stroke-width="2"/>
+      <rect x="114" y="845" width="16" height="20" rx="6" fill="#000000" stroke="#94a3b8" stroke-width="2"/>
+      <!-- Twin LED Headlights -->
+      <ellipse cx="65" cy="845" rx="14" ry="5" fill="#00f0ff"/>
+      <ellipse cx="155" cy="845" rx="14" ry="5" fill="#00f0ff"/>
+      <!-- Glass Shatters flying off windshield -->
+      <polygon points="105,805 115,795 120,810" fill="#ffffff" opacity="0.9"/>
+    </g>
+  </g>
+
+  <!-- ============================================================== -->
+  <!-- RIGHT SIDE: 3 VERTICAL CRUSH PREVIEW CARDS (WITH NEON YELLOW BORDER) -->
+  <!-- ============================================================== -->
+
+  <!-- CARD 4 (Top Right): Apple MacBook Pro Flattened by Hydraulic Press -->
+  <g filter="url(#cardNeonYellow)">
+    <rect x="815" y="340" width="185" height="135" rx="14" fill="#080c14" stroke="#ffea00" stroke-width="3"/>
+    <g clip-path="url(#rightCard1Clip)">
+      <rect x="815" y="340" width="185" height="135" fill="#131924"/>
+      <!-- Top Press Piston -->
+      <rect x="860" y="340" width="85" height="20" fill="#475569"/>
+      <!-- MacBook Display Lid (Silver Aluminum) -->
+      <path d="M 835,445 L 860,380 L 960,380 L 980,445 Z" fill="#cbd5e1" stroke="#94a3b8" stroke-width="3"/>
+      <!-- Glowing Apple Logo on Lid -->
+      <circle cx="910" cy="410" r="10" fill="#ffffff" opacity="0.95"/>
+      <!-- Sparks -->
+      <circle cx="855" cy="385" r="3" fill="#ffffff"/>
+      <circle cx="965" cy="385" r="3" fill="#ffcc00"/>
+    </g>
+  </g>
+
+  <!-- CARD 5 (Middle Right): Exploding Colorful Paint Cans Splatter -->
+  <g filter="url(#cardNeonYellow)">
+    <rect x="815" y="490" width="185" height="145" rx="14" fill="#080c14" stroke="#ffea00" stroke-width="3"/>
+    <g clip-path="url(#rightCard2Clip)">
+      <rect x="815" y="490" width="185" height="145" fill="#0c111a"/>
+      <!-- Press Foot -->
+      <rect x="865" y="490" width="80" height="18" fill="#526074"/>
+      <!-- Multiple Squished Paint Cans with Wild Paint Splatters -->
+      <ellipse cx="855" cy="570" rx="22" ry="18" fill="#ff007f"/>
+      <ellipse cx="885" cy="600" rx="24" ry="20" fill="#00d4ff"/>
+      <ellipse cx="940" cy="580" rx="26" ry="18" fill="#00e676"/>
+      <ellipse cx="960" cy="605" rx="20" ry="16" fill="#ffea00"/>
+      <!-- Paint Splatters -->
+      <path d="M 830,580 Q 820,530 860,545 Q 890,520 890,560" fill="#ff007f" opacity="0.9"/>
+      <path d="M 920,550 Q 960,520 980,550 Q 990,590 940,570" fill="#00e676" opacity="0.9"/>
+      <circle cx="845" cy="530" r="5" fill="#ff007f"/>
+      <circle cx="975" cy="535" r="6" fill="#00d4ff"/>
+      <circle cx="900" cy="535" r="4" fill="#ffea00"/>
+    </g>
+  </g>
+
+  <!-- CARD 6 (Bottom Right): Superhero Action Figure Being Crushed -->
+  <g filter="url(#cardNeonYellow)">
+    <rect x="815" y="650" width="185" height="145" rx="14" fill="#080c14" stroke="#ffea00" stroke-width="3"/>
+    <g clip-path="url(#rightCard3Clip)">
+      <rect x="815" y="650" width="185" height="145" fill="#0e131d"/>
+      <!-- Hazard Press Head -->
+      <rect x="850" y="650" width="110" height="22" fill="#ffcc00" stroke="#000000" stroke-width="4"/>
+      <!-- Action Figure Lying Flat (Blue Suit & Red Cape) -->
+      <!-- Head -->
+      <circle cx="845" cy="735" r="14" fill="#fcd34d"/>
+      <!-- Blue Torso -->
+      <rect x="860" y="725" width="45" height="22" rx="4" fill="#1d4ed8"/>
+      <!-- Red Chest Emblem -->
+      <polygon points="882,728 890,736 875,736" fill="#dc2626"/>
+      <!-- Legs -->
+      <rect x="905" y="728" width="55" height="16" rx="3" fill="#1e40af"/>
+      <!-- Red Boots -->
+      <rect x="960" y="726" width="18" height="20" rx="4" fill="#b91c1c"/>
+      <!-- Red Cape Splattered Underneath -->
+      <path d="M 855,745 Q 890,765 970,755 L 965,740 Z" fill="#ef4444" opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- ============================================================== -->
+  <!-- TOP RIGHT: OPENAI EMBLEM & "AI GENERATED VIDEOS" BRUSH BADGE -->
+  <!-- ============================================================== -->
+
+  <!-- Circled OpenAI Logo with Gold Glow -->
+  <g transform="translate(900, 110)" filter="url(#crushGlowYellow)">
+    <circle cx="0" cy="0" r="68" fill="#000000" stroke="#ffea00" stroke-width="7"/>
+    <!-- Official OpenAI Swirl Flower Mark -->
+    <path d="M -8,-34 C -7,-38 -3,-40 2,-40 C 10,-40 18,-35 22,-27 L 22,-16 C 28,-16 33,-13 36,-8 C 40,0 39,10 33,16 L 23,21 C 23,28 19,34 13,37 C 6,41 -3,40 -9,36 L -18,31 C -24,33 -31,30 -35,25 C -40,17 -39,7 -34,1 L -25,-4 C -26,-10 -24,-17 -19,-22 C -14,-27 -7,-30 -1,-30 L -8,-34 Z" 
+          fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="11" fill="#ffffff"/>
+  </g>
+
+  <!-- Curved Yellow Hand-Drawn Arrow -->
+  <path d="M 785,210 Q 775,170 810,140" fill="none" stroke="#ffea00" stroke-width="9" stroke-linecap="round"/>
+  <polygon points="805,130 825,142 812,156" fill="#ffea00"/>
+
+  <!-- Yellow Brush Badge: "AI GENERATED VIDEOS" -->
+  <g transform="translate(885, 260)" filter="url(#heavyDistress)">
+    <path d="M -125,-40 
+             L 115,-48 
+             Q 130,-48 125,-15 
+             L 120,35 
+             Q 115,50 80,45 
+             L -115,48 
+             Q -135,48 -130,10 
+             Z" 
+          fill="#ffea00"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="34" font-weight="900" fill="#000000" letter-spacing="1">AI GENERATED</text>
+    <text x="0" y="32" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="38" font-weight="900" fill="#000000" letter-spacing="2">VIDEOS</text>
+  </g>
+
+  <!-- ============================================================== -->
+  <!-- TOP LEFT HEADLINE: "2000+" & DISTRESSED RED "AI VIDEO BUNDLE" -->
+  <!-- ============================================================== -->
+
+  <!-- "2000+" Massive 3D Extruded Yellow/Orange Typography -->
+  <g transform="translate(45, 270)" filter="url(#crushGlowYellow)">
+    <!-- Deep Dark Red 3D Extrusion Shadows -->
+    <text x="18" y="24" font-family="'Impact', 'Arial Black', sans-serif" font-size="240" font-weight="900" fill="#380600">2000+</text>
+    <text x="14" y="18" font-family="'Impact', 'Arial Black', sans-serif" font-size="240" font-weight="900" fill="#660d00">2000+</text>
+    <text x="10" y="12" font-family="'Impact', 'Arial Black', sans-serif" font-size="240" font-weight="900" fill="#a31900">2000+</text>
+    <text x="6" y="6" font-family="'Impact', 'Arial Black', sans-serif" font-size="240" font-weight="900" fill="#e04000">2000+</text>
+    
+    <!-- Outer Heavy Black Outline Border -->
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="240" font-weight="900" fill="url(#textYellow3D)" stroke="#1a0400" stroke-width="20" stroke-linejoin="round">2000+</text>
+    <!-- Core Bright Gradient Fill -->
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="240" font-weight="900" fill="url(#textYellow3D)">2000+</text>
+    <!-- Inner Top Specular Light Highlight -->
+    <text x="-4" y="-4" font-family="'Impact', 'Arial Black', sans-serif" font-size="240" font-weight="900" fill="#ffffff" opacity="0.4">2000+</text>
+  </g>
+
+  <!-- RED DISTRESSED SLANTED BRUSHSTROKE BANNER BEHIND "AI VIDEO" -->
+  <g filter="url(#heavyDistress)">
+    <path d="M 30,285 
+             L 520,240 
+             Q 545,240 540,290 
+             L 525,480 
+             Q 510,510 460,505 
+             L 70,545 
+             Q 30,550 40,490 
+             L 25,340 
+             Z" 
+          fill="url(#redSlashGrad)"/>
+    <!-- Distressed Spatter Dots & Texture -->
+    <circle cx="20" cy="300" r="10" fill="#e00015"/>
+    <circle cx="15" cy="340" r="14" fill="#80000a"/>
+    <circle cx="25" cy="400" r="8" fill="#e00015"/>
+    <circle cx="535" cy="230" r="12" fill="#ff1c28"/>
+    <circle cx="555" cy="270" r="16" fill="#b00010"/>
+    <circle cx="545" cy="340" r="9" fill="#e00015"/>
+    <circle cx="480" cy="525" r="14" fill="#80000a"/>
+    <circle cx="50" cy="565" r="12" fill="#b00010"/>
+  </g>
+
+  <!-- "AI VIDEO" Clean White Heavy Typography with Deep Drop Shadow -->
+  <g transform="translate(65, 415)">
+    <text x="6" y="10" font-family="'Impact', 'Arial Black', sans-serif" font-size="140" font-style="italic" font-weight="900" fill="#290004" letter-spacing="1">AI VIDEO</text>
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="140" font-style="italic" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" stroke-linejoin="round" letter-spacing="1">AI VIDEO</text>
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="140" font-style="italic" font-weight="900" fill="#ffffff" letter-spacing="1">AI VIDEO</text>
+  </g>
+
+  <!-- "BUNDLE" Slanted Brush Typography in Golden Yellow with Thick Stroke -->
+  <g transform="translate(75, 520)" filter="url(#crushGlowYellow)">
+    <!-- Shadow & 3D bevel -->
+    <text x="8" y="10" font-family="'Impact', 'Arial Black', sans-serif" font-size="130" font-style="italic" font-weight="900" fill="#380a00" stroke="#000000" stroke-width="18" stroke-linejoin="round">BUNDLE</text>
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="130" font-style="italic" font-weight="900" fill="#ffe600" stroke="#8a2000" stroke-width="8" stroke-linejoin="round">BUNDLE</text>
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="130" font-style="italic" font-weight="900" fill="#ffe600">BUNDLE</text>
+  </g>
+
+  <!-- Frame Border -->
+  <rect x="2" y="2" width="1196" height="896" rx="12" fill="none" stroke="#22314d" stroke-width="4"/>
+</svg>

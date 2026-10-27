@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="amBg" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#3d220f"/>
+      <stop offset="50%" stop-color="#1c0f05"/>
+      <stop offset="100%" stop-color="#080401"/>
+    </radialGradient>
+    <linearGradient id="amGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="30%" stop-color="#f59e0b"/>
+      <stop offset="70%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="amWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a16207"/>
+      <stop offset="50%" stop-color="#713f12"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <filter id="amGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#amBg)"/>
+
+  <!-- Antique Blueprint Rings & Gear Graphics -->
+  <g opacity="0.25" stroke="#f59e0b" fill="none">
+    <circle cx="600" cy="300" r="280" stroke-width="2"/>
+    <circle cx="600" cy="300" r="230" stroke-width="1.5" stroke-dasharray="12 8"/>
+    <circle cx="600" cy="300" r="170" stroke-width="2"/>
+  </g>
+
+  <!-- Antique Watchmaker & Woodcraft Centerpiece -->
+  <g transform="translate(600, 300)">
+    <!-- Outer Brass Gear -->
+    <circle cx="0" cy="0" r="140" fill="#1e1308" stroke="url(#amGold)" stroke-width="8"/>
+    
+    <!-- Roman Numerals Clockface & Hour Hands -->
+    <circle cx="0" cy="0" r="105" fill="#2d1a0b" stroke="#ca8a04" stroke-width="3"/>
+    <line x1="0" y1="0" x2="0" y2="-65" stroke="#fef08a" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="45" y2="25" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="12" fill="#fef08a"/>
+
+    <!-- Artisan Chisel & Woodcarving Tool Overlay -->
+    <g transform="rotate(35) translate(-10, -160)">
+      <polygon points="0,0 20,-10 20,-100 0,-100" fill="url(#amGold)"/>
+      <rect x="2" y="-220" width="16" height="120" rx="6" fill="url(#amWood)"/>
+    </g>
+    
+    <!-- Warm Gold Sparks -->
+    <circle cx="-130" cy="-90" r="8" fill="#fef08a" filter="url(#amGlow)"/>
+    <circle cx="140" cy="80" r="9" fill="#f59e0b" filter="url(#amGlow)"/>
+  </g>
+
+  <!-- Top Badges -->
+  <g transform="translate(100, 90)">
+    <rect x="0" y="0" width="260" height="54" rx="27" fill="#f59e0b" opacity="0.2" stroke="#f59e0b" stroke-width="2"/>
+    <circle cx="28" cy="27" r="12" fill="#f59e0b"/>
+    <text x="54" y="34" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" letter-spacing="1">800+ AI VIDEOS</text>
+  </g>
+
+  <g transform="translate(840, 90)">
+    <rect x="0" y="0" width="260" height="54" rx="27" fill="#d97706" opacity="0.2" stroke="#d97706" stroke-width="2"/>
+    <text x="130" y="34" fill="#fbbf24" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" text-anchor="middle" letter-spacing="1">⏱️ 8 MINUTES</text>
+  </g>
+
+  <!-- Title: ANTIQUE MAKING -->
+  <text x="600" y="580" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="68" font-weight="950" letter-spacing="3" stroke="#000000" stroke-width="6" paint-order="stroke fill">
+    ANTIQUE MAKING
+  </text>
+  <text x="600" y="635" text-anchor="middle" fill="url(#amGold)" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" letter-spacing="4">
+    MASTER CRAFT, WOODWORK &amp; RESTORATION
+  </text>
+
+  <!-- Price Pill -->
+  <g transform="translate(460, 670)">
+    <rect x="0" y="0" width="280" height="74" rx="37" fill="#b45309" stroke="#fef08a" stroke-width="4" filter="url(#amGlow)"/>
+    <text x="140" y="49" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="950" text-anchor="middle">
+      ONLY ₹80
+    </text>
+  </g>
+</svg>

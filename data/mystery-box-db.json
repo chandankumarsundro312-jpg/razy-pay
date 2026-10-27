@@ -1,0 +1,487 @@
+{
+  "users": [
+    {
+      "id": "usr-demo-1",
+      "name": "Test Customer",
+      "phone": "9876543210",
+      "email": "customer@example.com",
+      "role": "user",
+      "createdAt": "2026-09-25T16:30:56.118Z"
+    },
+    {
+      "id": "usr-13d872b9",
+      "name": "Vip",
+      "phone": "9572918366",
+      "role": "user",
+      "createdAt": "2026-09-25T16:40:07.067Z"
+    },
+    {
+      "id": "usr-1bc8a8cb",
+      "name": "Aman Sharma",
+      "phone": "9820144521",
+      "role": "user",
+      "createdAt": "2026-09-25T16:48:59.917Z"
+    }
+  ],
+  "inventory": [
+    {
+      "id": "item-tws-pro",
+      "name": "AirPro Max ANC Wireless Earbuds (Pre-Owned)",
+      "category": "Audio",
+      "mrp": 2999,
+      "deliveryCharge": 109,
+      "image": "tws-earbuds",
+      "quantity": 6,
+      "totalStock": 10,
+      "tier": "Epic",
+      "condition": "Grade A+ (Mint / Like New)",
+      "conditionDetails": {
+        "grade": "Grade A+ (Mint / Like New)",
+        "cosmeticCondition": "Flawless exterior with zero scratches or scuffs; ultrasonic sanitized.",
+        "functionalTesting": "100% Passed: Active Noise Cancellation, Bluetooth 5.3 & Microphones tested.",
+        "batteryHealth": "94% Original Capacity (approx. 34 hours with case).",
+        "accessoriesIncluded": "Original Magnetic Charging Case, Type-C Cable & 3 pairs of sealed silicone tips.",
+        "warrantyPeriod": "6 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "Active Noise Cancellation (ANC)",
+        "Tested 34h Playtime with Case",
+        "Bluetooth 5.3 Low Latency",
+        "Type-C Fast Charging"
+      ],
+      "active": true,
+      "color": "#A855F7",
+      "weight": 25
+    },
+    {
+      "id": "item-watch-ultra",
+      "name": "Titanium Ultra 2 Smartwatch (Refurbished)",
+      "category": "Wearables",
+      "mrp": 4499,
+      "deliveryCharge": 109,
+      "image": "smartwatch-ultra",
+      "quantity": 4,
+      "totalStock": 5,
+      "tier": "Legendary",
+      "condition": "Grade A+ (Mint / Like New)",
+      "conditionDetails": {
+        "grade": "Grade A+ (Mint / Like New)",
+        "cosmeticCondition": "Inspected aerospace titanium casing; crystal clear scratch-free AMOLED lens.",
+        "functionalTesting": "100% Passed: Touch response, heart rate sensor, SpO2 sensor & Bluetooth calling tested.",
+        "batteryHealth": "96% Original Capacity (3-4 days typical standby).",
+        "accessoriesIncluded": "High-grade silicone sport strap & magnetic wireless fast charging puck.",
+        "warrantyPeriod": "6 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "2.02\" HD AMOLED Display",
+        "Bluetooth Calling & Speaker",
+        "Heart Rate & SpO2 Tracking",
+        "IP68 Water Resistance"
+      ],
+      "active": true,
+      "color": "#EC4899",
+      "weight": 15
+    },
+    {
+      "id": "item-speaker-360",
+      "name": "PulseBoom 360 RGB Speaker (Pre-Owned)",
+      "category": "Audio",
+      "mrp": 1999,
+      "deliveryCharge": 109,
+      "image": "bluetooth-speaker",
+      "quantity": 12,
+      "totalStock": 15,
+      "tier": "Rare",
+      "condition": "Grade A (Excellent)",
+      "conditionDetails": {
+        "grade": "Grade A (Excellent)",
+        "cosmeticCondition": "Minimal hairline signs of gentle prior testing; mesh acoustic fabric sanitized.",
+        "functionalTesting": "100% Passed: Dual 8W drivers, passive bass radiator & 360 RGB ring lights fully operational.",
+        "batteryHealth": "91% Original Capacity (approx. 10 hours continuous playback).",
+        "accessoriesIncluded": "Braided Type-C Fast Charging Cable & lanyard clip.",
+        "warrantyPeriod": "3 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "16W Rich Deep Bass Drivers",
+        "360° Dynamic RGB Light Ring",
+        "10 Hours Battery Playback",
+        "TWS Dual Speaker Pairing"
+      ],
+      "active": true,
+      "color": "#8B5CF6",
+      "weight": 35
+    },
+    {
+      "id": "item-headset-rgb",
+      "name": "HyperBass 7.1 Gaming Headset (Refurbished)",
+      "category": "Gaming",
+      "mrp": 3299,
+      "deliveryCharge": 109,
+      "image": "gaming-headset",
+      "quantity": 6,
+      "totalStock": 8,
+      "tier": "Epic",
+      "condition": "Grade A+ (Mint / Like New)",
+      "conditionDetails": {
+        "grade": "Grade A+ (Mint / Like New)",
+        "cosmeticCondition": "Reconditioned with brand new memory foam earcups and cushioned headband.",
+        "functionalTesting": "100% Passed: 50mm neodymium audio drivers and noise-cancelling boom microphone.",
+        "accessoriesIncluded": "3.5mm Gold-plated Audio Splitter & Detachable Mic.",
+        "warrantyPeriod": "6 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "50mm Neodymium Audio Drivers",
+        "Surround Sound 7.1 Virtual",
+        "Noise-Isolating Flexible Mic",
+        "Memory Foam Breathable Earcups"
+      ],
+      "active": true,
+      "color": "#F43F5E",
+      "weight": 20
+    },
+    {
+      "id": "item-powerbank-20k",
+      "name": "HyperCharge 20000mAh Power Bank (Pre-Owned)",
+      "category": "Power",
+      "mrp": 1499,
+      "deliveryCharge": 109,
+      "image": "power-bank",
+      "quantity": 14,
+      "totalStock": 18,
+      "tier": "Rare",
+      "condition": "Grade A (Excellent)",
+      "conditionDetails": {
+        "grade": "Grade A (Excellent)",
+        "cosmeticCondition": "Clean carbon-fiber textured casing with digital LED display fully bright and clear.",
+        "functionalTesting": "100% Passed: 22.5W fast charge input/output cycle tested with multi-protection IC.",
+        "batteryHealth": "93% Original Cell Capacity (18,600+ mAh usable cycle capacity).",
+        "accessoriesIncluded": "Short 60W Type-C to Type-C Braided Fast Cable.",
+        "warrantyPeriod": "3 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "20,000mAh Lithium-Polymer Cell",
+        "22.5W Quick Charge 3.0 / PD",
+        "Dual USB-A + Dual Type-C",
+        "Digital LED Percentage Readout"
+      ],
+      "active": true,
+      "color": "#3B82F6",
+      "weight": 40
+    },
+    {
+      "id": "item-charger-65w",
+      "name": "65W GaN Dual Fast Charger Combo (Refurbished)",
+      "category": "Power",
+      "mrp": 999,
+      "deliveryCharge": 109,
+      "image": "fast-charger",
+      "quantity": 18,
+      "totalStock": 25,
+      "tier": "Standard",
+      "condition": "Grade A+ (Mint / Like New)",
+      "conditionDetails": {
+        "grade": "Grade A+ (Mint / Like New)",
+        "cosmeticCondition": "Refurbished compact GaN III semiconductor block, inspected plug contacts.",
+        "functionalTesting": "100% Passed: PD 3.0 & PPS temperature regulated fast charging for laptops & phones.",
+        "accessoriesIncluded": "1.2 Meter 100W E-Mark Braided Cable.",
+        "warrantyPeriod": "6 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "GaN III Advanced Semiconductor",
+        "65W Power Delivery (PD 3.0)",
+        "Supports Laptops & Smartphones",
+        "Includes 100W Braided Cable"
+      ],
+      "active": true,
+      "color": "#10B981",
+      "weight": 50
+    },
+    {
+      "id": "item-smartphone-ultra",
+      "name": "Galaxy Ultra Pro 5G (Pre-Owned)",
+      "category": "Smartphones",
+      "mrp": 49999,
+      "deliveryCharge": 109,
+      "image": "smartphone",
+      "quantity": 5,
+      "totalStock": 8,
+      "tier": "Legendary",
+      "condition": "Grade A+ (Mint / Like New)",
+      "conditionDetails": {
+        "grade": "Grade A+ (Mint / Like New)",
+        "cosmeticCondition": "Near-mint 6.8\" Dynamic AMOLED 120Hz display with zero micro-abrasions.",
+        "functionalTesting": "100% Passed: Snapdragon 8 Gen 2, 200MP camera sensor, 5G & ultrasonic biometric tested.",
+        "batteryHealth": "97% Original Capacity (5,000mAh battery).",
+        "accessoriesIncluded": "Original Fast Cable & Protective Armor Case.",
+        "warrantyPeriod": "6 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "6.8\" Quad HD+ Dynamic AMOLED 120Hz",
+        "200MP Optical Zoom Camera Module",
+        "Qualcomm Snapdragon 8 Gen 2",
+        "5000mAh Inspected Battery Cell"
+      ],
+      "active": true,
+      "color": "#3B82F6",
+      "weight": 20
+    },
+    {
+      "id": "item-tablet-pro",
+      "name": "RetinaTab 11\" Pro Liquid Display (Refurbished)",
+      "category": "Tablets",
+      "mrp": 34999,
+      "deliveryCharge": 109,
+      "image": "tablet",
+      "quantity": 4,
+      "totalStock": 6,
+      "tier": "Legendary",
+      "condition": "Grade A+ (Mint / Like New)",
+      "conditionDetails": {
+        "grade": "Grade A+ (Mint / Like New)",
+        "cosmeticCondition": "Flawless aerospace aluminum unibody, scratch-free edge-to-edge glass.",
+        "functionalTesting": "100% Passed: Multi-touch digitizer, stylus hover, quad speakers & dual mics tested.",
+        "batteryHealth": "95% Original Capacity.",
+        "accessoriesIncluded": "Magnetic Stand Folio & Fast Type-C Cable.",
+        "warrantyPeriod": "6 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "11\" TrueTone Liquid Retina Display",
+        "Quad Stereo Acoustic Audio",
+        "Apple M-Series Equivalent Octa-Core",
+        "Supports Magnetic Stylus & Smart Keyboard"
+      ],
+      "active": true,
+      "color": "#FACC15",
+      "weight": 15
+    },
+    {
+      "id": "item-camera-4k",
+      "name": "AlphaShoot 4K Mirrorless Camera (Inspected)",
+      "category": "Cameras",
+      "mrp": 58999,
+      "deliveryCharge": 109,
+      "image": "camera",
+      "quantity": 3,
+      "totalStock": 4,
+      "tier": "Legendary",
+      "condition": "Grade A+ (Mint / Like New)",
+      "conditionDetails": {
+        "grade": "Grade A+ (Mint / Like New)",
+        "cosmeticCondition": "Certified pristine sensor with zero dust, clean magnesium alloy weather-sealed body.",
+        "functionalTesting": "100% Passed: In-body 5-axis stabilization, 4K60p video, shutter mechanism & clean HDMI.",
+        "batteryHealth": "96% Battery Standby Capacity (2 original batteries included).",
+        "accessoriesIncluded": "2x Batteries, Dual Slot Charger, Neck Strap & 28-70mm Kit Lens.",
+        "warrantyPeriod": "6 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "24.2MP Full-Frame Exmor R CMOS Sensor",
+        "4K HDR 60fps Uncompressed Video",
+        "693-Point Phase-Detection Fast AF",
+        "5-Axis In-Body Image Stabilization"
+      ],
+      "active": true,
+      "color": "#F59E0B",
+      "weight": 10
+    },
+    {
+      "id": "item-gamepad-pro",
+      "name": "DualHaptic Pro Wireless Gamepad (Refurbished)",
+      "category": "Gaming",
+      "mrp": 3999,
+      "deliveryCharge": 109,
+      "image": "game-controller",
+      "quantity": 7,
+      "totalStock": 10,
+      "tier": "Rare",
+      "condition": "Grade A (Excellent)",
+      "conditionDetails": {
+        "grade": "Grade A (Excellent)",
+        "cosmeticCondition": "Ergonomic textured handles fully sanitized, crisp tactile buttons.",
+        "functionalTesting": "100% Passed: Hall-effect magnetic analog sticks (zero stick drift), haptic triggers & Bluetooth.",
+        "batteryHealth": "94% Original Capacity (approx. 14 hours battery life).",
+        "accessoriesIncluded": "Braided Type-C Fast Cable & Low Latency USB Dongle.",
+        "warrantyPeriod": "3 Months Merchant Replacement Warranty"
+      },
+      "specifications": [
+        "Hall Effect Drift-Free Magnetic Joysticks",
+        "Dual Dynamic Force-Feedback Motors",
+        "Bluetooth 5.2 + 2.4GHz Ultra Low-Latency",
+        "Compatible with PC, Mobile & Consoles"
+      ],
+      "active": true,
+      "color": "#6366F1",
+      "weight": 25
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-415858",
+      "userId": "usr-demo-1",
+      "userName": "Test Customer",
+      "userPhone": "9876543210",
+      "item": {
+        "id": "item-tws-pro",
+        "name": "AirPro Max ANC Wireless Earbuds (Pre-Owned)",
+        "category": "Audio",
+        "mrp": 2999,
+        "condition": "Grade A+ (Mint / Like New)",
+        "grade": "Grade A+ (Mint / Like New)",
+        "image": "tws-earbuds",
+        "tier": "Epic",
+        "serialNumber": "SN-AUD-865663-266"
+      },
+      "deliveryCharge": 109,
+      "totalAmount": 109,
+      "shippingAddress": {
+        "fullName": "Rahul Verma",
+        "mobileNumber": "9876543210",
+        "houseFlatNo": "Flat 402, Lotus Towers",
+        "streetArea": "7th Main, Indiranagar",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560038",
+        "submittedAt": "2026-09-25T16:31:05.663Z"
+      },
+      "paymentUpi": "chandan-8366@ptyes",
+      "utr": "518290381928",
+      "proofScreenshot": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
+      "status": "confirmed",
+      "deliveryStatus": "dispatched",
+      "createdAt": "2026-09-25T16:31:05.717Z",
+      "proofFilename": "payment-screenshot-109.png",
+      "verifiedAt": "2026-09-25T16:31:19.730Z",
+      "confirmedAt": "2026-09-25T16:31:19.730Z",
+      "courierPartner": "Delhivery Express",
+      "trackingNumber": "DELH-74920194",
+      "dispatchedAt": "2026-09-25T16:31:29.957Z"
+    },
+    {
+      "id": "ORD-430164",
+      "userId": "usr-1bc8a8cb",
+      "userName": "Aman Sharma",
+      "userPhone": "9820144521",
+      "item": {
+        "id": "item-tws-pro",
+        "name": "AirPro Max ANC Wireless Earbuds (Pre-Owned)",
+        "category": "Audio",
+        "mrp": 2999,
+        "condition": "Grade A+ (Mint / Like New)",
+        "grade": "Grade A+ (Mint / Like New)",
+        "image": "tws-earbuds",
+        "tier": "Epic",
+        "serialNumber": "SN-AUD-950174-114"
+      },
+      "deliveryCharge": 109,
+      "totalAmount": 109,
+      "shippingAddress": {
+        "fullName": "Aman Sharma",
+        "mobileNumber": "9820144521",
+        "houseFlatNo": "Flat 402, Block C, Royal Palms",
+        "streetArea": "14th Main, HSR Layout Sector 3",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560102",
+        "submittedAt": "2026-09-25T16:49:10.174Z"
+      },
+      "paymentUpi": "chandan-8366@ptyes",
+      "utr": "429104920194",
+      "proofScreenshot": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+      "paymentStatus": "verified",
+      "deliveryStatus": "shipped",
+      "createdAt": "2026-09-25T16:49:10.313Z",
+      "proofFilename": "proof-ORD-430164.png",
+      "verifiedAt": "2026-09-25T16:49:30.444Z",
+      "courierPartner": "Delhivery Express",
+      "trackingNumber": "DELH-94021948",
+      "shippedAt": "2026-09-25T16:49:37.990Z"
+    },
+    {
+      "id": "ORD-232399",
+      "userId": "usr-demo-1",
+      "userName": "Test Customer",
+      "userPhone": "9876543210",
+      "item": {
+        "id": "item-tws-pro",
+        "name": "AirPro Max ANC Wireless Earbuds (Pre-Owned)",
+        "category": "Audio",
+        "mrp": 2999,
+        "condition": "Grade A+ (Mint / Like New)",
+        "grade": "Grade A+ (Mint / Like New)",
+        "image": "tws-earbuds",
+        "tier": "Epic",
+        "serialNumber": "SN-AUD-019668-699"
+      },
+      "deliveryCharge": 109,
+      "totalAmount": 109,
+      "shippingAddress": {
+        "fullName": "Test User",
+        "mobileNumber": "9876543210",
+        "houseFlatNo": "101",
+        "streetArea": "Main St",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "pincode": "400001",
+        "submittedAt": "2026-09-25T17:06:59.668Z"
+      },
+      "paymentUpi": "chandan-8366@ptyes",
+      "utr": "",
+      "proofScreenshot": "",
+      "paymentStatus": "pending",
+      "deliveryStatus": "pending",
+      "createdAt": "2026-09-25T17:06:59.700Z"
+    }
+  ],
+  "tickets": [],
+  "settings": {
+    "boxPrice": 5,
+    "deliveryCharge": 109,
+    "upiId": "chandansundro97@mvhdfc",
+    "upiName": "Mystery Box Electronics",
+    "adminPin": "8899",
+    "businessDetails": {
+      "entityName": "NaviAxis Digital Promotions",
+      "tradeName": "₹5 Electronics Mystery Vault",
+      "merchantVpa": "chandansundro97@mvhdfc",
+      "bankPartner": "Chandan Kumar (Navi UPI Gateway)",
+      "registeredOffice": "Tech Hub, 3rd Cross, Electronic City Phase 1, Bengaluru, Karnataka 560100",
+      "supportEmail": "support.mysterybox@naviaxis.in",
+      "supportPhone": "+91 98201 44521",
+      "gstStatus": "Statutory Small Enterprise Exemption",
+      "gstExemptionClause": "Exempt from mandatory GST registration under Section 22(1) of the Central Goods and Services Tax (CGST) Act, 2017 (Aggregate annual turnover is strictly below the ₹20,00,000 threshold for service providers).",
+      "complianceNote": "Authentic second-hand & refurbished electronics inventory. Every device undergoes a 32-point inspection and sanitization process. Delivery charges of ₹109 are verified via Chandan Kumar records before orders are confirmed.",
+      "courierPartners": [
+        "Delhivery Express",
+        "BlueDart Surface",
+        "India Post Speed Post"
+      ],
+      "operationalHours": "Monday – Saturday: 09:30 AM to 07:00 PM IST"
+    }
+  },
+  "mysteryBoxes": [
+    {
+      "id": "BOX-898008",
+      "userId": "usr-demo-1",
+      "userName": "Test Customer",
+      "userPhone": "9876543210",
+      "amount": 5,
+      "paymentUpi": "chandan-8366@ptyes",
+      "utr": "",
+      "proofScreenshot": "",
+      "status": "pending",
+      "createdAt": "2026-09-25T17:06:45.877Z"
+    },
+    {
+      "id": "BOX-454104",
+      "userId": "usr-13d872b9",
+      "userName": "Vip",
+      "userPhone": "9572918366",
+      "amount": 5,
+      "paymentUpi": "chandan-8366@ptyes",
+      "utr": "",
+      "proofScreenshot": "",
+      "status": "pending",
+      "createdAt": "2026-09-25T17:09:32.977Z"
+    }
+  ],
+  "notifications": []
+}

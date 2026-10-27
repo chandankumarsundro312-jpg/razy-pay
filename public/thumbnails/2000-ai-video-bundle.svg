@@ -1,0 +1,397 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#14192b"/>
+      <stop offset="60%" stop-color="#070a12"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </radialGradient>
+
+    <!-- Neon Yellow 3D text gradient -->
+    <linearGradient id="yellowTextGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff566"/>
+      <stop offset="35%" stop-color="#ffcc00"/>
+      <stop offset="85%" stop-color="#ff9900"/>
+      <stop offset="100%" stop-color="#e66000"/>
+    </linearGradient>
+
+    <!-- Orange/Red 3D depth extrusion -->
+    <linearGradient id="text3DGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cc2200"/>
+      <stop offset="100%" stop-color="#660a00"/>
+    </linearGradient>
+
+    <!-- Red Banner Gradient -->
+    <linearGradient id="redBannerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#990011"/>
+      <stop offset="20%" stop-color="#e50914"/>
+      <stop offset="80%" stop-color="#ff1e27"/>
+      <stop offset="100%" stop-color="#cc0010"/>
+    </linearGradient>
+
+    <!-- Card Neon Gradients -->
+    <linearGradient id="cardCyanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="100%" stop-color="#7928ca"/>
+    </linearGradient>
+
+    <linearGradient id="cardOrangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb700"/>
+      <stop offset="100%" stop-color="#ff3e00"/>
+    </linearGradient>
+
+    <linearGradient id="cardGreenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00aa44"/>
+    </linearGradient>
+
+    <linearGradient id="cardBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00c8ff"/>
+      <stop offset="100%" stop-color="#0055ff"/>
+    </linearGradient>
+
+    <linearGradient id="cardPurpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b800ff"/>
+      <stop offset="100%" stop-color="#ff0077"/>
+    </linearGradient>
+
+    <!-- Drop Shadows and Glows -->
+    <filter id="neonGlowYellow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#ff9900" flood-opacity="0.8"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#ffea00" flood-opacity="0.9"/>
+    </filter>
+
+    <filter id="brushShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.9"/>
+    </filter>
+
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#00f0ff" flood-opacity="0.9"/>
+    </filter>
+    <filter id="glowOrange" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#ff9900" flood-opacity="0.9"/>
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#00ff88" flood-opacity="0.9"/>
+    </filter>
+    <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#00c8ff" flood-opacity="0.9"/>
+    </filter>
+    <filter id="glowPurple" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#b800ff" flood-opacity="0.9"/>
+    </filter>
+
+    <clipPath id="cardClip1"><rect x="35" y="375" width="205" height="485" rx="22"/></clipPath>
+    <clipPath id="cardClip2"><rect x="265" y="375" width="205" height="485" rx="22"/></clipPath>
+    <clipPath id="cardClip3"><rect x="495" y="375" width="205" height="485" rx="22"/></clipPath>
+    <clipPath id="cardClip4"><rect x="725" y="375" width="205" height="485" rx="22"/></clipPath>
+    <clipPath id="cardClip5"><rect x="955" y="375" width="205" height="485" rx="22"/></clipPath>
+  </defs>
+
+  <!-- Deep Sci-Fi / YouTube Studio Canvas Background -->
+  <rect width="1200" height="900" fill="url(#bgGrad)"/>
+
+  <!-- Subtle ambient particles and light streaks -->
+  <circle cx="150" cy="180" r="220" fill="#ff4400" opacity="0.18" filter="blur(60px)"/>
+  <circle cx="650" cy="160" r="260" fill="#ff0044" opacity="0.18" filter="blur(70px)"/>
+  <circle cx="1080" cy="220" r="200" fill="#ffcc00" opacity="0.15" filter="blur(60px)"/>
+
+  <!-- ============================================================== -->
+  <!-- TOP BANNER HEADER SECTION -->
+  <!-- ============================================================== -->
+
+  <!-- Top Left Splash Sparkles -->
+  <g transform="translate(60, 95)">
+    <polygon points="15,0 28,12 18,28 0,16" fill="#ffea00" filter="url(#neonGlowYellow)"/>
+    <polygon points="40,2 48,15 38,25 28,12" fill="#ffb700"/>
+  </g>
+
+  <!-- Red Distressed Paint / Brushstroke Banner Behind "AI Video" -->
+  <g filter="url(#brushShadow)">
+    <path d="M 520,105 
+             L 1090,80 
+             Q 1130,78 1110,130 
+             L 1080,240 
+             Q 1060,265 1010,255 
+             L 540,285 
+             Q 480,290 500,240 
+             L 530,140 
+             Z" 
+          fill="url(#redBannerGrad)"/>
+    <!-- Brush Splatter Accents -->
+    <circle cx="510" cy="90" r="14" fill="#e50914"/>
+    <circle cx="485" cy="115" r="9" fill="#e50914"/>
+    <circle cx="470" cy="140" r="6" fill="#e50914"/>
+    <circle cx="1115" cy="65" r="11" fill="#ff1e27"/>
+    <circle cx="1135" cy="100" r="16" fill="#cc0010"/>
+    <circle cx="1145" cy="150" r="8" fill="#e50914"/>
+    <circle cx="1060" cy="285" r="12" fill="#e50914"/>
+    <circle cx="530" cy="305" r="15" fill="#cc0010"/>
+    <circle cx="490" cy="280" r="10" fill="#990011"/>
+  </g>
+
+  <!-- "AI Video" White Bold Heading with 3D bevel and stroke -->
+  <g transform="translate(565, 205)">
+    <!-- Shadow -->
+    <text x="5" y="10" font-family="'Impact', 'Arial Black', sans-serif" font-size="120" font-style="italic" font-weight="900" fill="#300005" letter-spacing="1">AI Video</text>
+    <!-- Border -->
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="120" font-style="italic" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" stroke-linejoin="round" letter-spacing="1">AI Video</text>
+    <!-- Main Text -->
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="120" font-style="italic" font-weight="900" fill="#ffffff" letter-spacing="1">AI Video</text>
+  </g>
+
+  <!-- OpenAI Circular Badge on Right with yellow arrow -->
+  <g transform="translate(1090, 260)" filter="url(#brushShadow)">
+    <circle cx="0" cy="0" r="68" fill="#000000" stroke="#ffea00" stroke-width="7"/>
+    <!-- OpenAI Swirl Icon in White -->
+    <path d="M -8,-32 C -7,-36 -3,-38 2,-38 C 10,-38 18,-33 21,-25 L 21,-14 C 27,-14 32,-11 35,-6 C 39,2 38,12 32,18 L 22,23 C 22,30 18,36 12,39 C 5,43 -4,42 -10,38 L -19,33 C -25,35 -32,32 -36,27 C -41,19 -40,9 -35,3 L -26,-2 C -27,-8 -25,-15 -20,-20 C -15,-25 -8,-28 -2,-28 L -8,-32 Z" 
+          fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="10" fill="#ffffff"/>
+  </g>
+
+  <!-- Yellow Hand-Drawn Curved Arrow pointing to OpenAI logo -->
+  <path d="M 905,335 Q 965,330 995,295" fill="none" stroke="#ffea00" stroke-width="12" stroke-linecap="round"/>
+  <polygon points="990,280 1010,290 998,310" fill="#ffea00"/>
+
+  <!-- "2000+" 3D Display Headline -->
+  <g transform="translate(50, 275)" filter="url(#neonGlowYellow)">
+    <!-- Extruded 3D Layers -->
+    <text x="14" y="24" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="#3a0800">2000+</text>
+    <text x="12" y="20" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="#6b1200">2000+</text>
+    <text x="10" y="16" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="#a81c00">2000+</text>
+    <text x="8" y="12" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="#d93800">2000+</text>
+    <text x="5" y="8" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="#ff5500">2000+</text>
+    
+    <!-- Heavy Black Stroke Outline -->
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="url(#yellowTextGrad)" stroke="#1a0400" stroke-width="18" stroke-linejoin="round">2000+</text>
+    <!-- Foreground Gradient Core -->
+    <text x="0" y="0" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="url(#yellowTextGrad)">2000+</text>
+    <!-- Highlight Inner Flare -->
+    <text x="-3" y="-3" font-family="'Impact', 'Arial Black', sans-serif" font-size="205" font-weight="900" fill="#ffffff" opacity="0.45" mask="url(#textMask)">2000+</text>
+  </g>
+
+  <!-- "Bundle" Handwritten / Brush Script Headline in Golden Yellow -->
+  <g transform="translate(370, 360)">
+    <!-- Shadow & Outline -->
+    <text x="6" y="8" font-family="'Brush Script MT', 'Arial Black', cursive, sans-serif" font-size="165" font-style="italic" font-weight="bold" fill="#000000" stroke="#000000" stroke-width="16" stroke-linejoin="round">Bundle</text>
+    <text x="0" y="0" font-family="'Brush Script MT', 'Arial Black', cursive, sans-serif" font-size="165" font-style="italic" font-weight="bold" fill="#ffe600" stroke="#662200" stroke-width="6">Bundle</text>
+  </g>
+
+  <!-- ============================================================== -->
+  <!-- 5 VIBRANT VERTICAL CARD PREVIEWS (MATCHING EXACT THUMBNAIL) -->
+  <!-- ============================================================== -->
+
+  <!-- CARD 1: Neon Cyberpunk Supercar in Rain -->
+  <g>
+    <!-- Outer Neon Glow Border -->
+    <rect x="35" y="375" width="205" height="485" rx="22" fill="#0c101d" stroke="url(#cardCyanGrad)" stroke-width="6" filter="url(#glowCyan)"/>
+    <g clip-path="url(#cardClip1)">
+      <!-- Cyberpunk Skyline Background -->
+      <rect x="35" y="375" width="205" height="485" fill="#090d1f"/>
+      <!-- Skyscrapers & Neon Light Beams -->
+      <rect x="45" y="420" width="35" height="260" fill="#141c38"/>
+      <rect x="85" y="390" width="45" height="290" fill="#1c254a"/>
+      <rect x="135" y="440" width="30" height="240" fill="#131b36"/>
+      <rect x="170" y="410" width="50" height="270" fill="#1e1842"/>
+      <!-- Flying Car in Sky -->
+      <polygon points="140,460 175,455 190,468 150,472" fill="#00ffff" opacity="0.9" filter="blur(1px)"/>
+      <line x1="120" y1="465" x2="150" y2="472" stroke="#ff00ff" stroke-width="3"/>
+      <!-- Cyan & Purple Sky Neon Lights -->
+      <line x1="95" y1="400" x2="95" y2="650" stroke="#00f0ff" stroke-width="4" opacity="0.8"/>
+      <line x1="180" y1="430" x2="180" y2="660" stroke="#ff00bb" stroke-width="4" opacity="0.8"/>
+      <!-- Wet Pavement Reflective Road -->
+      <rect x="35" y="670" width="205" height="190" fill="#04060d"/>
+      <ellipse cx="137" cy="790" rx="90" ry="25" fill="#ff00aa" opacity="0.4" filter="blur(10px)"/>
+      <ellipse cx="80" cy="810" rx="40" ry="15" fill="#00ffff" opacity="0.5" filter="blur(8px)"/>
+      <!-- Futuristic Cyber Supercar -->
+      <path d="M 45,770 Q 70,725 125,710 Q 185,715 225,750 L 235,785 Q 190,795 137,795 Q 75,795 45,770 Z" fill="#050a18" stroke="#00ffff" stroke-width="3"/>
+      <!-- Glowing Headlights & Grille -->
+      <polygon points="60,765 80,755 95,765 75,775" fill="#00ffff" filter="url(#glowCyan)"/>
+      <polygon points="180,765 200,755 215,765 195,775" fill="#00ffff" filter="url(#glowCyan)"/>
+      <line x1="95" y1="775" x2="180" y2="775" stroke="#ff00bb" stroke-width="5" filter="url(#glowPurple)"/>
+      <!-- Wheel Rims with Neon Blue Glow -->
+      <circle cx="70" cy="800" r="22" fill="#000000" stroke="#00ffff" stroke-width="4"/>
+      <circle cx="205" cy="800" r="22" fill="#000000" stroke="#00ffff" stroke-width="4"/>
+    </g>
+    <rect x="35" y="375" width="205" height="485" rx="22" fill="none" stroke="#00f0ff" stroke-width="4"/>
+  </g>
+
+  <!-- CARD 2: Indian Woman in Traditional Red & Gold Attire -->
+  <g>
+    <!-- Outer Neon Orange/Gold Border -->
+    <rect x="265" y="375" width="205" height="485" rx="22" fill="#140a08" stroke="url(#cardOrangeGrad)" stroke-width="6" filter="url(#glowOrange)"/>
+    <g clip-path="url(#cardClip2)">
+      <!-- Warm Bokeh Ambient Background -->
+      <rect x="265" y="375" width="205" height="485" fill="#24100b"/>
+      <circle cx="300" cy="430" r="35" fill="#ffb700" opacity="0.3" filter="blur(15px)"/>
+      <circle cx="430" cy="460" r="45" fill="#ff7700" opacity="0.25" filter="blur(20px)"/>
+      <circle cx="370" cy="520" r="60" fill="#ffdd66" opacity="0.2" filter="blur(25px)"/>
+      <!-- Traditional Royal Archway in distance -->
+      <path d="M 285,450 Q 367,380 450,450 L 450,560 L 285,560 Z" fill="#381912" opacity="0.6"/>
+      <!-- Woman Silhouette & Red Embroidered Lehenga / Saree -->
+      <!-- Hair & Face -->
+      <circle cx="367" cy="530" r="46" fill="#f5caa6"/>
+      <!-- Dark Flowing Hair -->
+      <path d="M 315,530 Q 367,465 420,530 Q 435,620 415,690 L 320,690 Q 300,620 315,530 Z" fill="#120c0a"/>
+      <!-- Maang Tikka & Golden Jewelry -->
+      <line x1="367" y1="485" x2="367" y2="520" stroke="#ffd700" stroke-width="3"/>
+      <circle cx="367" cy="525" r="5" fill="#ff2200" stroke="#ffd700" stroke-width="2"/>
+      <!-- Detailed Gold Jhumka Earrings -->
+      <polygon points="325,545 332,560 318,560" fill="#ffd700"/>
+      <polygon points="410,545 417,560 403,560" fill="#ffd700"/>
+      <!-- Red Embroidered Saree / Dress with Gold Foil -->
+      <path d="M 300,660 Q 367,610 435,660 L 460,860 L 275,860 Z" fill="#990018"/>
+      <path d="M 320,650 Q 367,630 415,670 L 430,860 L 310,860 Z" fill="#b80020"/>
+      <!-- Gold Zari Pattern Streaks -->
+      <path d="M 325,690 Q 370,680 420,720" stroke="#ffd700" stroke-width="4" fill="none"/>
+      <path d="M 315,740 Q 365,730 425,770" stroke="#ffd700" stroke-width="4" fill="none"/>
+      <path d="M 305,790 Q 360,780 435,820" stroke="#ffd700" stroke-width="4" fill="none"/>
+      <!-- Heavy Golden Necklace -->
+      <path d="M 345,580 Q 367,605 390,580" fill="none" stroke="#ffd700" stroke-width="6"/>
+      <circle cx="367" cy="595" r="6" fill="#ff0044" stroke="#ffd700" stroke-width="2"/>
+    </g>
+    <rect x="265" y="375" width="205" height="485" rx="22" fill="none" stroke="#ffaa00" stroke-width="4"/>
+  </g>
+
+  <!-- CARD 3: Fierce Bengal Tiger in Jungle Water Splash -->
+  <g>
+    <!-- Outer Neon Green Border -->
+    <rect x="495" y="375" width="205" height="485" rx="22" fill="#08140c" stroke="url(#cardGreenGrad)" stroke-width="6" filter="url(#glowGreen)"/>
+    <g clip-path="url(#cardClip3)">
+      <!-- Lush Jungle Canopy Background -->
+      <rect x="495" y="375" width="205" height="485" fill="#0a1f12"/>
+      <!-- Jungle Leaves / Foliage -->
+      <path d="M 495,400 Q 560,430 530,500" stroke="#1db954" stroke-width="25" stroke-linecap="round" fill="none"/>
+      <path d="M 700,420 Q 640,460 670,520" stroke="#169c43" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <path d="M 510,480 Q 580,510 540,580" stroke="#0e6b2c" stroke-width="20" stroke-linecap="round" fill="none"/>
+      <!-- River Water Base -->
+      <rect x="495" y="720" width="205" height="140" fill="#0e382b"/>
+      <!-- Water Droplets and Splashes -->
+      <circle cx="540" cy="740" r="5" fill="#aaffdd" opacity="0.8"/>
+      <circle cx="650" cy="735" r="6" fill="#aaffdd" opacity="0.8"/>
+      <circle cx="598" cy="715" r="8" fill="#ffffff" opacity="0.9"/>
+      <circle cx="575" cy="730" r="4" fill="#aaffdd"/>
+      <circle cx="625" cy="745" r="5" fill="#ffffff"/>
+      <!-- Tiger Body & Head Emerging From Water -->
+      <ellipse cx="598" cy="620" r="70" ry="75" fill="#f07010"/>
+      <!-- White fur areas -->
+      <ellipse cx="598" cy="640" r="35" ry="38" fill="#ffffff"/>
+      <ellipse cx="570" cy="650" r="18" ry="15" fill="#ffffff"/>
+      <ellipse cx="625" cy="650" r="18" ry="15" fill="#ffffff"/>
+      <!-- Black Tiger Stripes -->
+      <path d="M 598,545 L 598,580" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 570,560 Q 590,575 580,600" stroke="#000000" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M 625,560 Q 605,575 615,600" stroke="#000000" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M 545,600 Q 570,610 560,630" stroke="#000000" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M 650,600 Q 625,610 635,630" stroke="#000000" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <!-- Fierce Glowing Amber Eyes -->
+      <ellipse cx="575" cy="605" r="8" ry="6" fill="#ffcc00"/>
+      <circle cx="575" cy="605" r="3" fill="#000000"/>
+      <ellipse cx="620" cy="605" r="8" ry="6" fill="#ffcc00"/>
+      <circle cx="620" cy="605" r="3" fill="#000000"/>
+      <!-- Pink Nose & Whiskers -->
+      <polygon points="598,630 590,622 605,622" fill="#ff6688"/>
+      <line x1="565" y1="635" x2="520" y2="630" stroke="#ffffff" stroke-width="2"/>
+      <line x1="565" y1="640" x2="520" y2="645" stroke="#ffffff" stroke-width="2"/>
+      <line x1="630" y1="635" x2="675" y2="630" stroke="#ffffff" stroke-width="2"/>
+      <line x1="630" y1="640" x2="675" y2="645" stroke="#ffffff" stroke-width="2"/>
+      <!-- Front Tiger Paws Stepping Forward in Splash -->
+      <ellipse cx="560" cy="745" r="28" ry="20" fill="#f07010"/>
+      <ellipse cx="635" cy="745" r="28" ry="20" fill="#f07010"/>
+      <ellipse cx="598" cy="760" rx="65" ry="12" fill="#ffffff" opacity="0.6" filter="blur(4px)"/>
+    </g>
+    <rect x="495" y="375" width="205" height="485" rx="22" fill="none" stroke="#00ff88" stroke-width="4"/>
+  </g>
+
+  <!-- CARD 4: Floating Fantasy Castle Island & Waterfalls -->
+  <g>
+    <!-- Outer Neon Cyan/Blue Border -->
+    <rect x="725" y="375" width="205" height="485" rx="22" fill="#08101a" stroke="url(#cardBlueGrad)" stroke-width="6" filter="url(#glowBlue)"/>
+    <g clip-path="url(#cardClip4)">
+      <!-- Dreamy Blue Sky & Fluffy Clouds -->
+      <rect x="725" y="375" width="205" height="485" fill="#1b4975"/>
+      <circle cx="827" cy="440" r="120" fill="#589ad6" opacity="0.6"/>
+      <circle cx="770" cy="460" r="70" fill="#ffffff" opacity="0.75" filter="blur(15px)"/>
+      <circle cx="880" cy="460" r="75" fill="#ffffff" opacity="0.75" filter="blur(15px)"/>
+      <!-- Majestic Fantasy Castle Towers on Floating Rock -->
+      <!-- Main Central Spire -->
+      <polygon points="827,410 812,470 842,470" fill="#3a5a80"/>
+      <rect x="815" y="470" width="25" height="60" fill="#cfdcee"/>
+      <polygon points="790,440 780,480 802,480" fill="#2d4868"/>
+      <rect x="782" y="480" width="18" height="50" fill="#b0c4de"/>
+      <polygon points="865,435 855,475 878,475" fill="#2d4868"/>
+      <rect x="857" y="475" width="18" height="55" fill="#b0c4de"/>
+      <!-- Castle Walls -->
+      <rect x="765" y="520" width="125" height="40" fill="#e2edf8"/>
+      <!-- Giant Floating Mountain Island (Earth & Rocks) -->
+      <path d="M 750,560 Q 827,550 905,560 L 850,710 Q 827,740 810,700 Z" fill="#4d3a2b"/>
+      <!-- Green Moss / Trees on Top of Island -->
+      <ellipse cx="827" cy="560" rx="80" ry="14" fill="#2e7d32"/>
+      <!-- Epic Cascading Waterfalls plunging into clouds -->
+      <path d="M 805,565 L 800,750" stroke="#e0f7fa" stroke-width="6" opacity="0.95"/>
+      <path d="M 845,565 L 850,730" stroke="#e0f7fa" stroke-width="5" opacity="0.9"/>
+      <ellipse cx="827" cy="745" rx="45" ry="12" fill="#ffffff" opacity="0.8" filter="blur(6px)"/>
+      <!-- Cliff in Foreground with Cloaked Traveler in Red Viewing the Vista -->
+      <path d="M 725,760 Q 770,730 805,745 L 805,860 L 725,860 Z" fill="#1b1c24"/>
+      <!-- Red Cloaked Figure Standing on Edge -->
+      <ellipse cx="770" cy="725" rx="6" ry="7" fill="#e50914"/>
+      <polygon points="770,725 760,760 782,760" fill="#b80018"/>
+      <path d="M 775,735 Q 795,745 790,765" stroke="#ff1e27" stroke-width="4" fill="none"/>
+    </g>
+    <rect x="725" y="375" width="205" height="485" rx="22" fill="none" stroke="#00c8ff" stroke-width="4"/>
+  </g>
+
+  <!-- CARD 5: Cute 3D Kitten in Blue Hoodie with DJ Headphones -->
+  <g>
+    <!-- Outer Neon Magenta/Purple Border -->
+    <rect x="955" y="375" width="205" height="485" rx="22" fill="#120817" stroke="url(#cardPurpleGrad)" stroke-width="6" filter="url(#glowPurple)"/>
+    <g clip-path="url(#cardClip5)">
+      <!-- Neon City Bokeh Alley Background -->
+      <rect x="955" y="375" width="205" height="485" fill="#1e0b2b"/>
+      <circle cx="990" cy="440" r="30" fill="#00ffff" opacity="0.4" filter="blur(12px)"/>
+      <circle cx="1120" cy="450" r="35" fill="#ff00aa" opacity="0.4" filter="blur(15px)"/>
+      <circle cx="1055" cy="510" r="50" fill="#ffaa00" opacity="0.25" filter="blur(20px)"/>
+      <!-- Wet Asphalt Street -->
+      <rect x="955" y="750" width="205" height="110" fill="#0d0714"/>
+      <ellipse cx="1057" cy="815" rx="70" ry="18" fill="#ff00cc" opacity="0.3" filter="blur(8px)"/>
+      <!-- Cute Kitten Ears Peeking Out -->
+      <polygon points="1010,470 1025,430 1045,475" fill="#ff9944"/>
+      <polygon points="1070,475 1090,430 1105,470" fill="#ff9944"/>
+      <polygon points="1022,468 1030,442 1040,470" fill="#ffbbaa"/>
+      <polygon points="1075,470 1085,442 1095,468" fill="#ffbbaa"/>
+      <!-- Giant DJ Over-Ear Headphones with Neon Blue Glow -->
+      <path d="M 1000,520 Q 1057,450 1115,520" fill="none" stroke="#00f0ff" stroke-width="12" filter="url(#glowCyan)"/>
+      <!-- Left Ear Cup -->
+      <ellipse cx="995" cy="535" rx="16" ry="24" fill="#000000" stroke="#00f0ff" stroke-width="4"/>
+      <!-- Right Ear Cup -->
+      <ellipse cx="1120" cy="535" rx="16" ry="24" fill="#000000" stroke="#00f0ff" stroke-width="4"/>
+      <!-- Kitten Fluffy Ginger Face -->
+      <circle cx="1057" cy="545" r="48" fill="#ff9944"/>
+      <ellipse cx="1057" cy="565" rx="28" ry="20" fill="#ffffff"/>
+      <!-- Huge Expressive Anime Blue Eyes -->
+      <circle cx="1038" cy="538" r="14" fill="#00aaff"/>
+      <circle cx="1038" cy="538" r="9" fill="#001844"/>
+      <circle cx="1034" cy="533" r="4" fill="#ffffff"/>
+      <circle cx="1076" cy="538" r="14" fill="#00aaff"/>
+      <circle cx="1076" cy="538" r="9" fill="#001844"/>
+      <circle cx="1072" cy="533" r="4" fill="#ffffff"/>
+      <!-- Tiny Pink Nose & Smile -->
+      <polygon points="1057,556 1052,551 1062,551" fill="#ff5577"/>
+      <path d="M 1052,562 Q 1057,566 1062,562" stroke="#442211" stroke-width="2" fill="none"/>
+      <!-- Cool Urban Tech Hoodie in Navy Blue with Gold Crown Logo -->
+      <path d="M 1005,600 Q 1057,585 1110,600 L 1125,750 Q 1057,765 990,750 Z" fill="#141c33"/>
+      <!-- Golden Crown / Graphic on Hoodie -->
+      <polygon points="1045,670 1050,655 1057,665 1064,655 1070,670" fill="#ffd700"/>
+      <rect x="1046" y="670" width="23" height="4" fill="#ffd700"/>
+      <!-- Kitten Fluffy Tail Curling Up with Neon Tip -->
+      <path d="M 990,730 Q 960,710 970,680 Q 980,660 970,640" fill="none" stroke="#ff9944" stroke-width="14" stroke-linecap="round"/>
+      <!-- Cute Mini Streetwear Sneakers -->
+      <ellipse cx="1030" cy="790" rx="20" ry="12" fill="#ffffff" stroke="#ff0066" stroke-width="3"/>
+      <ellipse cx="1085" cy="785" rx="20" ry="12" fill="#ffffff" stroke="#ff0066" stroke-width="3"/>
+    </g>
+    <rect x="955" y="375" width="205" height="485" rx="22" fill="none" stroke="#b800ff" stroke-width="4"/>
+  </g>
+
+  <!-- Outer Canvas Border / Frame -->
+  <rect x="2" y="2" width="1196" height="896" rx="12" fill="none" stroke="#1f2d48" stroke-width="4"/>
+</svg>

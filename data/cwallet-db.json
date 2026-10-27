@@ -1,0 +1,594 @@
+{
+  "users": [
+    {
+      "id": "usr_1790159936233_ka2o",
+      "email": "chandankumarsundro312@gmail.com",
+      "googleId": "google_chandankumarsundro312",
+      "phone": "7549545333",
+      "fullName": "Chandan Kumar",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Chandan%20kumar&backgroundColor=00C853,059669,10B981",
+      "referralCode": "CW5333WU6",
+      "createdAt": "2026-09-23T10:38:56.234Z",
+      "isBlocked": false,
+      "role": "admin",
+      "isKycVerified": false,
+      "upiId": "chandan-8366@ptyes",
+      "salt": "6b7f5878f6f222c5d19c519c62bbbbf0",
+      "passwordHash": "e171f7ae99b58e6d8b7d406e9616f33cebd45b28c289b6b95b2382e2689dc104c0112593175cf1eb39abbe3d6503519dac5a7187cfef551f98d58656fb187905"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "3ecd0a9589ce4ccd8849f769ad708c4811449ea7e244292ce615a24a55d34447",
+      "userId": "usr_1790159936233_ka2o",
+      "createdAt": 1790161319124,
+      "expiresAt": 1792753319124
+    },
+    {
+      "token": "437dd42725233870bb1cb33fb05364d42faf3698fa7617410818d097eb472772",
+      "userId": "usr_1790159936233_ka2o",
+      "createdAt": 1790165656192,
+      "expiresAt": 1790252056192
+    },
+    {
+      "token": "66ba12f5b9d1f97cb783c10ae350220742ed1f15306887aca881bb92d263413d",
+      "userId": "usr_1790159936233_ka2o",
+      "createdAt": 1790166274542,
+      "expiresAt": 1790252674542
+    },
+    {
+      "token": "075829aac3e68c1cfac229fe4b23bcae41f6316fef24c9990e9d71c1bc4944ce",
+      "userId": "usr_1790159936233_ka2o",
+      "createdAt": 1790295915030,
+      "expiresAt": 1792887915030
+    },
+    {
+      "token": "ddffaeaa0753a3c19ecc190d166b5acfb6a6cda623b2d0322b05b239538617b6",
+      "userId": "usr_1790159936233_ka2o",
+      "createdAt": 1790295933596,
+      "expiresAt": 1790382333596
+    },
+    {
+      "token": "de0a952c44b44dbf497f3cf0310b65ed3169b55a2942d775864d2c9504fe0927",
+      "userId": "usr_1790159936233_ka2o",
+      "createdAt": 1790297406399,
+      "expiresAt": 1790383806399
+    },
+    {
+      "token": "b8520d15edd3f63f777eb071c6393739210e1b8b884d2afc219c3a40aea5de93",
+      "userId": "usr_1790159936233_ka2o",
+      "createdAt": 1790298828816,
+      "expiresAt": 1792890828816
+    }
+  ],
+  "deposits": [
+    {
+      "id": "dep_1790299167431_wluf",
+      "userId": "usr_1790159936233_ka2o",
+      "amount": 75,
+      "method": "QR",
+      "refNumber": "QRMUG9WEKNTOE7",
+      "qrProof": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+      "status": "Pending",
+      "createdAt": "2026-09-25T01:19:27.431Z",
+      "incomeAmount": 8.25
+    },
+    {
+      "id": "dep_1790164684433_qm1w",
+      "userId": "usr_1790159936233_ka2o",
+      "amount": 240,
+      "method": "UPI",
+      "refNumber": "235682823525",
+      "status": "Approved",
+      "createdAt": "2026-09-23T11:58:04.434Z",
+      "notes": "Claimed Plan Code: CW-INR-240-OHPK",
+      "incomeAmount": 26.4,
+      "updatedAt": "2026-09-23T12:16:19.295Z"
+    }
+  ],
+  "withdrawals": [
+    {
+      "id": "wth_1790297272555_btns",
+      "userId": "usr_1790159936233_ka2o",
+      "amount": 200,
+      "method": "UPI",
+      "accountDetails": {
+        "method": "UPI",
+        "upiId": "chandan-8366@ptyes"
+      },
+      "status": "Approved",
+      "createdAt": "2026-09-25T00:47:52.555Z",
+      "updatedAt": "2026-09-25T00:53:31.610Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "txn_1790299167431_0wkl",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "deposit",
+      "amount": 75,
+      "status": "Pending",
+      "description": "Deposit via QR Payment (QRMUG9WEKNTOE7)",
+      "paymentMethod": "QR Verification",
+      "referenceId": "dep_1790299167431_wluf",
+      "createdAt": "2026-09-25T01:19:27.431Z"
+    },
+    {
+      "id": "txn_1790297272555_fmjw",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "withdrawal",
+      "amount": 200,
+      "status": "Completed",
+      "description": "Withdrawal via UPI (chandan-8366@ptyes)",
+      "paymentMethod": "UPI",
+      "referenceId": "wth_1790297272555_btns",
+      "createdAt": "2026-09-25T00:47:52.555Z"
+    },
+    {
+      "id": "txn_fdb_1790165779296_j0rp",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "reward",
+      "amount": 150,
+      "status": "Completed",
+      "description": "First Deposit Bonus (Welcome Gift) 🎁",
+      "paymentMethod": "First Deposit Bonus",
+      "referenceId": "dep_1790164684433_qm1w",
+      "createdAt": "2026-09-23T12:16:19.296Z"
+    },
+    {
+      "id": "txn_cb_1790165779295_c0gm",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "cashback",
+      "amount": 26.4,
+      "status": "Completed",
+      "description": "11% Cashback Income on Recharge ₹240 (Ref: 235682823525)",
+      "paymentMethod": "11% Recharge Cashback",
+      "referenceId": "dep_1790164684433_qm1w",
+      "createdAt": "2026-09-23T12:16:19.296Z"
+    },
+    {
+      "id": "txn_1790164684434_cfnl",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "deposit",
+      "amount": 240,
+      "status": "Completed",
+      "description": "Deposit via UPI (Ref: 235682823525)",
+      "paymentMethod": "UPI",
+      "referenceId": "dep_1790164684433_qm1w",
+      "createdAt": "2026-09-23T11:58:04.434Z"
+    },
+    {
+      "id": "txn_1790163599577_pb8v",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "task",
+      "amount": 10,
+      "status": "Completed",
+      "description": "Task Reward: Daily App Check-in",
+      "paymentMethod": "Task Reward",
+      "createdAt": "2026-09-23T11:39:59.577Z"
+    },
+    {
+      "id": "txn_welcome_usr_1790159936233_ka2o_mue2s11c",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "reward",
+      "amount": 100,
+      "status": "Completed",
+      "description": "Sign-up Welcome Bonus (₹100) 🎁",
+      "paymentMethod": "Sign-up Bonus",
+      "referenceId": "WP-WB-161766",
+      "createdAt": "2026-09-23T10:38:56.234Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-first-deposit",
+      "title": "First Deposit Welcome Bonus",
+      "description": "Submit your first deposit of ₹200 or more to receive instant ₹150 bonus",
+      "reward": 150,
+      "type": "deposit",
+      "status": "Available",
+      "actionLabel": "Make Deposit"
+    },
+    {
+      "id": "task-invite-friend",
+      "title": "Invite 3 Active Friends",
+      "description": "Share your referral link with friends and earn extra team bonus",
+      "reward": 150,
+      "type": "referral",
+      "status": "Available",
+      "progress": 0,
+      "maxProgress": 3,
+      "actionLabel": "Invite Now"
+    }
+  ],
+  "userTaskProgress": [
+    {
+      "userId": "usr_1790159936233_ka2o",
+      "taskId": "task-daily-checkin",
+      "status": "Completed",
+      "completedAt": "2026-09-23T11:39:59.577Z"
+    },
+    {
+      "userId": "usr_1790159936233_ka2o",
+      "taskId": "task-first-deposit",
+      "status": "Completed",
+      "completedAt": "2026-09-23T12:16:19.297Z"
+    }
+  ],
+  "orders": [],
+  "notifications": [
+    {
+      "id": "notif_1790299167431_x3uy",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Deposit",
+      "title": "Deposit QR Submitted (Pending Approval) ⏳",
+      "message": "Your recharge request of ₹75 with QR proof has been submitted. Balance will reflect once verified.",
+      "isRead": false,
+      "createdAt": "2026-09-25T01:19:27.431Z"
+    },
+    {
+      "id": "notif_1790297611611_4dqt",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Withdrawal",
+      "title": "Withdrawal Processed Successfully ✅",
+      "message": "₹200 has been disbursed successfully to your UPI payout target.",
+      "isRead": true,
+      "createdAt": "2026-09-25T00:53:31.611Z"
+    },
+    {
+      "id": "notif_1790297471617_ppwd",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Withdrawal",
+      "title": "Withdrawal in Processing ⚡",
+      "message": "₹200 payout is in progress with the banking gateway.",
+      "isRead": true,
+      "createdAt": "2026-09-25T00:51:11.617Z"
+    },
+    {
+      "id": "notif_1790297272564_y88u",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Withdrawal",
+      "title": "Withdrawal Request Submitted ⏳",
+      "message": "Your withdrawal of ₹200 via UPI is submitted and awaiting approval.",
+      "isRead": true,
+      "createdAt": "2026-09-25T00:47:52.564Z"
+    },
+    {
+      "id": "notif_1790167817111_2dbu",
+      "userId": "usr_g_mue3p40n_dwaw",
+      "type": "Reward",
+      "title": "Welcome to Watch Pay 🎉",
+      "message": "Welcome bonus of ₹100 has been credited to your wallet balance! Your account is verified with Google (userb_test@example.com). Start exploring recharge packages and earning rewards!",
+      "isRead": false,
+      "createdAt": "2026-09-23T12:50:17.111Z"
+    },
+    {
+      "id": "notif_1790167802132_1iu8",
+      "userId": "usr_g_mue3osgj_rzz6",
+      "type": "Reward",
+      "title": "Welcome to Watch Pay 🎉",
+      "message": "Welcome bonus of ₹100 has been credited to your wallet balance! Your account is verified with Google (usera_test@example.com). Start exploring recharge packages and earning rewards!",
+      "isRead": false,
+      "createdAt": "2026-09-23T12:50:02.132Z"
+    },
+    {
+      "id": "notif_1790166279465_emjc",
+      "userId": "usr_g_mue2s5k9_5p29",
+      "type": "Reward",
+      "title": "Welcome to Watch Pay 🎉",
+      "message": "Welcome bonus of ₹100 has been credited to your wallet balance! Your account is verified with Google (newtestuser@example.com). Start exploring recharge packages and earning rewards!",
+      "isRead": false,
+      "createdAt": "2026-09-23T12:24:39.465Z"
+    },
+    {
+      "id": "notif_1790165779297_lwnw",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Deposit",
+      "title": "Deposit Approved & Credited ✅",
+      "message": "Your deposit of ₹240 has been verified and added to your available balance.",
+      "isRead": true,
+      "createdAt": "2026-09-23T12:16:19.297Z"
+    },
+    {
+      "id": "notif_1790165779296_k0n5",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Reward",
+      "title": "₹150 First Deposit Bonus Credited! 🎁",
+      "message": "Congratulations! You received an extra ₹150 First Deposit Bonus on your first recharge. Enjoy your rewards on Watch Pay!",
+      "isRead": true,
+      "createdAt": "2026-09-23T12:16:19.296Z"
+    },
+    {
+      "id": "notif_1790165779296_sf73",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Cashback",
+      "title": "11% Cashback Credited! 🎉",
+      "message": "Your UPI recharge of ₹240 has been verified! +₹26.40 (11% Cashback Income) added to your wallet.",
+      "isRead": true,
+      "createdAt": "2026-09-23T12:16:19.296Z"
+    },
+    {
+      "id": "notif_1790164684434_1guj",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Deposit",
+      "title": "Deposit Submitted (Pending Approval) ⏳",
+      "message": "Your deposit request for ₹240 (Ref: 235682823525) has been submitted. Balance will reflect once verified.",
+      "isRead": true,
+      "createdAt": "2026-09-23T11:58:04.434Z"
+    },
+    {
+      "id": "notif_1790163599577_husw",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "Task",
+      "title": "Task Completed! 🏆",
+      "message": "You completed \"Daily App Check-in\" and earned ₹10 wallet reward!",
+      "isRead": true,
+      "createdAt": "2026-09-23T11:39:59.577Z"
+    },
+    {
+      "id": "notif_1790159936234_e5y5",
+      "userId": "usr_1790159936233_ka2o",
+      "type": "System",
+      "title": "Welcome to C Wallet 🎉",
+      "message": "Your digital wallet has been created successfully. Explore deposits, rewards, and safe withdrawals.",
+      "isRead": true,
+      "createdAt": "2026-09-23T10:38:56.234Z"
+    }
+  ],
+  "paymentMethods": [],
+  "settings": {
+    "appName": "Watch Pay",
+    "minDeposit": 50,
+    "minWithdrawal": 200,
+    "maxWithdrawal": 50000,
+    "depositUpiId": "chandansundro97@mvhdfc",
+    "depositUpiName": "Watch Pay",
+    "depositQrUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACAvzbMAAAAAklEQVR4AewaftIAAAyJSURBVO3B0Y0ktrIlwKPEAHSKPtBW+kCn+KWVCdxEF+r13Ij459//BAD+P1UAoKECAA0VAGioAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEBDBQAa/uRDxprh3d0n3zTWzKu7T75prJlPuPvk1Vgzr+4+eTXWzIu7T75trJlXd5/8tLFmeHf3yU+rAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEBDBQAa/uT/gLtP/kZjzXzCWDMv7j55dffJJ4w189PuPnk11syrsWZ+i7FmPuHuk08Ya+bF3SefcPfJ32ismW+qAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEBDBQAa/uSXGWvmm+4++ba7T37aWDOv7j55dffJN9198mqsmVd3n3zC3Scvxpp5dffJq7FmXt198jcaa+ab7j75LSoA0FABgIYKADRUAKChAgANFQBoqABAQwUAGioA0FABgIY/gf/cffJqrJlvuvvkE+4+eTXWzCfcffLi7pNXY81821gzL+4+4feoAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEDDn/DrjDXz4u6TV2PNfMLdJ3zX3SefMNYM/9sqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCGP/ll7j75X3f3yYuxZl7dffJqrJlPGGvmxd0nv8ndJ6/Gmvlpd5+8GmvmE+4++S3uPuFNBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEBDBQAaKgDQ8Cf/B4w1w7uxZl7cffJqrJlXd5+8Gmvm1d0nL8aaeXX3yauxZl7dffJqrJlXd5+8GGvm2+4+eTXWzIu7Tz5hrBl+XgUAGioA0FABgIYKADRUAKChAgANFQBoqABAQwUAGioA0PDPv/8Jf6WxZl7dffJqrJnf4u6TV2PN8O7uE/63VQCgoQIADRUAaKgAQEMFABoqANBQAYCGCgA0VACgoQIADX/yIWPNvLr75NVYM6/uPnkx1syru09ejTXz6u6Tn3b3yd/o7pNXY838je4+eTXWzKu7T/7XjTXz6u6TnzbWzKu7T76pAgANFQBoqABAQwUAGioA0FABgIYKADRUAKChAgANf/LL3H3y0+4+eTXWzKu7T/5Gd5+8Gmvm1d0nL8aaeXX3yauxZl7dffJNY838jcaa+YS7T17dffJqrJkXd598wlgzr+4++WkVAGioAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEDDn/zFxpp5cffJq7tPXo018013n3zCWDOv7j55NdbMi7tPvm2smVd3n/y0u08+YayZV3ef/LS7T16NNfMJY828uvvkxVgzr+4+eTXWzDdVAKChAgANFQBoqABAQwUAGioA0FABgIYKADRUAKChAgANf/Ihd598wlgzr+4++Wljzby6++TVWDOv7j55MdbMt4018+ruk/91Y828uPvk1Vgzr+4+eTXWzKu7T37a3Sevxpp5dffJT7v75G9UAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCGCgA0/MmHjDXz6u6TV3ef/LSxZl7dffJqrJlXd5+8Gmvmm+4++RvdffJtd5/8Fnef/LSxZj7h7hN+XgUAGioA0FABgIYKADRUAKChAgANFQBoqABAQwUAGioA0PAnH3L3yauxZr7p7pNXY828uvvk1Vgzr+4+eTHWzKu7T16NNfPq7pNXY828uPvk1Vgzr+4+eTXWzCfcffK/7O6TV2PN8F0VAGioAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGj459//5MvGmnl198mrsWb+RneffNNYM59w98mLsWZe3X3Cu7FmXt198k1jzXzC3SffNNbMJ9x98tMqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCGf/79Tz5grJlXd5+8Gmvm1d0nL8aaeXX3ybeNNfPi7pNPGGvmE+4++Wljzby6++TVWDP8vLtP+D0qANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCGf/79Tz5grJlPuPvk1VgzP+3uk1djzby6++SnjTXz6u6Tbxtr5sXdJ9821swn3H3yYqyZT7j75BPGmvkt7j55NdbMi7tPXo018wl3n/y0CgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCGCgA0VACg4U9+mbFmXt198mKsmU+4++QTxpp5cffJq7FmXt198mqsmZ821syru09ejTXDd9198mqsmVd3n3zTWDOv7j55NdbMN1UAoKECAA0VAGioAEBDBQAaKgDQUAGAhgoANFQAoKECAA1/8n/A3Se/xVgzn3D3yTfdffIJd5+8Gmvmm+4+eTXWzG9x98mrsWZe3X3y08aa+YSxZl7dffJNY838FhUAaKgAQEMFABoqANBQAYCGCgA0VACgoQIADRUAaKgAQMM///4nPBtr5tXdJ6/Gmnl198k3jTXzCXefvBhr5hPuPnk11syru09ejTXz4u6TV2PNfNvdJy/Gmnl198knjDXz0+4++RtVAKChAgANFQBoqABAQwUAGioA0FABgIYKADRUAKDhT36ZsWZ+2t0nnzDWzKu7T16NNfPi7pNXY81821gzL+4++YSxZl7dffJqrJlXd598090nnzDWzE8ba4bvqgBAQwUAGioA0FABgIYKADRUAKChAgANFQBoqABAQwUAGv7k/4CxZj7h7pMXY818wt0nn3D3yTfdffJNY81821gzr+4++Wljzby6++TVWDOv7j55dffJi7FmPuHuk08Ya+abxpp5dffJT6sAQEMFABoqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABr++fc/+YCxZl7dffJqrJlvuvvk1Vgzr+4+eTXWzE+7++TVWDOv7j55NdbMb3H3Ce/Gmnlx98knjDXzCXefvBhr5tvuPvlpFQBoqABAQwUAGioA0FABgIYKADRUAKChAgANFQBoqABAwz///idfNtbMJ9x98luMNfNb3H3yNxpr5hPuPvmmsWZe3X3yaqyZV3ef/BZjzby6++Sbxpp5dffJT6sAQEMFABoqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABr+5EPGmnl198mrsWZejTXzW9x98k1jzXzCWDM/7e6TV2PNfNtYM6/uPvkbjTXDm7FmfosKADRUAKChAgANFQBoqABAQwUAGioA0FABgIYKADT88+9/wq8y1syLu09ejTXzCXefvBpr5sXdJ58w1syru09ejTXz6u6TF2PNvLr75NvGmnlx98m3jTXzN7r75KdVAKChAgANFQBoqABAQwUAGioA0FABgIYKADRUAKChAgANf/IhY83w7u6TV3efvBhr5hPuPnk11syru09+i7FmXt198tPuPvmEsWZ+i7FmXt198gl3n/y0sWZ+iwoANFQAoKECAA0VAGioAEBDBQAaKgDQUAGAhgoANFQAoOFP/g+4++RvNNbMb3H3Ce/uPvmEsWZ+i7tPXo0189PuPvm2sWZe3H3yCXeffFMFABoqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANDwJ7/MWDPfdPfJt4018+Luk99krJkXd5+8Gmvm1d0n33b3yYuxZv5GY838Jnef/LS7T36LCgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCGCgA0VACg4U/4de4++WljzXzb3Scvxpr5trFmXt198k13n/yN7j55NdbMN4018+ruk1djzby6++SnVQCgoQIADRUAaKgAQEMFABoqANBQAYCGCgA0VACg4U/4dcaaeXH3yW8y1syLu0++7e6TV2PNvLr75LcYa+bV3Scvxpr5hLtPXo0189PuPvkbVQCgoQIADRUAaKgAQEMFABoqANBQAYCGCgA0VACgoQIADX/yy9x98r/u7pMXY828uvvk1Vgzr+4+eTXWzE8ba+bV3Sevxpp5dffJN4018+ruk08Ya+ZvNNbMi7tPXo018+ruk2+qAEBDBQAaKgDQUAGAhgoANFQAoKECAA0VAGioAEBDBQAa/uT/gLFmeDfWzP+ysWZe3X3yaqwZ/k5jzby6++TVWDPfNNbMq7tPfloFABoqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANDwz7//CQD8f6oAQEMFABoqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCGCgA0VACgoQIADRUAaKgAQEMFABoqANBQAYCG/we9FyLAlesh2QAAAABJRU5ErkJggg==",
+    "usdtTrc20Address": "TY7W1bQk8X9pZnMuK4jL3cRvE2sA8F1qZp",
+    "usdtRateInr": 90,
+    "referralRewardAmount": 50,
+    "firstDepositBonusAmount": 150,
+    "bankDetails": {
+      "bankName": "State Bank of India",
+      "accountNumber": "389201948123",
+      "ifsc": "SBIN0004521",
+      "holderName": "Chandan C Wallet Services"
+    }
+  },
+  "auditLogs": [
+    {
+      "id": "aud_1790299167432_77hc",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "DEPOSIT_SUBMITTED",
+      "targetId": "dep_1790299167431_wluf",
+      "details": "Deposit ₹75 submitted with QR proof (QRMUG9WEKNTOE7)",
+      "timestamp": "2026-09-25T01:19:27.432Z",
+      "level": "info",
+      "category": "finance"
+    },
+    {
+      "id": "aud_1790298828816_saxc",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "USER_LOGIN",
+      "details": "User Chandan Kumar signed in via Google",
+      "timestamp": "2026-09-25T01:13:48.816Z",
+      "level": "success",
+      "category": "auth"
+    },
+    {
+      "id": "aud_1790297611611",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "WITHDRAWAL_APPROVED",
+      "targetId": "wth_1790297272555_btns",
+      "details": "Approved ₹200",
+      "timestamp": "2026-09-25T00:53:31.611Z"
+    },
+    {
+      "id": "aud_1790297471617",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "WITHDRAWAL_PROCESSING",
+      "targetId": "wth_1790297272555_btns",
+      "details": "Processing ₹200",
+      "timestamp": "2026-09-25T00:51:11.617Z"
+    },
+    {
+      "id": "aud_1790297406400",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in successfully via console",
+      "timestamp": "2026-09-25T00:50:06.400Z"
+    },
+    {
+      "id": "aud_1790295933597",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in successfully via console",
+      "timestamp": "2026-09-25T00:25:33.597Z"
+    },
+    {
+      "id": "aud_1790166274542",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in successfully via console",
+      "timestamp": "2026-09-23T12:24:34.542Z"
+    },
+    {
+      "id": "aud_1790165779297",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "DEPOSIT_APPROVED",
+      "targetId": "dep_1790164684433_qm1w",
+      "details": "Approved ₹240 for user usr_1790159936233_ka2o",
+      "timestamp": "2026-09-23T12:16:19.297Z"
+    },
+    {
+      "id": "aud_1790165710675",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in successfully via console",
+      "timestamp": "2026-09-23T12:15:10.675Z"
+    },
+    {
+      "id": "aud_1790165656193",
+      "adminId": "usr_1790159936233_ka2o",
+      "adminPhone": "7549545333",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in successfully via console",
+      "timestamp": "2026-09-23T12:14:16.193Z"
+    }
+  ],
+  "paymentPackages": [
+    {
+      "id": "pkg-201",
+      "title": "Entry Mini Plan",
+      "currency": "INR",
+      "amount": 80,
+      "cashbackRate": 11,
+      "incomeAmount": 8.8,
+      "cashbackAmount": 8.8,
+      "code": "CW-INR-80-1R9W",
+      "category": "50-500",
+      "badge": "Starter",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹8.80 Credited",
+        "Entry Plan Above ₹50",
+        "Full Wallet Credit"
+      ]
+    },
+    {
+      "id": "pkg-500",
+      "title": "Basic Saver Plan",
+      "currency": "INR",
+      "amount": 500,
+      "cashbackRate": 11,
+      "incomeAmount": 55,
+      "cashbackAmount": 55,
+      "code": "CW-INR-500-2Q8V",
+      "category": "100-599",
+      "badge": "Budget Choice",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹55 Credited",
+        "Direct UPI Deposit",
+        "Zero Fee"
+      ]
+    },
+    {
+      "id": "pkg-1000",
+      "title": "Smart Starter Plan",
+      "currency": "INR",
+      "amount": 1000,
+      "cashbackRate": 11,
+      "incomeAmount": 110,
+      "cashbackAmount": 110,
+      "code": "CW-INR-1000-5M1P",
+      "category": "600-4999",
+      "badge": "Hot Deal",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹110 Credited",
+        "Instant Processing",
+        "Safe & Encrypted"
+      ]
+    },
+    {
+      "id": "pkg-2000",
+      "title": "Silver Super Plan",
+      "currency": "INR",
+      "amount": 2000,
+      "cashbackRate": 11,
+      "incomeAmount": 220,
+      "cashbackAmount": 220,
+      "code": "CW-INR-2000-9X4C",
+      "category": "600-4999",
+      "badge": "Recommended",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹220 Credited",
+        "Full Wallet Usability",
+        "Zero Maintenance"
+      ]
+    },
+    {
+      "id": "pkg-5000",
+      "title": "Advance Value Plan",
+      "currency": "INR",
+      "amount": 5000,
+      "cashbackRate": 11,
+      "incomeAmount": 550,
+      "cashbackAmount": 550,
+      "code": "CW-INR-5000-7L2B",
+      "category": "5000+",
+      "badge": "Best Value",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹550 Credited",
+        "Same-Day Payout Access",
+        "No Expiry Limit"
+      ]
+    },
+    {
+      "id": "pkg-10000",
+      "title": "Premier Growth Plan",
+      "currency": "INR",
+      "amount": 5500,
+      "cashbackRate": 11,
+      "incomeAmount": 605,
+      "cashbackAmount": 605,
+      "code": "CW-INR-5500-3K9M",
+      "category": "5000+",
+      "badge": "Popular",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹605 Credited",
+        "Zero Gateway Deduction",
+        "Dedicated Support"
+      ]
+    },
+    {
+      "id": "pkg-17836",
+      "title": "Elite Pro Plan",
+      "currency": "INR",
+      "amount": 7800,
+      "cashbackRate": 11,
+      "incomeAmount": 858,
+      "cashbackAmount": 858,
+      "code": "CW-INR-7800-4E9P",
+      "category": "5000+",
+      "badge": "Exclusive",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹858 Credited",
+        "VIP Fast Settlement",
+        "Valid on All Services"
+      ]
+    },
+    {
+      "id": "pkg-20000",
+      "title": "Crown Executive Plan",
+      "currency": "INR",
+      "amount": 10000,
+      "cashbackRate": 11,
+      "incomeAmount": 1100,
+      "cashbackAmount": 1100,
+      "code": "CW-INR-10000-8A7F",
+      "category": "5000+",
+      "badge": "Top Pick",
+      "features": [
+        "Instant 11% Direct Cashback",
+        "Income +₹1,100 Credited",
+        "VIP Fast Withdrawal",
+        "Valid on All Services"
+      ]
+    }
+  ]
+}

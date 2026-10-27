@@ -1,0 +1,8 @@
+{
+  "name": "RAZY PAY",
+  "description": "RAZY PAY — High-Performance Financial Operating System, Instant Buy Orders, Reserve-Backed INR Settlements, and Automated Wallet Ledger.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
