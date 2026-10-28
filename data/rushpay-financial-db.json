@@ -285,6 +285,33 @@
         "totalEarnedPaise": 5000,
         "updatedAt": "2026-10-28T08:16:23.408Z"
       }
+    },
+    "usr_8b558463ca0f4ccb": {
+      "profile": {
+        "id": "usr_8b558463ca0f4ccb",
+        "mobile": "9665457898",
+        "email": "9665457898@rushpay.network",
+        "fullName": "TS Fixed User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-789855EA",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-28T08:54:37.278Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "34c22841881ef0da792f3ef8512eb98283425c8584d5601ec5eacc2539fd818465a4103f4d91a51e777475811d2f775a6a9a3ef07a4d8d5590cb8f5d7b622ddb",
+      "salt": "32926702d34a8d9edbecabaaad23fa56",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-28T08:54:37.278Z"
+      }
     }
   },
   "mobileIndex": {
@@ -297,7 +324,8 @@
     "9894441770": "usr_de9a36efcb33ebf2",
     "9954571725": "usr_7bd085e06a9d363a",
     "9777565896": "usr_4dc8fc31d06ea5da",
-    "9132239260": "usr_42ff5bef3416069c"
+    "9132239260": "usr_42ff5bef3416069c",
+    "9665457898": "usr_8b558463ca0f4ccb"
   },
   "referralCodeIndex": {
     "RP-VIKRAM88": "usr_rush_demo_001",
@@ -309,7 +337,8 @@
     "RP-1770731E": "usr_de9a36efcb33ebf2",
     "RP-1725235F": "usr_7bd085e06a9d363a",
     "RP-58969AC5": "usr_4dc8fc31d06ea5da",
-    "RP-92601180": "usr_42ff5bef3416069c"
+    "RP-92601180": "usr_42ff5bef3416069c",
+    "RP-789855EA": "usr_8b558463ca0f4ccb"
   },
   "orders": [
     {
@@ -638,6 +667,11 @@
       "userId": "usr_42ff5bef3416069c",
       "createdAt": "2026-10-28T08:16:23.434Z",
       "expiresAt": "2026-11-04T08:16:23.434Z"
+    },
+    "rps_f71b2f39be875a469a919f23ff9d61ea89539ba4f16f6d6662498368caa5de06": {
+      "userId": "usr_8b558463ca0f4ccb",
+      "createdAt": "2026-10-28T08:54:37.278Z",
+      "expiresAt": "2026-11-04T08:54:37.278Z"
     }
   },
   "otps": {}
