@@ -64,13 +64,33 @@ export const rushApi = {
       headers
     });
 
-    const data = await response.json().catch(() => ({}));
+    let data: any = {};
+    let rawText = '';
+    try {
+      rawText = await response.text();
+      data = JSON.parse(rawText);
+    } catch {
+      data = {};
+    }
+
     if (!response.ok) {
       if (response.status === 401) {
         // Token expired or invalid on server - auto purge local session
         this.clearSession();
       }
-      throw new Error(data.error || 'Server error occurred');
+
+      // Check all possible error shapes
+      const errorMsg =
+        data.error ||
+        data.message ||
+        data.msg ||
+        (response.status === 404
+          ? 'API endpoint not reachable. Please verify server routing.'
+          : response.status === 500
+          ? (data.error || 'Server error processing registration. Please try again.')
+          : `Request failed with status ${response.status}`);
+
+      throw new Error(errorMsg);
     }
     return data;
   },

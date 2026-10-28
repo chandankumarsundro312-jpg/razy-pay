@@ -1,17 +1,58 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Supabase configuration details provided by user
-export const SUPABASE_PROJECT_ID = process.env.SUPABASE_PROJECT_ID || 'fwhsgsdqqexytpsyfqfm';
-export const SUPABASE_URL = process.env.SUPABASE_URL || `https://${SUPABASE_PROJECT_ID}.supabase.co`;
-export const SUPABASE_KEY = process.env.SUPABASE_KEY || 'sb_publishable_avbit2qwpbQFtzUxf491QA_2_qJziv1';
+// Safely read Vite environment variables if running in browser
+const getBrowserEnv = (key: string): string | undefined => {
+  try {
+    const metaEnv = (Function('return import.meta.env') as any)();
+    return metaEnv ? metaEnv[key] : undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+const envProjectId = (typeof process !== 'undefined' && process.env?.SUPABASE_PROJECT_ID) ||
+  getBrowserEnv('VITE_SUPABASE_PROJECT_ID') ||
+  'fwhsgsdqqexytpsyfqfm';
+
+const envUrl = (typeof process !== 'undefined' && process.env?.SUPABASE_URL) ||
+  getBrowserEnv('VITE_SUPABASE_URL') ||
+  (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_URL) ||
+  `https://${envProjectId}.supabase.co`;
+
+const envKey = (typeof process !== 'undefined' && process.env?.SUPABASE_ANON_KEY) ||
+  (typeof process !== 'undefined' && process.env?.SUPABASE_KEY) ||
+  getBrowserEnv('VITE_SUPABASE_ANON_KEY') ||
+  getBrowserEnv('VITE_SUPABASE_KEY') ||
+  (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY) ||
+  'sb_publishable_avbit2qwpbQFtzUxf491QA_2_qJziv1';
+
+export const SUPABASE_PROJECT_ID = envProjectId;
+export const SUPABASE_URL = envUrl;
+export const SUPABASE_ANON_KEY = envKey;
+export const SUPABASE_KEY = envKey;
 
 // Create Supabase client singleton
-export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: {
     persistSession: false,
     autoRefreshToken: false
   }
 });
+
+/**
+ * Health check utility to test Supabase connection
+ */
+export async function testSupabaseConnection(): Promise<{ ok: boolean; message: string; details?: any }> {
+  try {
+    const { data, error } = await supabase.from('users').select('count', { count: 'exact', head: true });
+    if (error) {
+      return { ok: false, message: error.message, details: error };
+    }
+    return { ok: true, message: 'Connected to Supabase successfully' };
+  } catch (err: any) {
+    return { ok: false, message: err?.message || 'Connection failure' };
+  }
+}
 
 export interface SupabaseRegistrationPayload {
   user_id: string;

@@ -45,7 +45,8 @@
         "hasPin": false,
         "failedPinAttempts": 0,
         "createdAt": "2026-10-24T12:55:26.342Z",
-        "twoFactorEnabled": false
+        "twoFactorEnabled": false,
+        "lastLoginAt": "2026-10-28T07:27:28.841Z"
       },
       "passwordHash": "7c7041538da87e2238ab61a08c27799acfa6a43a9d8cbacde87b855fd40db0dc5acf4d6744ef18128c11e2b3779b8b255565115c21f3074139dd3a89cf716ddf",
       "salt": "14df1fa634915383f4c5d22ff5c822a4",
@@ -201,6 +202,61 @@
         "totalEarnedPaise": 5000,
         "updatedAt": "2026-10-28T07:17:16.728Z"
       }
+    },
+    "usr_7bd085e06a9d363a": {
+      "profile": {
+        "id": "usr_7bd085e06a9d363a",
+        "mobile": "9954571725",
+        "email": "9954571725@rushpay.network",
+        "fullName": "Deployed User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-1725235F",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-28T07:28:45.949Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "19492e98c6d524aca9574b81beaf1a16ff32775e10a8f152df96e0dce51b1171badd8481af0e7dfccdce14538ba23bc697707b05f332a0ce6c21170e13f4b2b5",
+      "salt": "b69aff875bc6b82bdbda1c279634f61c",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-28T07:28:45.949Z"
+      }
+    },
+    "usr_4dc8fc31d06ea5da": {
+      "profile": {
+        "id": "usr_4dc8fc31d06ea5da",
+        "mobile": "9777565896",
+        "email": "9777565896@rushpay.network",
+        "fullName": "Verified Test User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-58969AC5",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-28T07:56:40.178Z",
+        "twoFactorEnabled": false,
+        "lastLoginAt": "2026-10-28T07:56:40.209Z"
+      },
+      "passwordHash": "3e8fb97bcc204646b2451d593239278bc78857a3c29b6488c133ee05ec01285e97ff9f9ebd50976d9631f35d1726048e2db366e7460d6c56dcfd825b4f3fadc1",
+      "salt": "8c4df330c14f5610b7c53b80e1611fc4",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-28T07:56:40.178Z"
+      }
     }
   },
   "mobileIndex": {
@@ -210,7 +266,9 @@
     "9213341592": "usr_ee5d841df1e20c60",
     "9175704385": "usr_5ffe308ec6ead450",
     "9813780320": "usr_c876421ea29819d1",
-    "9894441770": "usr_de9a36efcb33ebf2"
+    "9894441770": "usr_de9a36efcb33ebf2",
+    "9954571725": "usr_7bd085e06a9d363a",
+    "9777565896": "usr_4dc8fc31d06ea5da"
   },
   "referralCodeIndex": {
     "RP-VIKRAM88": "usr_rush_demo_001",
@@ -219,7 +277,9 @@
     "RP-1592CAD1": "usr_ee5d841df1e20c60",
     "RP-4385FBAB": "usr_5ffe308ec6ead450",
     "RP-03201B74": "usr_c876421ea29819d1",
-    "RP-1770731E": "usr_de9a36efcb33ebf2"
+    "RP-1770731E": "usr_de9a36efcb33ebf2",
+    "RP-1725235F": "usr_7bd085e06a9d363a",
+    "RP-58969AC5": "usr_4dc8fc31d06ea5da"
   },
   "orders": [
     {
@@ -518,6 +578,26 @@
       "userId": "usr_de9a36efcb33ebf2",
       "createdAt": "2026-10-28T07:17:16.728Z",
       "expiresAt": "2026-11-04T07:17:16.728Z"
+    },
+    "rps_153eacf9bb4bb8400723159cdbb29d28a33f25de4a97523e0c8faf29a2ccccaf": {
+      "userId": "usr_3cb3b331440afa06",
+      "createdAt": "2026-10-28T07:27:28.841Z",
+      "expiresAt": "2026-11-04T07:27:28.841Z"
+    },
+    "rps_eac53c979f04712704bdf93dfd8eff05006fdcaee513ba959a67a5d20c75d2be": {
+      "userId": "usr_7bd085e06a9d363a",
+      "createdAt": "2026-10-28T07:28:45.949Z",
+      "expiresAt": "2026-11-04T07:28:45.949Z"
+    },
+    "rps_667aab5df998c29204435769ff2ceb43aba5a9216311d1d83f67790b24c1cfe0": {
+      "userId": "usr_4dc8fc31d06ea5da",
+      "createdAt": "2026-10-28T07:56:40.178Z",
+      "expiresAt": "2026-11-04T07:56:40.178Z"
+    },
+    "rps_fc8ea6e0251595c44a53a9244f77455f1079d16ff9459c01286fe6614524b558": {
+      "userId": "usr_4dc8fc31d06ea5da",
+      "createdAt": "2026-10-28T07:56:40.209Z",
+      "expiresAt": "2026-11-04T07:56:40.209Z"
     }
   },
   "otps": {}

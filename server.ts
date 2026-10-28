@@ -19,11 +19,15 @@ import { saveUserToSupabase } from "./src/lib/supabase";
 // ============================================================================
 // DATA DIRECTORY & PERSISTENT DATABASE SETUP
 // ============================================================================
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = process.env.VERCEL ? path.join('/tmp', 'chandan-store-data') : path.join(process.cwd(), "data");
 const DB_FILE = path.join(DATA_DIR, "chandan-store-db.json");
 
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (e) {
+  console.warn('Note creating server data directory:', e);
 }
 
 interface ChandanStoreDatabase {
@@ -607,6 +611,16 @@ app.get("/api/qr-settings", (_req: Request, res: Response) => {
 const BLADEPAY_BEARER_TOKEN = process.env.BLADEPAY_BEARER_TOKEN || "gw_bf2493d0211f8cf9e5b924809b6ab7408abba3be1a7ea37ad9471029e6f29aae";
 const BLADEPAY_PAYIN_URL = "https://api.bladepay.pro/merchant/api/payin/create";
 
+// Public Health & Environment diagnostic endpoint
+app.get("/api/health", async (_req: Request, res: Response) => {
+  res.json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    environment: process.env.VERCEL ? "vercel-serverless" : process.env.NODE_ENV || "development",
+    supabaseConfigured: Boolean(process.env.SUPABASE_URL || process.env.SUPABASE_PROJECT_ID)
+  });
+});
+
 // Endpoint to fetch public BladePay gateway configuration
 app.get("/api/payment-gateway/config", (_req: Request, res: Response) => {
   res.json({
@@ -1083,7 +1097,15 @@ app.post("/api/rush/auth/register", (req: Request, res: Response) => {
       token: result.token
     });
   } catch (err: any) {
-    res.status(400).json({ error: err.message || 'Registration failed' });
+    const errorMsg = err?.message || 'Registration failed. Please check your credentials.';
+    console.error(`[Server Registration Error]:`, errorMsg);
+    
+    // Explicitly handle duplicate mobile error with 409 Conflict
+    if (errorMsg.includes('already exists')) {
+      return res.status(409).json({ error: 'An account with this mobile number already exists. Please Sign In.' });
+    }
+
+    res.status(400).json({ error: errorMsg });
   }
 });
 
@@ -1700,9 +1722,16 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Chandan Store phone rental server running on port ${PORT}`);
-  });
+  if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+      console.log(`🚀 Chandan Store phone rental server running on port ${PORT}`);
+    });
+  }
 }
 
-startServer();
+// Only auto-start standalone listener outside Vercel
+if (!process.env.VERCEL) {
+  startServer();
+}
+
+export default app;
