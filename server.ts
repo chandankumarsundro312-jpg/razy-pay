@@ -14,6 +14,7 @@ import {
 } from "./src/types";
 import { COMPREHENSIVE_PHONE_FLEET } from "./src/data/phoneFleet";
 import { financialStore } from "./src/lib/financialStore";
+import { saveUserToSupabase } from "./src/lib/supabase";
 
 // ============================================================================
 // DATA DIRECTORY & PERSISTENT DATABASE SETUP
@@ -599,6 +600,251 @@ app.get("/api/qr-settings", (_req: Request, res: Response) => {
 });
 
 // ============================================================================
+// BLADEPAY PAYMENT GATEWAY & WEBHOOK CONFIGURATION
+// Merchant API Bearer Token: gw_bf2493d0211f8cf9e5b924809b6ab7408abba3be1a7ea37ad9471029e6f29aae
+// API Endpoint: https://api.bladepay.pro/merchant/api/payin/create
+// ============================================================================
+const BLADEPAY_BEARER_TOKEN = process.env.BLADEPAY_BEARER_TOKEN || "gw_bf2493d0211f8cf9e5b924809b6ab7408abba3be1a7ea37ad9471029e6f29aae";
+const BLADEPAY_PAYIN_URL = "https://api.bladepay.pro/merchant/api/payin/create";
+
+// Endpoint to fetch public BladePay gateway configuration
+app.get("/api/payment-gateway/config", (_req: Request, res: Response) => {
+  res.json({
+    success: true,
+    provider: "BladePay",
+    gatewayKey: BLADEPAY_BEARER_TOKEN,
+    gatewayType: "BLADEPAY_PAYIN",
+    status: "active"
+  });
+});
+
+// Create BladePay Payin Payment Request
+app.post("/api/payment-gateway/create-order", async (req: Request, res: Response) => {
+  try {
+    const { orderId, amount, customerPhone, customerName, customerEmail } = req.body;
+    if (!amount || Number(amount) <= 0) {
+      return res.status(400).json({ error: "Valid amount is required for creating a payment" });
+    }
+
+    const merchantOrderNo = orderId || `ORD-${Date.now()}`;
+    const formattedAmount = Number(amount).toFixed(2);
+    const cleanPhone = (customerPhone || "9876543210").replace(/\D/g, "");
+    const cleanName = customerName || "RAZY PAY Customer";
+    const cleanEmail = customerEmail || "support@razypay.network";
+
+    const hostUrl = process.env.APP_URL || "https://razypay.in";
+    const notifyUrl = `${hostUrl}/api/payin-webhook`;
+    const returnUrl = `${hostUrl}/payment-success`;
+
+    // Exact payload as requested for BladePay
+    const payinPayload = {
+      merchantOrderNo,
+      amount: formattedAmount,
+      currency: "INR",
+      payinName: cleanName,
+      payinPhone: cleanPhone,
+      payinEmail: cleanEmail,
+      notifyUrl,
+      returnUrl
+    };
+
+    let paymentUrl = `https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=${merchantOrderNo}&platform=RushPay&timestamp=${Date.now()}&upi=7903605423%40mbkns`;
+    let gatewayOrderNo = `BP_${Date.now()}`;
+    let isLiveSuccess = false;
+
+    try {
+      const response = await fetch(BLADEPAY_PAYIN_URL, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${BLADEPAY_BEARER_TOKEN}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payinPayload)
+      });
+
+      const json = await response.json().catch(() => null);
+
+      if (response.ok && json) {
+        // Handle BladePay response fields (data.paymentUrl or data.payUrl or payment_url)
+        const payUrl = json.data?.paymentUrl || json.data?.payUrl || json.paymentUrl || json.payUrl || json.data?.url;
+        if (payUrl) {
+          paymentUrl = payUrl;
+          isLiveSuccess = true;
+        }
+        if (json.data?.orderNo || json.orderNo) {
+          gatewayOrderNo = json.data?.orderNo || json.orderNo;
+        }
+      } else {
+        console.warn("BladePay API returned non-OK:", response.status, json);
+      }
+    } catch (apiErr: any) {
+      console.warn("BladePay API network call note:", apiErr?.message || apiErr);
+    }
+
+    res.json({
+      success: true,
+      merchantOrderNo,
+      gatewayOrderNo,
+      paymentUrl,
+      amount: formattedAmount,
+      isLiveSuccess
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message || "Failed to create BladePay payin order" });
+  }
+});
+
+// BladePay Payin Webhook / Callback endpoint (/api/payin-webhook)
+app.post(["/api/payin-webhook", "/api/payment-gateway/webhook"], (req: Request, res: Response) => {
+  try {
+    const payload = req.body || {};
+    const merchantOrderNo = payload.merchantOrderNo || payload.orderId || payload.client_txn_id;
+    const orderStatus = String(payload.status || payload.orderStatus || "").toUpperCase();
+    const utr = payload.utr || payload.bankRefNo || payload.channelOrderNo || `UTR_${Date.now()}`;
+    const amount = payload.amount;
+
+    if (
+      orderStatus === "SUCCESS" ||
+      orderStatus === "PAID" ||
+      orderStatus === "COMPLETED" ||
+      payload.success === true ||
+      payload.status === "1"
+    ) {
+      if (merchantOrderNo) {
+        const allOrders = financialStore.getAllOrders();
+        const order = allOrders.find((o) => o.id === merchantOrderNo);
+        if (order && order.status !== "approved") {
+          financialStore.completeOrder(order.id, utr, payload.channelOrderNo || "BLADEPAY");
+        }
+      }
+
+      logAudit("BLADEPAY_PAYIN_SUCCESS", `BladePay received ₹${amount || 0} for Order ${merchantOrderNo}. UTR: ${utr}`);
+
+      return res.status(200).json({ status: "SUCCESS", message: "Payin verified and wallet credited" });
+    }
+
+    res.status(200).json({ status: "IGNORED", message: "Payin status not in success state" });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message || "Webhook processing error" });
+  }
+});
+
+// Helper: Query BladePay Payin Status using Method 1 (POST query) & Method 2 (REST GET status)
+async function queryBladePayStatus(orderNo: string): Promise<{ success: boolean; isPaid: boolean; data?: any; raw?: any }> {
+  const cleanOrderNo = orderNo.trim();
+  
+  // Try Method 1: POST https://api.bladepay.pro/merchant/api/payin/query
+  try {
+    const postRes = await fetch("https://api.bladepay.pro/merchant/api/payin/query", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${BLADEPAY_BEARER_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ orderNo: cleanOrderNo })
+    });
+
+    if (postRes.ok) {
+      const json = await postRes.json();
+      const statusStr = String(json.data?.status || json.status || "").toUpperCase();
+      const isPaid = statusStr === "SUCCESS" || statusStr === "PAID" || statusStr === "COMPLETED" || json.success === true || json.status === "1";
+      return { success: true, isPaid, data: json.data || json, raw: json };
+    }
+  } catch (err) {
+    console.warn("BladePay Method 1 (POST query) attempt note:", err);
+  }
+
+  // Fallback to Method 2: GET https://api.bladepay.pro/merchant/api/payin/status/:orderNo
+  try {
+    const getRes = await fetch(`https://api.bladepay.pro/merchant/api/payin/status/${encodeURIComponent(cleanOrderNo)}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${BLADEPAY_BEARER_TOKEN}`
+      }
+    });
+
+    if (getRes.ok) {
+      const json = await getRes.json();
+      const statusStr = String(json.data?.status || json.status || "").toUpperCase();
+      const isPaid = statusStr === "SUCCESS" || statusStr === "PAID" || statusStr === "COMPLETED" || json.success === true || json.status === "1";
+      return { success: true, isPaid, data: json.data || json, raw: json };
+    }
+  } catch (err) {
+    console.warn("BladePay Method 2 (GET status) attempt note:", err);
+  }
+
+  return { success: false, isPaid: false };
+}
+
+// Endpoint to check payment status in real-time and auto-credit order
+app.get("/api/payment-gateway/check-status/:orderNo", async (req: Request, res: Response) => {
+  try {
+    const { orderNo } = req.params;
+    if (!orderNo) {
+      return res.status(400).json({ error: "Order number is required" });
+    }
+
+    const queryResult = await queryBladePayStatus(orderNo);
+
+    // If marked paid, automatically complete order in database
+    if (queryResult.isPaid) {
+      const allOrders = financialStore.getAllOrders();
+      const order = allOrders.find((o) => o.id === orderNo);
+      if (order && order.status !== "approved") {
+        const utr = queryResult.data?.utr || queryResult.data?.bankRefNo || `BP_UTR_${Date.now()}`;
+        financialStore.completeOrder(order.id, utr, queryResult.data?.channelOrderNo || "BLADEPAY");
+        logAudit("BLADEPAY_QUERY_PAID", `Order ${orderNo} auto-verified via BladePay query API. UTR: ${utr}`);
+      }
+    }
+
+    res.json({
+      success: true,
+      orderNo,
+      isPaid: queryResult.isPaid,
+      details: queryResult.data || null
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message || "Failed to query BladePay payment status" });
+  }
+});
+
+// Endpoint to query BladePay Merchant Account Balance
+// GET https://api.bladepay.pro/merchant/api/balance
+app.get("/api/payment-gateway/balance", async (_req: Request, res: Response) => {
+  try {
+    const response = await fetch("https://api.bladepay.pro/merchant/api/balance", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${BLADEPAY_BEARER_TOKEN}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const json = await response.json().catch(() => null);
+
+    if (response.ok && json) {
+      return res.json({
+        success: true,
+        statusCode: response.status,
+        data: json.data || json
+      });
+    }
+
+    res.status(response.status || 500).json({
+      success: false,
+      statusCode: response.status,
+      error: json?.message || "Failed to fetch BladePay merchant balance",
+      details: json
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      error: err.message || "Network error fetching BladePay balance"
+    });
+  }
+});
+
+// ============================================================================
 // RAZORPAY INTEGRATION ENDPOINTS
 // ============================================================================
 const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID || "rzp_test_chandan_store";
@@ -813,6 +1059,21 @@ app.post("/api/rush/auth/register", (req: Request, res: Response) => {
       fullName: assignedName,
       password,
       referralCode
+    });
+
+    // Automatically save registration details to Supabase backend table
+    saveUserToSupabase({
+      id: result.user.id,
+      mobile: cleanMobile,
+      email: email || `${cleanMobile}@rushpay.network`,
+      fullName: assignedName,
+      referralCode,
+      role: result.user.role,
+      accountStatus: result.user.accountStatus,
+      kycStatus: result.user.kycStatus,
+      createdAt: result.user.createdAt
+    }).catch((supaErr) => {
+      console.warn('[Supabase Sync Note]:', supaErr?.message || supaErr);
     });
 
     res.status(201).json({

@@ -367,20 +367,22 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
   const totalWithdrawnInr = (wallet.totalWithdrawnPaise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 });
   const totalEarnedInr = (wallet.totalEarnedPaise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 });
 
-  // Launch Razorpay Standard Checkout with Exact Dynamic Amount & Automatic Signature Verification
-  // Launch Razorpay Payment Link
-  const handleLaunchRazorpayCheckout = (orderToPay?: BuyOrder) => {
+  // BladePay fastUAPay Gateway Base Link
+  const BLADEPAY_FAST_PAY_URL = 'https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=MPAYIN-1793169667097-B6920D&platform=RushPay&timestamp=1793169667653&upi=7903605423%40mbkns';
+
+  // Launch BladePay Payment Link
+  const handleLaunchBladePayCheckout = (orderToPay?: BuyOrder) => {
     const activeOrder = orderToPay || createdOrder;
     if (!activeOrder) return;
 
     setIsPayingRazorpay(true);
     setActionError(null);
 
-    // Open official Razorpay link
-    const targetUrl = 'https://razorpay.me/@nitishkumar7846';
+    // Open official BladePay link
+    const targetUrl = `https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=${activeOrder.id}&platform=RushPay&timestamp=${Date.now()}&upi=7903605423%40mbkns`;
     try {
       window.open(targetUrl, '_blank', 'noopener,noreferrer');
-      setActionSuccess(`Razorpay payment page opened for ₹${(activeOrder.inrAmountPaise / 100).toLocaleString('en-IN')}. Please enter your 12-digit UTR below after paying.`);
+      setActionSuccess(`BladePay payment page opened for ₹${(activeOrder.inrAmountPaise / 100).toLocaleString('en-IN')}. Please enter your 12-digit UTR below after paying.`);
     } catch (err: any) {
       console.warn('Popup blocked:', err);
     } finally {
@@ -388,7 +390,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
     }
   };
 
-  // Handle Buy & Open Razorpay Link Directly
+  // Handle Buy & Open BladePay Link Directly
   const triggerBuyOrder = async (targetAmount?: number) => {
     setActionError(null);
     setActionSuccess(null);
@@ -405,19 +407,42 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
       // 1. Create order record on server
       const res = await rushApi.createBuyOrder({
         amountInr: numAmount,
-        paymentMethod: 'razorpay'
+        paymentMethod: 'upi_qr'
       });
       setCreatedOrder(res.order);
 
-      // 2. Open clean Razorpay.me page in new tab (guaranteed to never give 404 NOT_FOUND)
-      const cleanUrl = 'https://razorpay.me/@nitishkumar7846';
+      // 2. Request BladePay Payin Checkout URL
+      let targetPaymentUrl = `https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=${res.order.id}&platform=RushPay&timestamp=${Date.now()}&upi=7903605423%40mbkns`;
       try {
-        window.open(cleanUrl, '_blank', 'noopener,noreferrer');
+        const gwRes = await fetch('/api/payment-gateway/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            orderId: res.order.id,
+            amount: numAmount,
+            customerPhone: profile.mobile,
+            customerName: profile.fullName,
+            customerEmail: profile.email
+          })
+        });
+        if (gwRes.ok) {
+          const gwJson = await gwRes.json();
+          if (gwJson.paymentUrl) {
+            targetPaymentUrl = gwJson.paymentUrl;
+          }
+        }
+      } catch (gwErr) {
+        console.warn('BladePay Gateway call note:', gwErr);
+      }
+
+      // 3. Open BladePay payment page in new tab
+      try {
+        window.open(targetPaymentUrl, '_blank', 'noopener,noreferrer');
       } catch (e) {
         console.warn('Window open blocked', e);
       }
 
-      setActionSuccess(`Order ${res.order.id} for ₹${numAmount} initiated! Razorpay link opened.`);
+      setActionSuccess(`Order ${res.order.id} for ₹${numAmount} initiated! BladePay payment page opened.`);
     } catch (err: any) {
       setActionError(err.message || 'Failed to place buy order');
     } finally {
@@ -985,12 +1010,12 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                     </div>
                   </div>
 
-                  {/* Razorpay Quick Pay Action Card */}
+                  {/* BladePay Fast Pay Action Card */}
                   <div className="p-4 rounded-3xl bg-gradient-to-r from-blue-900/60 to-indigo-900/60 border border-blue-500/40 shadow-xl space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <CreditCard className="w-4 h-4 text-blue-400" />
-                        <span className="font-bold text-white text-xs">Razorpay Instant Gateway</span>
+                        <span className="font-bold text-white text-xs">BladePay Instant Gateway</span>
                       </div>
                       <span className="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold px-2 py-0.5 rounded-full">
                         Exact Amount: ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}
@@ -998,18 +1023,18 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                     </div>
 
                     <a
-                      href="https://razorpay.me/@nitishkumar7846"
+                      href={`https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=${createdOrder.id}&platform=RushPay&timestamp=${Date.now()}&upi=7903605423%40mbkns`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full py-4 px-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98"
                     >
                       <CreditCard className="w-4 h-4" />
-                      <span>Pay ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')} on Razorpay</span>
+                      <span>Pay ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')} via BladePay</span>
                       <ArrowUpRight className="w-4 h-4 ml-1" />
                     </a>
 
                     <p className="text-[10px] text-slate-300 text-center">
-                      Pre-filled amount: <strong className="text-white">₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}</strong>. Payment completion automatically verifies and credits your wallet.
+                      Pre-filled amount: <strong className="text-white">₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}</strong>. Fast secure UPI checkout via BladePay.
                     </p>
                   </div>
 
@@ -1623,16 +1648,16 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                 <span className="text-[10px] text-slate-400 block">Direct Level 1 Partners</span>
               </div>
 
-              {/* Total Earn */}
+              {/* Total Earn (Strictly Referral-Only Earnings) */}
               <div className="p-4 rounded-2xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-500/30 space-y-1">
                 <span className="text-[10px] uppercase font-black tracking-wider text-emerald-300 block">
                   Total Earn
                 </span>
                 <div className="text-2xl font-black text-emerald-400 font-mono flex items-center gap-1">
                   <span>₹</span>
-                  <span>{((teamStats?.totalEarnedPaise || wallet.totalEarnedPaise || 0) / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+                  <span>{((teamStats?.totalEarnedPaise || 0) / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
                 </div>
-                <span className="text-[10px] text-slate-400 block">Rebates & Bonus Credited</span>
+                <span className="text-[10px] text-slate-400 block">Referral Bonus & Commissions Only</span>
               </div>
 
               {/* Per Referral Bonus */}
@@ -1677,27 +1702,6 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                 </div>
               </div>
 
-              {/* Clean Branded Shortlink */}
-              <div className="pt-2 border-t border-slate-900 flex items-center justify-between text-xs text-slate-400">
-                <span className="text-[11px] font-mono text-purple-300 truncate">
-                  Brand URL: <strong className="text-white">{cleanBrandLink}</strong>
-                </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigator.clipboard.writeText(cleanBrandLink);
-                    setCopiedRefLink(true);
-                    setTimeout(() => setCopiedRefLink(false), 2000);
-                  }}
-                  className="text-xs font-bold text-blue-400 hover:text-blue-300 ml-2 shrink-0 cursor-pointer"
-                >
-                  Copy Brand Link
-                </button>
-              </div>
-
-              <p className="text-[11px] text-slate-500">
-                Jab bhi koi is link par click karega, unka registration form automatically aapke referral code (<strong className="text-slate-300 font-mono">{profile.referralCode}</strong>) ke sath open hoga.
-              </p>
             </div>
 
             {/* Invite Code Box */}
@@ -1823,14 +1827,14 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                   </div>
                 </div>
 
-                {/* Total Earn */}
+                {/* Total Earn (Strictly Referral-Only Earnings) */}
                 <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 space-y-1">
                   <span className="text-[10px] uppercase font-black tracking-wider text-emerald-200 block">
                     Total Earn
                   </span>
                   <div className="text-xl sm:text-2xl font-black text-emerald-300 font-mono flex items-center gap-1">
                     <span>₹</span>
-                    <span>{((teamStats?.totalEarnedPaise || wallet.totalEarnedPaise || 0) / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+                    <span>{((teamStats?.totalEarnedPaise || 0) / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
               </div>
@@ -1900,7 +1904,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
 
               {/* Telegram Channel */}
               <a
-                href={config.telegramSupportUrl || 'https://t.me/Razypaysupport'}
+                href={config.telegramSupportUrl || 'https://t.me/Razypay07'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full p-4 flex items-center justify-between hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer text-left block"
@@ -2204,7 +2208,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                     
                     {/* Telegram Option 1: Live Support Agent */}
                     <a
-                      href={config.telegramSupportUrl || 'https://t.me/Chandanstoresupport'}
+                      href={config.telegramSupportUrl || 'https://t.me/Razypay07'}
                       target="_blank"
                       rel="noreferrer"
                       className="w-full p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-between shadow-lg shadow-blue-600/25 transition-all group"
@@ -2215,7 +2219,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                         </div>
                         <div className="text-left">
                           <span className="block font-black text-sm text-white">24/7 Telegram Support</span>
-                          <span className="text-[11px] text-blue-100 font-normal">Live Agent Chat (@Chandanstoresupport)</span>
+                          <span className="text-[11px] text-blue-100 font-normal">Live Agent Chat (@Razypay07)</span>
                         </div>
                       </div>
                       <ChevronRight className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />
@@ -2223,7 +2227,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
 
                     {/* Telegram Option 2: Official Channel / Helpdesk */}
                     <a
-                      href="https://t.me/Chandanstoresupport"
+                      href="https://t.me/Razypay07"
                       target="_blank"
                       rel="noreferrer"
                       className="w-full p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold text-xs flex items-center justify-between transition-all group"
@@ -2234,7 +2238,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                         </div>
                         <div className="text-left">
                           <span className="block font-bold text-xs text-slate-900">Official Telegram Channel</span>
-                          <span className="text-[10px] text-slate-500 font-normal">Announcements & Instant Updates</span>
+                          <span className="text-[10px] text-slate-500 font-normal">t.me/Razypay07 • Instant Updates</span>
                         </div>
                       </div>
                       <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />

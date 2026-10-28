@@ -49,7 +49,7 @@ const DEFAULT_CONFIG: RushPayPlatformConfig = {
   tagline: 'High-Performance Financial Operating System & Verified INR Settlement',
   supportEmail: 'support@razypay.network',
   supportPhone: '+91 9572918366',
-  telegramSupportUrl: 'https://t.me/Chandanstoresupport',
+  telegramSupportUrl: 'https://t.me/Razypay07',
   minDepositInr: 100,
   maxDepositInr: 500000,
   minWithdrawInr: 500,
@@ -172,6 +172,7 @@ export class FinancialStore {
     // Synchronize active config without overwriting or resetting user wallets/records
     if (this.db.config) {
       this.db.config.depositUpiId = 'razypey@ptyes';
+      this.db.config.telegramSupportUrl = 'https://t.me/Razypay07';
     }
     this.save();
   }
@@ -687,10 +688,10 @@ export class FinancialStore {
   public getUserData(userId: string) {
     const user = this.db.users[userId];
     if (!user) return null;
-    // Compute Team & Referral Statistics
+    // Compute Team & Referral Statistics (Strictly Referral-Only Earnings)
     const userReferrals = (this.db.referrals || []).filter((r) => r.referrerUserId === userId);
     const totalInvites = userReferrals.length;
-    const teamEarnedPaise = userReferrals.reduce((sum, r) => sum + (r.rewardPaise || 0), 0) + (user.wallet.totalEarnedPaise || 0);
+    const teamEarnedPaise = userReferrals.reduce((sum, r) => sum + (r.rewardPaise || 0), 0);
 
     return {
       profile: user.profile,

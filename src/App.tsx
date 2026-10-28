@@ -38,6 +38,7 @@ import {
   syncWithdrawalToFirestore,
   syncLedgerToFirestore
 } from './lib/firestoreService';
+import { saveUserToSupabase } from './lib/supabase';
 import { RushLanding } from './components/rushpay/RushLanding';
 import { RushDashboard } from './components/rushpay/RushDashboard';
 import { RushAuthModal } from './components/rushpay/RushAuthModal';
@@ -147,7 +148,7 @@ export function App() {
       tagline: 'High-Performance Financial Operating System & Verified INR Settlement',
       supportEmail: 'support@razypay.network',
       supportPhone: '+91 9572918366',
-      telegramSupportUrl: 'https://t.me/Razypaysupport',
+      telegramSupportUrl: 'https://t.me/Razypay07',
       minDepositInr: 100,
       maxDepositInr: 500000,
       minWithdrawInr: 500,
@@ -172,9 +173,21 @@ export function App() {
           setRushDashboardData(d);
           setRushUser(d.profile);
 
-          // Permanently sync User, Wallet, Orders, and Ledger to Cloud Firestore
+          // Permanently sync User, Wallet, Orders, and Ledger to Cloud Firestore & Supabase Backend
           try {
             syncUserToFirestore({ profile: d.profile, wallet: d.wallet });
+            saveUserToSupabase({
+              id: d.profile.id,
+              mobile: d.profile.mobile,
+              email: d.profile.email,
+              fullName: d.profile.fullName,
+              referralCode: d.profile.referralCode,
+              role: d.profile.role,
+              accountStatus: d.profile.accountStatus,
+              kycStatus: d.profile.kycStatus,
+              createdAt: d.profile.createdAt
+            }).catch((err) => console.warn('[Supabase Sync Note]:', err));
+
             if (Array.isArray(d.recentOrders)) {
               d.recentOrders.forEach((o) => syncOrderToFirestore(o));
             }
@@ -185,7 +198,7 @@ export function App() {
               d.recentLedger.forEach((l) => syncLedgerToFirestore(l));
             }
           } catch (syncErr) {
-            console.warn('Background Firestore user sync note:', syncErr);
+            console.warn('Background sync note:', syncErr);
           }
         } catch (tokenErr: any) {
           console.warn('Dashboard fetch warning:', tokenErr);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Lock, Phone, User, Key, ArrowRight, ShieldCheck, AlertCircle, RefreshCw } from 'lucide-react';
+import { X, Lock, Phone, User, Key, ArrowRight, ShieldCheck, AlertCircle, RefreshCw, CheckCircle2, Timer } from 'lucide-react';
 import { rushApi } from '../../utils/rushApi';
 import { UserProfile } from '../../types/rushpay';
 
@@ -35,29 +35,113 @@ export const RushAuthModal: React.FC<RushAuthModalProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Demo 4-Digit OTP System State
+  const [otp, setOtp] = useState('');
+  const [generatedOtp, setGeneratedOtp] = useState<string | null>(null);
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [otpCountdown, setOtpCountdown] = useState(0);
+  const [isOtpVerifying, setIsOtpVerifying] = useState(false);
+  const [isOtpVerified, setIsOtpVerified] = useState(false);
+
+  // Trigger registration submission
+  const executeRegister = async (mobileVal: string, passwordVal: string, refVal: string) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      const res = await rushApi.register({
+        mobile: mobileVal.trim(),
+        fullName: fullName.trim() || undefined,
+        email: email.trim() || undefined,
+        password: passwordVal,
+        referralCode: refVal.trim() || undefined
+      });
+      onSuccess(res.user);
+    } catch (err: any) {
+      setError(err.message || 'Registration failed. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 1. Send OTP & Auto-Verification (5-second timer)
+  const handleSendOtp = () => {
+    const cleanMob = mobile.replace(/\D/g, '');
+    if (cleanMob.length < 10) {
+      setError('Please enter a valid 10-digit mobile number first.');
+      return;
+    }
+    if (!password) {
+      setError('Please create a password before requesting OTP.');
+      return;
+    }
+
+    setError(null);
+    // Generate random 4-digit OTP
+    const random4Digit = Math.floor(1000 + Math.random() * 9000).toString();
+    setGeneratedOtp(random4Digit);
+    setIsOtpSent(true);
+    setIsOtpVerified(false);
+    setOtpCountdown(5);
+
+    // 5-second countdown interval
+    let timeLeft = 5;
+    const intervalId = setInterval(() => {
+      timeLeft -= 1;
+      setOtpCountdown(timeLeft);
+
+      if (timeLeft <= 0) {
+        clearInterval(intervalId);
+        // Step 2 & 3: Auto-fill 4-digit OTP and trigger verification
+        setOtp(random4Digit);
+        setIsOtpVerifying(true);
+
+        setTimeout(() => {
+          setIsOtpVerifying(false);
+          setIsOtpVerified(true);
+
+          // Step 5: Auto Continue - Automatically advance registration
+          setTimeout(() => {
+            executeRegister(cleanMob, password, referralCode);
+          }, 800);
+        }, 600);
+      }
+    }, 1000);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    setIsLoading(true);
 
-    try {
-      if (mode === 'register') {
-        const res = await rushApi.register({
-          mobile: mobile.trim(),
-          fullName: fullName.trim(),
-          email: email.trim() || undefined,
-          password,
-          referralCode: referralCode.trim() || undefined
-        });
-        onSuccess(res.user);
-      } else {
+    if (mode === 'register') {
+      const cleanMob = mobile.replace(/\D/g, '');
+      if (cleanMob.length < 10) {
+        setError('Please enter a valid 10-digit Indian mobile number.');
+        return;
+      }
+      if (!isOtpVerified) {
+        if (!isOtpSent) {
+          handleSendOtp();
+          return;
+        }
+        if (otp.length === 4) {
+          setIsOtpVerified(true);
+          executeRegister(cleanMob, password, referralCode);
+        } else {
+          setError('Please wait for OTP auto-verification or click Send OTP.');
+        }
+        return;
+      }
+      executeRegister(cleanMob, password, referralCode);
+    } else {
+      setIsLoading(true);
+      try {
         const res = await rushApi.login(mobile.trim(), password);
         onSuccess(res.user);
+      } catch (err: any) {
+        setError(err.message || 'Authentication failed. Please check your credentials.');
+      } finally {
+        setIsLoading(false);
       }
-    } catch (err: any) {
-      setError(err.message || 'Authentication failed. Please check your credentials.');
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -163,6 +247,98 @@ export const RushAuthModal: React.FC<RushAuthModalProps> = ({
                 />
               </div>
             </div>
+
+            {/* OTP Verification System (Registration Only) */}
+            {mode === 'register' && (
+              <div className="space-y-2 pt-1">
+                <div className="flex items-center justify-between">
+                  <label className="text-slate-300 font-bold block tracking-wide">
+                    4-Digit OTP Verification
+                  </label>
+                  {isOtpVerified ? (
+                    <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                      Verified
+                    </span>
+                  ) : isOtpSent ? (
+                    <span className="text-[10px] font-bold text-amber-300 flex items-center gap-1 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full animate-pulse">
+                      <Timer className="w-3 h-3 text-amber-400" />
+                      Auto-verifying in {otpCountdown}s...
+                    </span>
+                  ) : (
+                    <span className="text-[10px] text-slate-400">Required</span>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <div className="relative flex-1">
+                    <Lock className="absolute left-3.5 top-3 w-4 h-4 text-blue-300/70" />
+                    <input
+                      type="text"
+                      maxLength={4}
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 4))}
+                      placeholder={isOtpSent ? (otpCountdown > 0 ? `Generating... (${otpCountdown}s)` : 'Auto-filling...') : '4-Digit OTP'}
+                      disabled={isOtpVerified || isOtpVerifying}
+                      className={`w-full pl-10 pr-4 py-3 rounded-2xl bg-white/[0.05] border text-white placeholder-slate-500 focus:outline-none transition-all font-mono text-center tracking-widest text-base font-black backdrop-blur-md shadow-inner ${
+                        isOtpVerified
+                          ? 'border-emerald-400/50 bg-emerald-500/10 text-emerald-300'
+                          : isOtpSent
+                          ? 'border-blue-400/60 bg-blue-500/10'
+                          : 'border-white/15 focus:border-blue-400'
+                      }`}
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleSendOtp}
+                    disabled={isOtpSent && otpCountdown > 0 || isOtpVerified}
+                    className={`px-4 py-3 rounded-2xl font-black text-xs uppercase tracking-wider transition-all shadow-md shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 ${
+                      isOtpVerified
+                        ? 'bg-emerald-600/30 border border-emerald-400/40 text-emerald-300 cursor-default'
+                        : isOtpSent && otpCountdown > 0
+                        ? 'bg-slate-800 text-slate-400 border border-slate-700 cursor-not-allowed'
+                        : 'bg-blue-600 hover:bg-blue-500 text-white shadow-blue-600/30 border border-blue-400/30'
+                    }`}
+                  >
+                    {isOtpVerified ? (
+                      <>
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Done</span>
+                      </>
+                    ) : isOtpSent && otpCountdown > 0 ? (
+                      <>
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                        <span>Wait {otpCountdown}s</span>
+                      </>
+                    ) : isOtpSent ? (
+                      <span>Resend OTP</span>
+                    ) : (
+                      <span>Send OTP</span>
+                    )}
+                  </button>
+                </div>
+
+                {/* Status Notice */}
+                {isOtpSent && (
+                  <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-[11px] text-blue-200 flex items-center justify-between">
+                    <span className="font-medium">
+                      {isOtpVerified
+                        ? 'OTP verified! Continuing registration automatically...'
+                        : isOtpVerifying
+                        ? 'Validating 4-digit OTP...'
+                        : `OTP will auto-fill & verify in ${otpCountdown}s (No SMS needed)`}
+                    </span>
+                    {generatedOtp && (
+                      <span className="font-mono font-black text-blue-300 bg-blue-500/20 px-2 py-0.5 rounded-lg border border-blue-400/30 text-xs">
+                        {isOtpVerified || otpCountdown === 0 ? generatedOtp : `****`}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
 
             {mode === 'register' && (
               <div className="space-y-1.5">
