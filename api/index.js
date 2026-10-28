@@ -1919,6 +1919,18 @@ app.get("/api/health", async (_req, res) => {
     supabaseConfigured: Boolean(process.env.SUPABASE_URL || process.env.SUPABASE_PROJECT_ID)
   });
 });
+var welcomeHandler = (_req, res) => {
+  const greeting = process.env.GLOBAL_GREETING || "Welcome to RAZY PAY Financial Operating System";
+  res.json({
+    success: true,
+    greeting,
+    brand: "RAZY PAY",
+    tagline: "High-Performance Financial Operating System & Verified Settlement",
+    timestamp: (/* @__PURE__ */ new Date()).toISOString()
+  });
+};
+app.get("/api/welcome", welcomeHandler);
+app.get("/welcome", welcomeHandler);
 app.get("/api/payment-gateway/config", (_req, res) => {
   res.json({
     success: true,

@@ -620,6 +620,21 @@ app.get("/api/health", async (_req: Request, res: Response) => {
   });
 });
 
+// Welcome Endpoint matching matcher: '/welcome' and '/api/welcome'
+const welcomeHandler = (_req: Request, res: Response) => {
+  const greeting = process.env.GLOBAL_GREETING || "Welcome to RAZY PAY Financial Operating System";
+  res.json({
+    success: true,
+    greeting,
+    brand: "RAZY PAY",
+    tagline: "High-Performance Financial Operating System & Verified Settlement",
+    timestamp: new Date().toISOString()
+  });
+};
+
+app.get("/api/welcome", welcomeHandler);
+app.get("/welcome", welcomeHandler);
+
 // Endpoint to fetch public BladePay gateway configuration
 app.get("/api/payment-gateway/config", (_req: Request, res: Response) => {
   res.json({
