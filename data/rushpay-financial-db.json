@@ -257,6 +257,34 @@
         "totalEarnedPaise": 5000,
         "updatedAt": "2026-10-28T07:56:40.178Z"
       }
+    },
+    "usr_42ff5bef3416069c": {
+      "profile": {
+        "id": "usr_42ff5bef3416069c",
+        "mobile": "9132239260",
+        "email": "9132239260@rushpay.network",
+        "fullName": "Vercel Verified User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-92601180",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-28T08:16:23.408Z",
+        "twoFactorEnabled": false,
+        "lastLoginAt": "2026-10-28T08:16:23.434Z"
+      },
+      "passwordHash": "57eee8b4b21c789a142f9bf7b63f8d871e6833889c7d3e6004bc84cd0bd32a0c420b297e85f84a56d4e3c37d8642ec3468bb0d4e51a2b26a62fde64d13f1ec3f",
+      "salt": "384288a31205daf2986572879980666e",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-28T08:16:23.408Z"
+      }
     }
   },
   "mobileIndex": {
@@ -268,7 +296,8 @@
     "9813780320": "usr_c876421ea29819d1",
     "9894441770": "usr_de9a36efcb33ebf2",
     "9954571725": "usr_7bd085e06a9d363a",
-    "9777565896": "usr_4dc8fc31d06ea5da"
+    "9777565896": "usr_4dc8fc31d06ea5da",
+    "9132239260": "usr_42ff5bef3416069c"
   },
   "referralCodeIndex": {
     "RP-VIKRAM88": "usr_rush_demo_001",
@@ -279,7 +308,8 @@
     "RP-03201B74": "usr_c876421ea29819d1",
     "RP-1770731E": "usr_de9a36efcb33ebf2",
     "RP-1725235F": "usr_7bd085e06a9d363a",
-    "RP-58969AC5": "usr_4dc8fc31d06ea5da"
+    "RP-58969AC5": "usr_4dc8fc31d06ea5da",
+    "RP-92601180": "usr_42ff5bef3416069c"
   },
   "orders": [
     {
@@ -598,6 +628,16 @@
       "userId": "usr_4dc8fc31d06ea5da",
       "createdAt": "2026-10-28T07:56:40.209Z",
       "expiresAt": "2026-11-04T07:56:40.209Z"
+    },
+    "rps_60c1a2b289be08c6a8787ba778ffa8e0e446edbeed458f7ef5a958a5c28c9981": {
+      "userId": "usr_42ff5bef3416069c",
+      "createdAt": "2026-10-28T08:16:23.408Z",
+      "expiresAt": "2026-11-04T08:16:23.408Z"
+    },
+    "rps_77497fcd4e50c0a9bf82d5e55890be920f05bdd4ecc593cef983765aa99da80c": {
+      "userId": "usr_42ff5bef3416069c",
+      "createdAt": "2026-10-28T08:16:23.434Z",
+      "expiresAt": "2026-11-04T08:16:23.434Z"
     }
   },
   "otps": {}

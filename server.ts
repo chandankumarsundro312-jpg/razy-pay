@@ -2,7 +2,6 @@ import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
 import crypto from "crypto";
-import { createServer as createViteServer } from "vite";
 import {
   PhoneListing,
   RentalBooking,
@@ -1708,8 +1707,13 @@ app.get("/api/admin/audit-logs", requireAdmin, (_req: Request, res: Response) =>
 // VITE CLIENT MOUNTING (FULL STACK INTEGRATION)
 // ============================================================================
 async function startServer() {
+  if (process.env.VERCEL) {
+    return;
+  }
+
   if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
+    const { createServer: createViteDevServer } = await import("vite");
+    const vite = await createViteDevServer({
       server: { middlewareMode: true },
       appType: "spa"
     });
@@ -1722,15 +1726,18 @@ async function startServer() {
     });
   }
 
-  if (!process.env.VERCEL) {
-    app.listen(PORT, () => {
-      console.log(`🚀 Chandan Store phone rental server running on port ${PORT}`);
-    });
-  }
+  app.listen(PORT, () => {
+    console.log(`🚀 Chandan Store phone rental server running on port ${PORT}`);
+  });
 }
 
-// Only auto-start standalone listener outside Vercel
-if (!process.env.VERCEL) {
+// Only auto-start standalone listener when executed directly as main script
+const isMainScript = !process.env.VERCEL && (
+  (typeof require !== "undefined" && require.main === module) ||
+  (process.argv[1] && (process.argv[1].endsWith("server.ts") || process.argv[1].endsWith("server.cjs")))
+);
+
+if (isMainScript) {
   startServer();
 }
 
