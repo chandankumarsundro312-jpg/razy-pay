@@ -14,7 +14,7 @@
         "failedPinAttempts": 0,
         "createdAt": "2026-10-21T16:49:40.004Z",
         "twoFactorEnabled": false,
-        "lastLoginAt": "2026-10-27T03:20:28.718Z",
+        "lastLoginAt": "2026-11-11T14:54:29.112Z",
         "upiId": "9876543210@paytm",
         "upiHolderName": "Vikram Malhotra"
       },
@@ -23,13 +23,13 @@
       "pinSalt": "da672ccc28ed3bbc7c85e6e2bb48edcf",
       "salt": "1439aaa73da34e6feff00647ba264b89",
       "wallet": {
-        "availablePaise": 5000,
+        "availablePaise": 70000,
         "inReviewPaise": 0,
         "escrowPaise": 0,
-        "totalDepositedPaise": 0,
+        "totalDepositedPaise": 50000,
         "totalWithdrawnPaise": 0,
-        "totalEarnedPaise": 0,
-        "updatedAt": "2026-10-27T03:19:14.815Z"
+        "totalEarnedPaise": 15000,
+        "updatedAt": "2026-11-11T14:47:14.485Z"
       }
     },
     "usr_3cb3b331440afa06": {
@@ -46,7 +46,9 @@
         "failedPinAttempts": 0,
         "createdAt": "2026-10-24T12:55:26.342Z",
         "twoFactorEnabled": false,
-        "lastLoginAt": "2026-10-28T07:27:28.841Z"
+        "lastLoginAt": "2026-11-11T14:41:08.182Z",
+        "upiId": "9942064299@okaxis",
+        "upiHolderName": "Vip"
       },
       "passwordHash": "7c7041538da87e2238ab61a08c27799acfa6a43a9d8cbacde87b855fd40db0dc5acf4d6744ef18128c11e2b3779b8b255565115c21f3074139dd3a89cf716ddf",
       "salt": "14df1fa634915383f4c5d22ff5c822a4",
@@ -312,6 +314,142 @@
         "totalEarnedPaise": 5000,
         "updatedAt": "2026-10-28T08:54:37.278Z"
       }
+    },
+    "usr_8fc124892b7180d3": {
+      "profile": {
+        "id": "usr_8fc124892b7180d3",
+        "mobile": "9969780129",
+        "email": "9969780129@rushpay.network",
+        "fullName": "RushPay User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-01296A77",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-29T01:58:38.122Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "e30fb295be422b1a8acfd2a5d550cb311736b130136ca0d199bfca22c2da5307e3f2f92822199a376b962afa81113b96fdc33c940b04224e9508d5ebb046e4a6",
+      "salt": "071cdba6a729934c17d3c329e08b6345",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-29T01:58:38.122Z"
+      }
+    },
+    "usr_f3a970cf1eca9b26": {
+      "profile": {
+        "id": "usr_f3a970cf1eca9b26",
+        "mobile": "9921115438",
+        "email": "9921115438@rushpay.network",
+        "fullName": "RushPay User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-5438B6CE",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-29T01:58:51.247Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "52a1ce255dfaaddc79807fe74b890fb77b4fedb4d58959cdb2763425363dc251f55485c73b71abc38f41f37e37748c408c70806ceb549702b3c904f6b641c460",
+      "salt": "abfd6931f387b14b065119fc43aa2199",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-29T01:58:51.247Z"
+      }
+    },
+    "usr_190182e0496ccb08": {
+      "profile": {
+        "id": "usr_190182e0496ccb08",
+        "mobile": "9952306301",
+        "email": "9952306301@rushpay.network",
+        "fullName": "RushPay User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-6301F7CE",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-29T01:59:11.088Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "e3dd48b5d67ebff72aa4fd290aa6402e7bf9333de13554e50dc3be5059535cfa72e91cb35bde65be5729380bfc5a7e017b6557a70a9e03c43342d985f44eccd6",
+      "salt": "9a1f2b690fdce0ddd0dacb65c99fcb69",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-29T01:59:11.088Z"
+      }
+    },
+    "usr_7682757f3b2d5c5f": {
+      "profile": {
+        "id": "usr_7682757f3b2d5c5f",
+        "mobile": "9715633690",
+        "email": "9715633690@rushpay.network",
+        "fullName": "RushPay User",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-3690D35B",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-10-29T01:59:32.899Z",
+        "twoFactorEnabled": false
+      },
+      "passwordHash": "9595668e3674813ec59b00379f26fb424129d271e0179386777babaf2a12b5f8a26b630bf2648580db44e993028fdb55f09c5865d50f89b854a5f9f788cc3ae0",
+      "salt": "feb79ede91dad10657986d17b44fcfd1",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-10-29T01:59:32.899Z"
+      }
+    },
+    "usr_504cec70aa47c6e5": {
+      "profile": {
+        "id": "usr_504cec70aa47c6e5",
+        "mobile": "9123456789",
+        "email": "9123456789@rushpay.network",
+        "fullName": "Rohan Sharma",
+        "role": "user",
+        "accountStatus": "active",
+        "kycStatus": "pending",
+        "referralCode": "RP-6789D16D",
+        "hasPin": false,
+        "failedPinAttempts": 0,
+        "createdAt": "2026-11-11T12:41:44.917Z",
+        "twoFactorEnabled": false,
+        "lastLoginAt": "2026-11-11T12:41:50.891Z"
+      },
+      "passwordHash": "4696aae026d28ba95b125e665530f12c7a202931bf4945bb0444b02c76123e478944a6834929bf50b6c98319c93360e8649709b397c9426966bfdb767e480267",
+      "salt": "fe7ab3a30480526706f4abb219281576",
+      "wallet": {
+        "availablePaise": 5000,
+        "inReviewPaise": 0,
+        "escrowPaise": 0,
+        "totalDepositedPaise": 0,
+        "totalWithdrawnPaise": 0,
+        "totalEarnedPaise": 5000,
+        "updatedAt": "2026-11-11T12:41:44.917Z"
+      }
     }
   },
   "mobileIndex": {
@@ -325,7 +463,12 @@
     "9954571725": "usr_7bd085e06a9d363a",
     "9777565896": "usr_4dc8fc31d06ea5da",
     "9132239260": "usr_42ff5bef3416069c",
-    "9665457898": "usr_8b558463ca0f4ccb"
+    "9665457898": "usr_8b558463ca0f4ccb",
+    "9969780129": "usr_8fc124892b7180d3",
+    "9921115438": "usr_f3a970cf1eca9b26",
+    "9952306301": "usr_190182e0496ccb08",
+    "9715633690": "usr_7682757f3b2d5c5f",
+    "9123456789": "usr_504cec70aa47c6e5"
   },
   "referralCodeIndex": {
     "RP-VIKRAM88": "usr_rush_demo_001",
@@ -338,9 +481,102 @@
     "RP-1725235F": "usr_7bd085e06a9d363a",
     "RP-58969AC5": "usr_4dc8fc31d06ea5da",
     "RP-92601180": "usr_42ff5bef3416069c",
-    "RP-789855EA": "usr_8b558463ca0f4ccb"
+    "RP-789855EA": "usr_8b558463ca0f4ccb",
+    "RP-01296A77": "usr_8fc124892b7180d3",
+    "RP-5438B6CE": "usr_f3a970cf1eca9b26",
+    "RP-6301F7CE": "usr_190182e0496ccb08",
+    "RP-3690D35B": "usr_7682757f3b2d5c5f",
+    "RP-6789D16D": "usr_504cec70aa47c6e5",
+    "RP-665532D7": "usr_e1b973e4263f76ba",
+    "RP-3344071E": "usr_20f3a49e62ac855e"
   },
   "orders": [
+    {
+      "id": "ORD-443873-9AFD",
+      "userId": "usr_rush_demo_001",
+      "userName": "Vikram Malhotra",
+      "userMobile": "9876543210",
+      "orderType": "buy",
+      "inrAmountPaise": 50000,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 530,
+      "feePaise": 0,
+      "netAmountPaise": 53000,
+      "paymentMethod": "upi_qr",
+      "status": "approved",
+      "createdAt": "2026-11-11T13:24:03.873Z",
+      "updatedAt": "2026-11-11T13:24:03.880Z",
+      "utrNumber": "UTR987654321012",
+      "paymentReference": "UTR987654321012",
+      "approvedAt": "2026-11-11T13:24:03.926Z",
+      "adminReviewer": "SuperAdmin"
+    },
+    {
+      "id": "ORD-423712-2B0F",
+      "userId": "usr_rush_demo_001",
+      "userName": "Vikram Malhotra",
+      "userMobile": "9876543210",
+      "orderType": "buy",
+      "inrAmountPaise": 50000,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 530,
+      "feePaise": 0,
+      "netAmountPaise": 53000,
+      "paymentMethod": "upi_qr",
+      "status": "under_review",
+      "createdAt": "2026-11-11T13:23:43.712Z",
+      "updatedAt": "2026-11-11T13:23:43.718Z",
+      "utrNumber": "UTR987654321012",
+      "paymentReference": "UTR987654321012"
+    },
+    {
+      "id": "ORD-300630-6C5C",
+      "userId": "usr_rush_demo_001",
+      "userName": "Vikram Malhotra",
+      "userMobile": "9876543210",
+      "orderType": "buy",
+      "inrAmountPaise": 40800,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 432.48,
+      "feePaise": 0,
+      "netAmountPaise": 43248,
+      "paymentMethod": "upi_qr",
+      "status": "pending",
+      "createdAt": "2026-11-09T16:38:20.630Z",
+      "updatedAt": "2026-11-09T16:38:20.630Z"
+    },
+    {
+      "id": "ORD-166169-7879",
+      "userId": "usr_rush_demo_001",
+      "userName": "Vikram Malhotra",
+      "userMobile": "9876543210",
+      "orderType": "buy",
+      "inrAmountPaise": 19800,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 209.88,
+      "feePaise": 0,
+      "netAmountPaise": 20988,
+      "paymentMethod": "upi_qr",
+      "status": "pending",
+      "createdAt": "2026-10-29T01:59:26.169Z",
+      "updatedAt": "2026-10-29T01:59:26.169Z"
+    },
+    {
+      "id": "ORD-095827-9EF0",
+      "userId": "usr_rush_demo_001",
+      "userName": "Vikram Malhotra",
+      "userMobile": "9876543210",
+      "orderType": "buy",
+      "inrAmountPaise": 42600,
+      "rateInrPerUnit": 1,
+      "unitsEstimated": 451.56,
+      "feePaise": 0,
+      "netAmountPaise": 45156,
+      "paymentMethod": "upi_qr",
+      "status": "pending",
+      "createdAt": "2026-10-29T01:58:15.827Z",
+      "updatedAt": "2026-10-29T01:58:15.827Z"
+    },
     {
       "id": "ORD-907765-BCED",
       "userId": "usr_c876421ea29819d1",
@@ -467,6 +703,29 @@
   ],
   "ledger": [
     {
+      "id": "led_rew_1794408434485",
+      "userId": "usr_rush_demo_001",
+      "entryType": "FIRST_DEPOSIT_REWARD",
+      "amountPaise": 15000,
+      "balanceBeforePaise": 55000,
+      "balanceAfterPaise": 70000,
+      "description": "",
+      "referenceId": "REW-FIRSTDEP-434485",
+      "createdAt": "2026-11-11T14:47:14.485Z"
+    },
+    {
+      "id": "led_1794403443926_8bccaa",
+      "userId": "usr_rush_demo_001",
+      "entryType": "BUY_CREDIT",
+      "type": "deposit",
+      "amountPaise": 50000,
+      "balanceBeforePaise": 5000,
+      "balanceAfterPaise": 55000,
+      "description": "",
+      "referenceId": "ORD-443873-9AFD",
+      "createdAt": "2026-11-11T13:24:03.926Z"
+    },
+    {
       "id": "led_1793069907769",
       "userId": "usr_c876421ea29819d1",
       "relatedOrderId": "ORD-907765-BCED",
@@ -554,13 +813,34 @@
     "updatedBy": "System Auto-Engine"
   },
   "referrals": [],
-  "tickets": [],
+  "tickets": [
+    {
+      "id": "tkt_demo_101",
+      "userId": "usr_rush_demo_001",
+      "userName": "Vikram Malhotra",
+      "userMobile": "9876543210",
+      "subject": "Deposit confirmation query for ₹5,000 order",
+      "category": "buy_order",
+      "priority": "medium",
+      "status": "open",
+      "messages": [
+        {
+          "sender": "user",
+          "senderName": "Vikram Malhotra",
+          "message": "Hello, I made a UPI payment of ₹5,000 via razypy@ptyes with UTR 502918239012. Kindly approve my RP balance.",
+          "timestamp": "2026-11-11T09:37:48.450Z"
+        }
+      ],
+      "createdAt": "2026-11-11T09:37:48.450Z",
+      "updatedAt": "2026-11-11T09:37:48.450Z"
+    }
+  ],
   "config": {
     "brandName": "Razy Pay Network",
     "tagline": "High-Performance Financial Operating System & Verified INR Settlement",
     "supportEmail": "support@razypay.network",
     "supportPhone": "+91 9572918366",
-    "telegramSupportUrl": "https://t.me/Razypay07",
+    "telegramSupportUrl": "https://t.me/RAZYPAYCUSTOMER",
     "minDepositInr": 100,
     "maxDepositInr": 500000,
     "minWithdrawInr": 500,
@@ -568,10 +848,135 @@
     "defaultBuyFeePercent": 0.5,
     "defaultSellFeePercent": 0.75,
     "referralRewardPaise": 10000,
-    "depositUpiId": "razypey@ptyes",
+    "depositUpiId": "razypy@ptyes",
     "merchantName": "Razy Pay Global Services",
-    "isMaintenanceMode": false
+    "isMaintenanceMode": false,
+    "logoUrl": "",
+    "homepageBanner": "Instant RP Settlement Active. Safe, Verified, Automated.",
+    "announcementBar": "Official Merchant VPA: razypy@ptyes | Verified NPCI Instant Clearing Rail Active",
+    "termsAndConditions": "All RP transactions are securely authenticated. Instant settlement subject to NPCI network confirmation.",
+    "privacyPolicy": "User identity, bank details and transaction hashes are encrypted using AES-256 and stored securely.",
+    "contactAddress": "Razy Pay Global Services, Financial District, Cyber Towers, Hyderabad 500081"
   },
+  "notifications": [
+    {
+      "id": "notif_init_01",
+      "targetType": "all",
+      "title": "Welcome to Razy Pay v3.0 High-Speed Settlement Rail",
+      "message": "All deposits and withdrawals are processed via instantaneous NPCI UPI channels. Enjoy 0% commission on select RP tiers!",
+      "type": "announcement",
+      "createdAt": "2026-11-09T12:37:48.450Z",
+      "createdBy": "Razy Pay System"
+    },
+    {
+      "id": "notif_init_02",
+      "targetType": "all",
+      "title": "Security Alert: Protect Your 6-Digit Transaction PIN",
+      "message": "Never share your settlement PIN with anyone. Razy Pay support will never ask for your private PIN or password.",
+      "type": "security",
+      "createdAt": "2026-11-10T12:37:48.450Z",
+      "createdBy": "Security Desk"
+    }
+  ],
+  "admins": [
+    {
+      "id": "adm_master_001",
+      "username": "superadmin",
+      "fullName": "Razy Pay Master Admin",
+      "email": "admin@razypay.network",
+      "role": "superadmin",
+      "permissions": [
+        "*"
+      ],
+      "status": "active",
+      "createdAt": "2026-11-11T12:37:48.450Z",
+      "lastLoginAt": "2026-11-11T12:37:48.450Z"
+    },
+    {
+      "id": "adm_mgr_002",
+      "username": "finance_mgr",
+      "fullName": "Aakash Verma",
+      "email": "aakash.v@razypay.network",
+      "role": "manager",
+      "permissions": [
+        "users.read",
+        "users.adjust",
+        "orders.manage",
+        "withdrawals.manage",
+        "reports.view"
+      ],
+      "status": "active",
+      "createdAt": "2026-11-06T12:37:48.450Z",
+      "lastLoginAt": "2026-11-11T10:37:48.450Z"
+    },
+    {
+      "id": "adm_sup_003",
+      "username": "support_priya",
+      "fullName": "Priya Sharma",
+      "email": "priya.s@razypay.network",
+      "role": "support",
+      "permissions": [
+        "support.reply",
+        "users.read",
+        "tickets.manage"
+      ],
+      "status": "active",
+      "createdAt": "2026-10-30T12:37:48.450Z",
+      "lastLoginAt": "2026-11-11T08:37:48.450Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "log_1794408318843_e2e035cd",
+      "timestamp": "2026-11-11T14:45:18.843Z",
+      "adminName": "SuperAdmin",
+      "action": "Approved Buy RP Order ORD-318829-ACF1",
+      "category": "buy_rp",
+      "targetId": "ORD-318829-ACF1",
+      "targetName": "User 3344",
+      "details": "Credited 530 RP (₹500.00) | UTR: UTR987654321012"
+    },
+    {
+      "id": "log_1794408318835_2a62eda5",
+      "timestamp": "2026-11-11T14:45:18.835Z",
+      "adminName": "Customer Action",
+      "action": "Submitted UTR for Order ORD-318829-ACF1",
+      "category": "buy_rp",
+      "targetId": "ORD-318829-ACF1",
+      "targetName": "User 3344",
+      "details": "UTR: UTR987654321012 | Amount: ₹500.00 | Sent for admin approval (funds will credit upon approval)"
+    },
+    {
+      "id": "log_1794403443926_1c541df5",
+      "timestamp": "2026-11-11T13:24:03.926Z",
+      "adminName": "SuperAdmin",
+      "action": "Approved Buy RP Order ORD-443873-9AFD",
+      "category": "buy_rp",
+      "targetId": "ORD-443873-9AFD",
+      "targetName": "Vikram Malhotra",
+      "details": "Credited 530 RP (₹500.00) | UTR: UTR987654321012"
+    },
+    {
+      "id": "log_1794403443880_075ca362",
+      "timestamp": "2026-11-11T13:24:03.880Z",
+      "adminName": "Customer Action",
+      "action": "Submitted UTR for Order ORD-443873-9AFD",
+      "category": "buy_rp",
+      "targetId": "ORD-443873-9AFD",
+      "targetName": "Vikram Malhotra",
+      "details": "UTR: UTR987654321012 | Amount: ₹500.00 | Sent for admin approval (funds will credit upon approval)"
+    },
+    {
+      "id": "log_1794403423718_18a35951",
+      "timestamp": "2026-11-11T13:23:43.718Z",
+      "adminName": "Customer Action",
+      "action": "Submitted UTR for Order ORD-423712-2B0F",
+      "category": "buy_rp",
+      "targetId": "ORD-423712-2B0F",
+      "targetName": "Vikram Malhotra",
+      "details": "UTR: UTR987654321012 | Amount: ₹500.00 | Sent for admin approval (funds will credit upon approval)"
+    }
+  ],
   "sessions": {
     "rps_9ca8dd61f2c3679e42d7baec23d4038f09bcc57118de25192e193a2650512e11": {
       "userId": "usr_rush_demo_001",
@@ -672,6 +1077,96 @@
       "userId": "usr_8b558463ca0f4ccb",
       "createdAt": "2026-10-28T08:54:37.278Z",
       "expiresAt": "2026-11-04T08:54:37.278Z"
+    },
+    "rps_1789a2887db610da6453216f39445ed023639d359df018a22247fc03cfe2b859": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-10-29T01:58:12.261Z",
+      "expiresAt": "2026-11-05T01:58:12.261Z"
+    },
+    "rps_d4214b91e8ba9e6b9ca785bbbe1af1a5e54041b159ed0d383f0291041779aac1": {
+      "userId": "usr_8fc124892b7180d3",
+      "createdAt": "2026-10-29T01:58:38.122Z",
+      "expiresAt": "2026-11-05T01:58:38.122Z"
+    },
+    "rps_caf1758fb96d2c97af6df367797e5f74cadf7afffcdb2f6c5f95dda9a59d1d55": {
+      "userId": "usr_f3a970cf1eca9b26",
+      "createdAt": "2026-10-29T01:58:51.247Z",
+      "expiresAt": "2026-11-05T01:58:51.247Z"
+    },
+    "rps_482cdf415378069fd7b134859f3aff25070be603a23b83b2405fafaf2a282f7f": {
+      "userId": "usr_190182e0496ccb08",
+      "createdAt": "2026-10-29T01:59:11.088Z",
+      "expiresAt": "2026-11-05T01:59:11.088Z"
+    },
+    "rps_fbb50cad0a420d9cf34ecd097e87e6a64ccc29df8e79ef4c17751bef11f6af9c": {
+      "userId": "usr_7682757f3b2d5c5f",
+      "createdAt": "2026-10-29T01:59:32.899Z",
+      "expiresAt": "2026-11-05T01:59:32.899Z"
+    },
+    "rps_b9d4fceebc4d25a4d1cb829e97c3bdae91038b5209ad9e13a2981ef0ebcf419f": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-09T16:38:16.788Z",
+      "expiresAt": "2026-11-16T16:38:16.788Z"
+    },
+    "rps_5d32fad6203553e1cdc396e68b450f9a5e44d0a0cdc17355d359848b9cf9b714": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-11T12:39:43.691Z",
+      "expiresAt": "2026-11-18T12:39:43.691Z"
+    },
+    "rps_c4b420beeb913a423264c0da025b14dfa3febf60162490a3ef7f34455f396c11": {
+      "userId": "usr_504cec70aa47c6e5",
+      "createdAt": "2026-11-11T12:41:44.918Z",
+      "expiresAt": "2026-11-18T12:41:44.918Z"
+    },
+    "rps_9f55d2095b24ba6d5c77092b01edf895ca79649d912d25dd5b9a004e7d7da60d": {
+      "userId": "usr_504cec70aa47c6e5",
+      "createdAt": "2026-11-11T12:41:50.891Z",
+      "expiresAt": "2026-11-18T12:41:50.891Z"
+    },
+    "rps_1bb7fa86655b4b8c1b462443bc6fa482a3bbbf0b9e51528b1f4469f788b1e1f3": {
+      "userId": "usr_3cb3b331440afa06",
+      "createdAt": "2026-11-11T13:16:53.563Z",
+      "expiresAt": "2026-11-18T13:16:53.563Z"
+    },
+    "rps_e061b1cea5084ea1295d5d094ee4b7abe1d32dea6d719b9bd19bea585af23c29": {
+      "userId": "usr_3cb3b331440afa06",
+      "createdAt": "2026-11-11T13:17:10.607Z",
+      "expiresAt": "2026-11-18T13:17:10.607Z"
+    },
+    "rps_4d8998344d03c38b4c9677cdf55b4f90a3766d536343b24011aa0be08bd61b38": {
+      "userId": "usr_3cb3b331440afa06",
+      "createdAt": "2026-11-11T13:17:22.376Z",
+      "expiresAt": "2026-11-18T13:17:22.376Z"
+    },
+    "rps_23c99ccae91edba6ab1c82e1f9090b307103adf910fe1500a1e9520ed742d0a4": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-11T13:22:56.741Z",
+      "expiresAt": "2026-11-18T13:22:56.741Z"
+    },
+    "rps_afa3f1b9e6b26f1135edd9e886b762af37ec8b0421456bb78503a4890eb643bd": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-11T13:23:08.390Z",
+      "expiresAt": "2026-11-18T13:23:08.390Z"
+    },
+    "rps_efa8bb1051ee44e997c1a5ad68c61065528b2bdb30d41fdb1bc77e8db935aea9": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-11T13:23:43.689Z",
+      "expiresAt": "2026-11-18T13:23:43.689Z"
+    },
+    "rps_826631098ef31fcf8749ae23801a6c6028e5f8ac6b33573826d6bb45281757c0": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-11T13:24:03.851Z",
+      "expiresAt": "2026-11-18T13:24:03.851Z"
+    },
+    "rps_9637e042ea669849d16b1251ae3b111bb39bf938c2586b55dd246061eee7ef68": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-11T14:42:57.531Z",
+      "expiresAt": "2026-11-18T14:42:57.531Z"
+    },
+    "rps_282cdd60867a1a5a3cb4b144aa08e1da240858c84a497c407b75c88955d895b8": {
+      "userId": "usr_rush_demo_001",
+      "createdAt": "2026-11-11T14:54:29.112Z",
+      "expiresAt": "2026-11-18T14:54:29.112Z"
     }
   },
   "otps": {}

@@ -116,14 +116,15 @@ export const rushApi = {
     return res;
   },
 
-  async login(mobile: string, password: string) {
+  async login(mobile: string, password: string, referralCode?: string) {
     const res = await this.request<{
       success: boolean;
       user: UserProfile;
       token: string;
+      isNewUser?: boolean;
     }>('/api/rush/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ mobile, password })
+      body: JSON.stringify({ mobile, password, referralCode })
     });
     this.setSession(res.token, res.user);
     return res;
@@ -288,7 +289,7 @@ export const rushApi = {
           defaultBuyFeePercent: 0.5,
           defaultSellFeePercent: 0.75,
           referralRewardPaise: 10000,
-          depositUpiId: 'razypey@ptyes',
+          depositUpiId: 'razypy@ptyes',
           merchantName: 'Razy Pay Global Services',
           isMaintenanceMode: false
         }
@@ -296,15 +297,180 @@ export const rushApi = {
     }
   },
 
-  // Admin APIs
-  async getAdminOverview(adminToken: string) {
-    const res = await fetch('/api/rush/admin/overview', {
-      headers: {
-        Authorization: `Bearer ${adminToken}`
-      }
+  // --- COMPREHENSIVE RAZY PAY ADMIN CLIENT APIS ---
+  async adminRequest<T>(path: string, adminToken: string, options: RequestInit = {}): Promise<T> {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${adminToken}`,
+      ...((options.headers as Record<string, string>) || {})
+    };
+
+    const res = await fetch(path, {
+      ...options,
+      headers
     });
-    if (!res.ok) throw new Error('Unauthorized or failed admin fetch');
-    return res.json();
+
+    let data: any = {};
+    try {
+      data = await res.json();
+    } catch {
+      data = {};
+    }
+
+    if (!res.ok) {
+      throw new Error(data.error || data.message || `Request failed with status ${res.status}`);
+    }
+    return data;
+  },
+
+  async getAdminDashboard(adminToken: string) {
+    return this.adminRequest<{ success: boolean; data: any }>('/api/rush/admin/dashboard', adminToken);
+  },
+
+  async getAdminOverview(adminToken: string) {
+    return this.adminRequest<any>('/api/rush/admin/overview', adminToken);
+  },
+
+  async getAllUsers(adminToken: string) {
+    return this.adminRequest<{ success: boolean; users: any[] }>('/api/rush/admin/users', adminToken);
+  },
+
+  async updateUserStatus(adminToken: string, userId: string, status: 'active' | 'suspended' | 'blocked', reason?: string) {
+    return this.adminRequest<{ success: boolean; profile: any }>(`/api/rush/admin/users/${userId}/status`, adminToken, {
+      method: 'PUT',
+      body: JSON.stringify({ status, reason })
+    });
+  },
+
+  async adjustUserWallet(adminToken: string, userId: string, deltaPaise: number, reason: string) {
+    return this.adminRequest<{ success: boolean; wallet: any; transactionId: string }>(`/api/rush/admin/users/${userId}/adjust-wallet`, adminToken, {
+      method: 'POST',
+      body: JSON.stringify({ deltaPaise, reason })
+    });
+  },
+
+  async getAllBuyOrders(adminToken: string) {
+    return this.adminRequest<{ success: boolean; orders: BuyOrder[] }>('/api/rush/admin/buy-orders', adminToken);
+  },
+
+  async approveBuyOrder(adminToken: string, orderId: string, utr?: string) {
+    return this.adminRequest<{ success: boolean; order: BuyOrder }>(`/api/rush/admin/buy-orders/${orderId}/approve`, adminToken, {
+      method: 'POST',
+      body: JSON.stringify({ utr })
+    });
+  },
+
+  async rejectBuyOrder(adminToken: string, orderId: string, reason: string) {
+    return this.adminRequest<{ success: boolean; order: BuyOrder }>(`/api/rush/admin/buy-orders/${orderId}/reject`, adminToken, {
+      method: 'POST',
+      body: JSON.stringify({ reason })
+    });
+  },
+
+  async getAllSellOrders(adminToken: string) {
+    return this.adminRequest<{ success: boolean; withdrawals: SellWithdrawRequest[] }>('/api/rush/admin/sell-orders', adminToken);
+  },
+
+  async processSellOrder(adminToken: string, withdrawalId: string, status: 'processing' | 'completed' | 'rejected', reason?: string, providerRef?: string) {
+    return this.adminRequest<{ success: boolean; withdrawal: SellWithdrawRequest }>(`/api/rush/admin/sell-orders/${withdrawalId}/process`, adminToken, {
+      method: 'POST',
+      body: JSON.stringify({ status, reason, providerRef })
+    });
+  },
+
+  async getAllWallets(adminToken: string) {
+    return this.adminRequest<{ success: boolean; wallets: any[] }>('/api/rush/admin/wallets', adminToken);
+  },
+
+  async freezeWallet(adminToken: string, userId: string, isFrozen: boolean, reason?: string) {
+    return this.adminRequest<{ success: boolean; isFrozen: boolean }>(`/api/rush/admin/wallets/${userId}/freeze`, adminToken, {
+      method: 'POST',
+      body: JSON.stringify({ isFrozen, reason })
+    });
+  },
+
+  async getPaymentSettings(adminToken: string) {
+    return this.adminRequest<{ success: boolean; config: RushPayPlatformConfig; recentBuyOrders: BuyOrder[]; recentWithdrawals: SellWithdrawRequest[]; settlementUpi: string; merchantName: string }>('/api/rush/admin/payments', adminToken);
+  },
+
+  async updatePaymentSettings(adminToken: string, data: Partial<RushPayPlatformConfig>) {
+    return this.adminRequest<{ success: boolean; config: RushPayPlatformConfig }>('/api/rush/admin/payments/settings', adminToken, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  },
+
+  async verifyUtr(adminToken: string, utr: string) {
+    return this.adminRequest<{ success: boolean; utr: string; isValidFormat: boolean; isDuplicate: boolean; matchedOrderId?: string; message: string }>('/api/rush/admin/payments/verify-utr', adminToken, {
+      method: 'POST',
+      body: JSON.stringify({ utr })
+    });
+  },
+
+  async getWebsiteSettings(adminToken: string) {
+    return this.adminRequest<{ success: boolean; config: RushPayPlatformConfig; rates: ExchangeRateConfig }>('/api/rush/admin/settings', adminToken);
+  },
+
+  async updateWebsiteSettings(adminToken: string, data: { config?: Partial<RushPayPlatformConfig>; rates?: Partial<ExchangeRateConfig> }) {
+    return this.adminRequest<{ success: boolean; message: string; config?: RushPayPlatformConfig; rates?: ExchangeRateConfig }>('/api/rush/admin/settings', adminToken, {
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+  },
+
+  async getNotifications(adminToken: string) {
+    return this.adminRequest<{ success: boolean; notifications: any[] }>('/api/rush/admin/notifications', adminToken);
+  },
+
+  async sendNotification(adminToken: string, data: { targetType: 'all' | 'user'; targetUserId?: string; targetUserName?: string; title: string; message: string; type?: string }) {
+    return this.adminRequest<{ success: boolean; notification: any }>('/api/rush/admin/notifications', adminToken, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  },
+
+  async getReports(adminToken: string) {
+    return this.adminRequest<{ success: boolean; reports: any }>('/api/rush/admin/reports', adminToken);
+  },
+
+  async getStaff(adminToken: string) {
+    return this.adminRequest<{ success: boolean; staff: any[] }>('/api/rush/admin/staff', adminToken);
+  },
+
+  async createStaff(adminToken: string, data: { username: string; fullName: string; email: string; role: string; permissions?: string[] }) {
+    return this.adminRequest<{ success: boolean; account: any }>('/api/rush/admin/staff', adminToken, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  },
+
+  async updateStaffStatus(adminToken: string, staffId: string, status: 'active' | 'suspended') {
+    return this.adminRequest<{ success: boolean; account: any }>(`/api/rush/admin/staff/${staffId}/status`, adminToken, {
+      method: 'PUT',
+      body: JSON.stringify({ status })
+    });
+  },
+
+  async getSupportTickets(adminToken: string) {
+    return this.adminRequest<{ success: boolean; tickets: any[] }>('/api/rush/admin/tickets', adminToken);
+  },
+
+  async replyTicket(adminToken: string, ticketId: string, message: string) {
+    return this.adminRequest<{ success: boolean; ticket: any }>(`/api/rush/admin/tickets/${ticketId}/reply`, adminToken, {
+      method: 'POST',
+      body: JSON.stringify({ message })
+    });
+  },
+
+  async updateTicketStatus(adminToken: string, ticketId: string, status: 'open' | 'in_progress' | 'resolved' | 'closed') {
+    return this.adminRequest<{ success: boolean; ticket: any }>(`/api/rush/admin/tickets/${ticketId}/status`, adminToken, {
+      method: 'PUT',
+      body: JSON.stringify({ status })
+    });
+  },
+
+  async getAuditLogs(adminToken: string) {
+    return this.adminRequest<{ success: boolean; logs: any[] }>('/api/rush/admin/logs', adminToken);
   },
 
   async reviewWithdrawal(
@@ -313,26 +479,11 @@ export const rushApi = {
     action: 'approve' | 'reject',
     reason?: string
   ) {
-    const res = await fetch(`/api/rush/admin/withdrawals/${id}/review`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${adminToken}`
-      },
-      body: JSON.stringify({ action, reason })
-    });
-    return res.json();
+    return this.processSellOrder(adminToken, id, action === 'approve' ? 'completed' : 'rejected', reason);
   },
 
   async updateRates(adminToken: string, rates: Partial<ExchangeRateConfig>) {
-    const res = await fetch('/api/rush/admin/rates', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${adminToken}`
-      },
-      body: JSON.stringify(rates)
-    });
-    return res.json();
+    return this.updateWebsiteSettings(adminToken, { rates });
   }
 };
+

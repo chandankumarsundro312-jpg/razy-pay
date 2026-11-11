@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import QRCode from 'qrcode';
 import {
   Wallet,
   ArrowUpRight,
@@ -319,6 +320,90 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
     setTimeout(() => setCopiedRefLink(false), 2000);
   };
 
+  // Dynamic UPI QR Code for exact order amount
+  const TARGET_UPI_ID = 'razypy@ptyes';
+  const [orderQrUrl, setOrderQrUrl] = useState<string>('');
+  const [copiedTargetUpi, setCopiedTargetUpi] = useState<boolean>(false);
+
+  const orderUpiUri = useMemo(() => {
+    if (!createdOrder) return '';
+    const exactAmount = (createdOrder.inrAmountPaise / 100).toFixed(2);
+    return `upi://pay?pa=${encodeURIComponent(TARGET_UPI_ID)}&pn=${encodeURIComponent(
+      'Razy Pay Official'
+    )}&am=${exactAmount}&cu=INR&tn=${encodeURIComponent(`Order ${createdOrder.id}`)}`;
+  }, [createdOrder]);
+
+  useEffect(() => {
+    if (!createdOrder || !orderUpiUri) {
+      setOrderQrUrl('');
+      return;
+    }
+
+    let isMounted = true;
+    QRCode.toDataURL(orderUpiUri, {
+      width: 320,
+      margin: 1,
+      color: { dark: '#020617', light: '#ffffff' }
+    })
+      .then((url) => {
+        if (isMounted) setOrderQrUrl(url);
+      })
+      .catch((err) => {
+        console.warn('QRCode toDataURL fallback:', err);
+        if (isMounted) {
+          setOrderQrUrl(
+            `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(orderUpiUri)}`
+          );
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [createdOrder, orderUpiUri]);
+
+  const handleCopyTargetUpi = () => {
+    navigator.clipboard.writeText(TARGET_UPI_ID);
+    setCopiedTargetUpi(true);
+    setTimeout(() => setCopiedTargetUpi(false), 2000);
+  };
+
+  // 5-Minute Countdown Timer for Dynamic UPI QR Code (300 seconds)
+  const QR_EXPIRY_SECONDS = 300;
+  const [qrSecondsLeft, setQrSecondsLeft] = useState<number>(QR_EXPIRY_SECONDS);
+  const isQrExpired = qrSecondsLeft <= 0;
+
+  useEffect(() => {
+    if (!createdOrder) {
+      setQrSecondsLeft(QR_EXPIRY_SECONDS);
+      return;
+    }
+
+    setQrSecondsLeft(QR_EXPIRY_SECONDS);
+
+    const intervalId = setInterval(() => {
+      setQrSecondsLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(intervalId);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [createdOrder?.id]);
+
+  const handleRegenerateQr = () => {
+    setQrSecondsLeft(QR_EXPIRY_SECONDS);
+  };
+
+  const formatQrTimer = (secs: number) => {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
   // 1st Deposit Reward Claim State (₹150 Bonus)
   const [firstDepositClaimed, setFirstDepositClaimed] = useState<boolean>(() => {
     try {
@@ -367,30 +452,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
   const totalWithdrawnInr = (wallet.totalWithdrawnPaise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 });
   const totalEarnedInr = (wallet.totalEarnedPaise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 });
 
-  // BladePay fastUAPay Gateway Base Link
-  const BLADEPAY_FAST_PAY_URL = 'https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=MPAYIN-1793169667097-B6920D&platform=RushPay&timestamp=1793169667653&upi=7903605423%40mbkns';
-
-  // Launch BladePay Payment Link
-  const handleLaunchBladePayCheckout = (orderToPay?: BuyOrder) => {
-    const activeOrder = orderToPay || createdOrder;
-    if (!activeOrder) return;
-
-    setIsPayingRazorpay(true);
-    setActionError(null);
-
-    // Open official BladePay link
-    const targetUrl = `https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=${activeOrder.id}&platform=RushPay&timestamp=${Date.now()}&upi=7903605423%40mbkns`;
-    try {
-      window.open(targetUrl, '_blank', 'noopener,noreferrer');
-      setActionSuccess(`BladePay payment page opened for ₹${(activeOrder.inrAmountPaise / 100).toLocaleString('en-IN')}. Please enter your 12-digit UTR below after paying.`);
-    } catch (err: any) {
-      console.warn('Popup blocked:', err);
-    } finally {
-      setIsPayingRazorpay(false);
-    }
-  };
-
-  // Handle Buy & Open BladePay Link Directly
+  // Handle Buy & Open Dynamic QR Directly
   const triggerBuyOrder = async (targetAmount?: number) => {
     setActionError(null);
     setActionSuccess(null);
@@ -410,39 +472,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
         paymentMethod: 'upi_qr'
       });
       setCreatedOrder(res.order);
-
-      // 2. Request BladePay Payin Checkout URL
-      let targetPaymentUrl = `https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=${res.order.id}&platform=RushPay&timestamp=${Date.now()}&upi=7903605423%40mbkns`;
-      try {
-        const gwRes = await fetch('/api/payment-gateway/create-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            orderId: res.order.id,
-            amount: numAmount,
-            customerPhone: profile.mobile,
-            customerName: profile.fullName,
-            customerEmail: profile.email
-          })
-        });
-        if (gwRes.ok) {
-          const gwJson = await gwRes.json();
-          if (gwJson.paymentUrl) {
-            targetPaymentUrl = gwJson.paymentUrl;
-          }
-        }
-      } catch (gwErr) {
-        console.warn('BladePay Gateway call note:', gwErr);
-      }
-
-      // 3. Open BladePay payment page in new tab
-      try {
-        window.open(targetPaymentUrl, '_blank', 'noopener,noreferrer');
-      } catch (e) {
-        console.warn('Window open blocked', e);
-      }
-
-      setActionSuccess(`Order ${res.order.id} for ₹${numAmount} initiated! BladePay payment page opened.`);
+      setActionSuccess(`Order ${res.order.id} for ₹${numAmount} initiated! Scan QR code to complete payment.`);
     } catch (err: any) {
       setActionError(err.message || 'Failed to place buy order');
     } finally {
@@ -460,7 +490,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
       await rushApi.confirmOrderPayment(createdOrder.id, {
         paymentRef: utrInput.trim()
       });
-      setActionSuccess(`Payment reference submitted for Order ${createdOrder.id}. Balance successfully updated.`);
+      setActionSuccess(`UTR submitted successfully for Order ${createdOrder.id}! Your payment is now under admin verification. Balance will be credited once verified & approved by admin.`);
       setCreatedOrder(null);
       setUtrInput('');
       onRefreshData();
@@ -927,7 +957,10 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                             {isSubmittingBuy && isSelected ? (
                               <RefreshCw className="w-3.5 h-3.5 animate-spin" />
                             ) : (
-                              <span>Received</span>
+                              <>
+                                <QrCode className="w-3.5 h-3.5" />
+                                <span>Receive</span>
+                              </>
                             )}
                           </button>
                         </div>
@@ -1010,39 +1043,215 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                     </div>
                   </div>
 
-                  {/* BladePay Fast Pay Action Card */}
-                  <div className="p-4 rounded-3xl bg-gradient-to-r from-blue-900/60 to-indigo-900/60 border border-blue-500/40 shadow-xl space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <CreditCard className="w-4 h-4 text-blue-400" />
-                        <span className="font-bold text-white text-xs">BladePay Instant Gateway</span>
+                  {/* 5-Minute Countdown Timer (Placed Directly Above Dynamic UPI QR Code) */}
+                  <div
+                    className={`p-4 sm:p-5 rounded-3xl border shadow-2xl transition-all relative overflow-hidden backdrop-blur-xl ${
+                      isQrExpired
+                        ? 'bg-rose-950/40 border-rose-500/50 text-rose-200'
+                        : qrSecondsLeft <= 60
+                        ? 'bg-amber-950/40 border-amber-500/50 text-amber-200'
+                        : 'bg-slate-900/90 border-blue-500/30 text-white'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-inner ${
+                            isQrExpired
+                              ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40'
+                              : qrSecondsLeft <= 60
+                              ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40 animate-pulse'
+                              : 'bg-blue-500/20 text-blue-400 border border-blue-500/40'
+                          }`}
+                        >
+                          <Clock className={`w-5 h-5 ${qrSecondsLeft <= 60 && !isQrExpired ? 'animate-spin' : ''}`} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs sm:text-sm font-black text-white tracking-wide block">
+                              {isQrExpired ? 'QR Code Expired' : 'QR Payment Window'}
+                            </span>
+                            {isQrExpired && (
+                              <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                                Timed Out
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-[10px] text-slate-400 block mt-0.5">
+                            {isQrExpired
+                              ? '5-minute security timer expired. Please regenerate QR code.'
+                              : 'Complete UPI scan and payment before timer reaches 00:00.'}
+                          </span>
+                        </div>
                       </div>
-                      <span className="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold px-2 py-0.5 rounded-full">
-                        Exact Amount: ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}
+
+                      <div className="flex items-center gap-2.5">
+                        <div className="text-right">
+                          <span
+                            className={`font-mono text-2xl sm:text-3xl font-black tracking-widest block leading-none ${
+                              isQrExpired
+                                ? 'text-rose-400'
+                                : qrSecondsLeft <= 60
+                                ? 'text-amber-400'
+                                : 'text-emerald-400'
+                            }`}
+                          >
+                            {formatQrTimer(qrSecondsLeft)}
+                          </span>
+                          <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold block mt-1">
+                            {isQrExpired ? 'EXPIRED' : 'COUNTDOWN'}
+                          </span>
+                        </div>
+
+                        {isQrExpired && (
+                          <button
+                            type="button"
+                            onClick={handleRegenerateQr}
+                            className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95 shrink-0"
+                            title="Regenerate 5-Minute Timer"
+                          >
+                            <RefreshCw className="w-3.5 h-3.5" />
+                            <span className="hidden sm:inline">Refresh</span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Progress Bar Line */}
+                    <div className="mt-3.5 w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                      <div
+                        className={`h-full transition-all duration-1000 ${
+                          isQrExpired
+                            ? 'bg-rose-500 w-0'
+                            : qrSecondsLeft <= 60
+                            ? 'bg-amber-500'
+                            : 'bg-gradient-to-r from-blue-500 to-emerald-400'
+                        }`}
+                        style={{
+                          width: `${Math.min(100, Math.max(0, (qrSecondsLeft / QR_EXPIRY_SECONDS) * 100))}%`
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* 1. Dynamic UPI QR Code Card for Exact Amount (razypy@ptyes) */}
+                  <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl space-y-4 text-center relative overflow-hidden">
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent pointer-events-none" />
+
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center">
+                          <QrCode className="w-4 h-4" />
+                        </div>
+                        <div className="text-left">
+                          <h4 className="font-bold text-xs sm:text-sm text-white">Dynamic UPI QR Code</h4>
+                        </div>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-black">
+                        ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}
                       </span>
                     </div>
 
-                    <a
-                      href={`https://api.bladepay.online/fastUAPay/?nonce=7341&order_id=${createdOrder.id}&platform=RushPay&timestamp=${Date.now()}&upi=7903605423%40mbkns`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-4 px-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98"
-                    >
-                      <CreditCard className="w-4 h-4" />
-                      <span>Pay ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')} via BladePay</span>
-                      <ArrowUpRight className="w-4 h-4 ml-1" />
-                    </a>
+                    {/* Pay to UPI ID Box with 1-Click Copy */}
+                    <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-2 text-left">
+                      <div className="min-w-0 pl-1">
+                        <span className="text-[9px] uppercase tracking-wider text-slate-400 block font-bold">
+                          Official UPI ID
+                        </span>
+                        <span className="font-mono text-xs sm:text-sm font-bold text-amber-300 truncate block">
+                          razypy@ptyes
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleCopyTargetUpi}
+                        className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer active:scale-95 shrink-0 border border-slate-700"
+                      >
+                        {copiedTargetUpi ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        <span>{copiedTargetUpi ? 'Copied' : 'Copy'}</span>
+                      </button>
+                    </div>
 
-                    <p className="text-[10px] text-slate-300 text-center">
-                      Pre-filled amount: <strong className="text-white">₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}</strong>. Fast secure UPI checkout via BladePay.
-                    </p>
+                    {/* High-Contrast Crisp QR Code Container with 5-Min Expiration Overlay */}
+                    <div className="relative p-4 bg-white rounded-2xl shadow-xl max-w-[250px] mx-auto border-2 border-slate-200 flex flex-col items-center overflow-hidden">
+                      {orderQrUrl ? (
+                        <img
+                          src={orderQrUrl}
+                          alt={`UPI QR code for ₹${(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}`}
+                          className={`w-48 h-48 object-contain rounded-lg transition-all ${
+                            isQrExpired ? 'filter blur-sm opacity-20 grayscale' : ''
+                          }`}
+                        />
+                      ) : (
+                        <div className="w-48 h-48 flex items-center justify-center bg-slate-50 rounded-lg">
+                          <RefreshCw className="w-8 h-8 text-blue-600 animate-spin" />
+                        </div>
+                      )}
+
+                      {/* Expiration Overlay when 5-min timer reaches 0 */}
+                      {isQrExpired && (
+                        <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center animate-in fade-in duration-200">
+                          <div className="w-10 h-10 rounded-2xl bg-rose-500/20 border border-rose-500/40 text-rose-400 flex items-center justify-center mb-2 shadow-inner">
+                            <AlertCircle className="w-5 h-5" />
+                          </div>
+                          <span className="text-white font-black text-xs uppercase tracking-wider block">
+                            QR Code Expired
+                          </span>
+                          <span className="text-slate-400 text-[10px] mt-1 leading-tight block">
+                            5-minute payment window has ended
+                          </span>
+                          <button
+                            type="button"
+                            onClick={handleRegenerateQr}
+                            className="mt-3 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg active:scale-95 transition-all"
+                          >
+                            <RefreshCw className="w-3.5 h-3.5" />
+                            <span>Regenerate QR</span>
+                          </button>
+                        </div>
+                      )}
+
+                      <div className="mt-2 text-center">
+                        <span className="font-mono text-sm font-black text-slate-900 block">
+                          ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Pay via UPI App Intent Button for Mobile */}
+                    {isQrExpired ? (
+                      <button
+                        type="button"
+                        onClick={handleRegenerateQr}
+                        className="w-full py-3.5 px-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-rose-300 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer border border-rose-500/30"
+                      >
+                        <RefreshCw className="w-4 h-4 text-rose-400" />
+                        <span>QR Expired — Tap to Regenerate (5 Min)</span>
+                      </button>
+                    ) : (
+                      <a
+                        href={orderUpiUri}
+                        className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98"
+                      >
+                        <QrCode className="w-4 h-4" />
+                        <span>Pay ₹{(createdOrder.inrAmountPaise / 100).toLocaleString('en-IN')} in Any UPI App</span>
+                        <ArrowUpRight className="w-4 h-4 ml-1" />
+                      </a>
+                    )}
+
+                    {/* Supported UPI App Icons */}
+                    <div className="flex items-center justify-center gap-2 pt-1 text-[10px] text-slate-400">
+                      <span className="px-2 py-0.5 rounded-lg bg-slate-800 border border-slate-700 font-semibold text-slate-300">Google Pay</span>
+                    </div>
                   </div>
 
                   {/* Submit 12-digit UPI UTR Form */}
                   <form onSubmit={handleConfirmUtr} className="p-5 rounded-3xl bg-slate-900 border border-slate-800 space-y-3.5 shadow-xl">
                     <div className="flex items-center justify-between">
                       <label className="text-slate-200 font-bold block text-xs">Submit 12-Digit Transaction UTR</label>
-                      <span className="text-[10px] text-emerald-400 font-mono font-bold">Instant Credit</span>
+                      <span className="text-[10px] text-amber-400 font-mono font-bold bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded-full">
+                        Admin Verification
+                      </span>
                     </div>
                     <input
                       type="text"
@@ -1061,7 +1270,79 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                     >
                       {isConfirmingUtr ? <RefreshCw className="w-4 h-4 animate-spin" /> : <span>Verify UTR & Complete Order</span>}
                     </button>
+                    <p className="text-[10px] text-slate-400 text-center leading-relaxed pt-0.5">
+                      Submitting your UTR sends the order for admin verification. Balance will be credited upon admin approval.
+                    </p>
                   </form>
+
+                  {/* Customer Service & Telegram Support Section */}
+                  <div className="p-4 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-3 shadow-xl backdrop-blur-md">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-xl bg-sky-500/15 border border-sky-500/30 text-sky-400 flex items-center justify-center shadow-inner">
+                          <Headphones className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-black text-white block tracking-wide">Customer Service</span>
+                          <span className="text-[10px] text-slate-400">Payment stuck or UTR issue? We are here 24/7</span>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        Online 24/7
+                      </span>
+                    </div>
+
+                    {/* Direct Telegram Customer Support Action Button */}
+                    <a
+                      href={config.telegramSupportUrl || 'https://t.me/RAZYPAYCUSTOMER'}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-sky-500 via-sky-600 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-xs flex items-center justify-between shadow-lg shadow-sky-500/25 transition-all group cursor-pointer active:scale-98 border border-sky-400/30"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white shadow-inner">
+                          <Send className="w-5 h-5 fill-white" />
+                        </div>
+                        <div className="text-left">
+                          <span className="block font-black text-xs text-white uppercase tracking-wider">
+                            Telegram Customer Support
+                          </span>
+                          <span className="text-[10px] text-sky-100 font-normal">
+                            Live Agent Desk • @RAZYPAYCUSTOMER
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-white/90 group-hover:translate-x-1 transition-transform">
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-md">
+                          Open Chat
+                        </span>
+                        <ExternalLink className="w-4 h-4" />
+                      </div>
+                    </a>
+
+                    {/* Quick Guidance / Secondary Channel Link */}
+                    <div className="flex items-center justify-between pt-1 px-1 text-[10px] text-slate-400">
+                      <span>
+                        Official Channel:{' '}
+                        <a
+                          href="https://t.me/RAZYPAYCUSTOMER"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sky-400 hover:underline font-semibold"
+                        >
+                          t.me/RAZYPAYCUSTOMER
+                        </a>
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setActiveProfileModal('service')}
+                        className="text-blue-400 hover:text-blue-300 hover:underline font-semibold cursor-pointer"
+                      >
+                        Help Desk & Tickets
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -1108,9 +1389,14 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                   <h4 className="font-black text-sm text-white tracking-wide">Wallet Information</h4>
                 </div>
                 {savedWallets.length > 0 && (
-                  <span className="text-[11px] font-bold text-blue-300 bg-blue-500/20 border border-blue-400/30 px-2.5 py-0.5 rounded-full shadow-xs">
-                    {savedWallets.length} Linked
-                  </span>
+                  <div className="flex flex-col items-end gap-1">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded-full shadow-xs">
+                      30 min only
+                    </span>
+                    <span className="text-[11px] font-bold text-blue-300 bg-blue-500/20 border border-blue-400/30 px-2.5 py-0.5 rounded-full shadow-xs">
+                      {savedWallets.length} Linked
+                    </span>
+                  </div>
                 )}
               </div>
 
@@ -1549,7 +1835,16 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                           {l.entryType}
                         </span>
                       </td>
-                      <td className="p-3 text-slate-200">{l.description}</td>
+                      <td className="p-3 text-slate-200">
+                        {!(
+                          l.description?.includes('ORD-443873-9AFD') ||
+                          (l.description?.includes('Buy RP Order') && l.description?.includes('approved')) ||
+                          l.description?.includes('1st Deposit Starter Program Reward') ||
+                          l.description?.includes('FIRST_DEPOSIT_REWARD') ||
+                          l.description?.includes('₹150 Bonus') ||
+                          l.entryType === 'FIRST_DEPOSIT_REWARD'
+                        ) ? l.description : ''}
+                      </td>
                       <td className={`p-3 font-mono font-bold text-right ${l.amountPaise >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                         {l.amountPaise >= 0 ? '+' : ''}₹{(l.amountPaise / 100).toLocaleString('en-IN')}
                       </td>
@@ -1557,7 +1852,14 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                         ₹{(l.balanceAfterPaise / 100).toLocaleString('en-IN')}
                       </td>
                       <td className="p-3 text-slate-500 font-mono text-[10px]">
-                        {new Date(l.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
+                        {!(
+                          l.description?.includes('ORD-443873-9AFD') ||
+                          (l.description?.includes('Buy RP Order') && l.description?.includes('approved')) ||
+                          l.description?.includes('1st Deposit Starter Program Reward') ||
+                          l.description?.includes('FIRST_DEPOSIT_REWARD') ||
+                          l.description?.includes('₹150 Bonus') ||
+                          l.entryType === 'FIRST_DEPOSIT_REWARD'
+                        ) ? new Date(l.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) : ''}
                       </td>
                     </tr>
                   ))}
@@ -1887,24 +2189,11 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </button>
 
-              {/* Account security */}
-              <button
-                type="button"
-                onClick={() => setActiveTab('security')}
-                className="w-full p-4 flex items-center justify-between hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer text-left"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <span className="font-bold text-sm text-slate-800">Account security</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
-              </button>
+              {/* Account security hidden per user request */}
 
               {/* Telegram Channel */}
               <a
-                href={config.telegramSupportUrl || 'https://t.me/Razypay07'}
+                href={config.telegramSupportUrl || 'https://t.me/RAZYPAYCUSTOMER'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full p-4 flex items-center justify-between hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer text-left block"
@@ -2170,7 +2459,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                       </h4>
                     </div>
                     <p className="text-xs text-slate-400 leading-relaxed pl-8">
-                      Tap <strong className="text-white">Online service</strong> or connect directly with our official support team via Telegram at <strong className="text-blue-400 font-mono">@Chandanstoresupport</strong>.
+                      Tap <strong className="text-white">Online service</strong> to connect directly with our 24/7 official support team.
                     </p>
                   </div>
                 </div>
@@ -2208,7 +2497,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                     
                     {/* Telegram Option 1: Live Support Agent */}
                     <a
-                      href={config.telegramSupportUrl || 'https://t.me/Razypay07'}
+                      href={config.telegramSupportUrl || 'https://t.me/RAZYPAYCUSTOMER'}
                       target="_blank"
                       rel="noreferrer"
                       className="w-full p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-between shadow-lg shadow-blue-600/25 transition-all group"
@@ -2219,7 +2508,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                         </div>
                         <div className="text-left">
                           <span className="block font-black text-sm text-white">24/7 Telegram Support</span>
-                          <span className="text-[11px] text-blue-100 font-normal">Live Agent Chat (@Razypay07)</span>
+                          <span className="text-[11px] text-blue-100 font-normal">Live Agent Chat (@RAZYPAYCUSTOMER)</span>
                         </div>
                       </div>
                       <ChevronRight className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />
@@ -2227,7 +2516,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
 
                     {/* Telegram Option 2: Official Channel / Helpdesk */}
                     <a
-                      href="https://t.me/Razypay07"
+                      href="https://t.me/RAZYPAYCUSTOMER"
                       target="_blank"
                       rel="noreferrer"
                       className="w-full p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold text-xs flex items-center justify-between transition-all group"
@@ -2238,7 +2527,7 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                         </div>
                         <div className="text-left">
                           <span className="block font-bold text-xs text-slate-900">Official Telegram Channel</span>
-                          <span className="text-[10px] text-slate-500 font-normal">t.me/Razypay07 • Instant Updates</span>
+                          <span className="text-[10px] text-slate-500 font-normal">t.me/RAZYPAYCUSTOMER • Instant Updates</span>
                         </div>
                       </div>
                       <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
@@ -2314,12 +2603,23 @@ export const RushDashboard: React.FC<RushDashboardProps> = ({
                               {l.amountPaise >= 0 ? '+' : '-'}
                             </div>
                             <div className="min-w-0">
-                              <span className="font-bold text-xs text-white block truncate">
-                                {l.description || l.entryType}
-                              </span>
-                              <span className="text-[10px] text-slate-500 font-mono block">
-                                {new Date(l.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
-                              </span>
+                              {!(
+                                l.description?.includes('ORD-443873-9AFD') ||
+                                (l.description?.includes('Buy RP Order') && l.description?.includes('approved')) ||
+                                l.description?.includes('1st Deposit Starter Program Reward') ||
+                                l.description?.includes('FIRST_DEPOSIT_REWARD') ||
+                                l.description?.includes('₹150 Bonus') ||
+                                l.entryType === 'FIRST_DEPOSIT_REWARD'
+                              ) && (
+                                <>
+                                  <span className="font-bold text-xs text-white block truncate">
+                                    {l.description || l.entryType}
+                                  </span>
+                                  <span className="text-[10px] text-slate-500 font-mono block">
+                                    {new Date(l.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
+                                  </span>
+                                </>
+                              )}
                             </div>
                           </div>
 

@@ -117,6 +117,7 @@ export interface PaymentClaim {
 export interface QrSettings {
   upiId: string;
   merchantName: string;
+  paymentLink?: string;
   customQrUrl?: string;
   lastUpdated: string;
 }

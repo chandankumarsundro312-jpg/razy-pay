@@ -19,7 +19,8 @@ import {
   Shield,
   Search,
   CreditCard,
-  Lock
+  Lock,
+  ArrowUpRight
 } from 'lucide-react';
 import { PhoneListing, RentalBooking, PaymentClaim, QrSettings } from '../types';
 import { api } from '../utils/api';
@@ -925,7 +926,7 @@ export const RentalBookingModal: React.FC<RentalBookingModalProps> = ({
                 </div>
 
                 {/* Razorpay Gateway Direct Checkout Option */}
-                <div className="p-4 rounded-2xl bg-white border-2 border-indigo-600 shadow-sm text-center space-y-3">
+                <div className="p-4 rounded-2xl bg-white border border-slate-300 shadow-sm text-center space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 rounded-lg bg-indigo-900 text-white flex items-center justify-center">
@@ -936,8 +937,8 @@ export const RentalBookingModal: React.FC<RentalBookingModalProps> = ({
                         <p className="text-[10px] text-slate-500">Instant UPI Apps, Credit/Debit Cards, Net Banking & Wallets</p>
                       </div>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-100 text-emerald-800 border border-emerald-200">
-                      Auto Verified
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-slate-100 text-slate-700 border border-slate-200">
+                      Alternative
                     </span>
                   </div>
 
@@ -945,7 +946,7 @@ export const RentalBookingModal: React.FC<RentalBookingModalProps> = ({
                     type="button"
                     disabled={isPayingRazorpay}
                     onClick={handleRazorpayCheckout}
-                    className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-blue-700 via-indigo-900 to-purple-900 hover:from-blue-600 hover:to-indigo-800 text-white font-black text-xs uppercase tracking-wider shadow-md shadow-indigo-900/25 cursor-pointer active:scale-95 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider shadow-md cursor-pointer active:scale-95 transition-all flex items-center justify-center gap-2"
                   >
                     {isPayingRazorpay ? (
                       <>

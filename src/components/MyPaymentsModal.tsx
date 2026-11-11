@@ -468,15 +468,7 @@ export const MyPaymentsModal: React.FC<MyPaymentsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between">
-          <a
-            href="https://t.me/Chandanstoresupport"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[11px] text-sky-700 font-bold hover:underline"
-          >
-            Need payment help? Contact Telegram Support: t.me/Chandanstoresupport
-          </a>
+        <div className="p-4 border-t border-slate-100 bg-slate-50/80 flex items-center justify-end">
           <button
             type="button"
             onClick={onClose}

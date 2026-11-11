@@ -8,8 +8,7 @@ import {
   Lock,
   LogOut,
   PhoneCall,
-  CheckCircle2,
-  Send
+  CheckCircle2
 } from 'lucide-react';
 import { USER_NAV_GROUPS, ADMIN_NAV_GROUPS, NavItem } from '../config/navigation';
 
@@ -272,16 +271,8 @@ export const MobileNavDrawer: React.FC<MobileNavDrawerProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-3.5 border-t border-slate-100 bg-slate-50 text-[11px] text-slate-500 space-y-1.5">
-          <a
-            href="https://t.me/Chandanstoresupport"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-1.5 font-bold text-sky-700 hover:text-sky-800"
-          >
-            <Send className="w-3.5 h-3.5 text-sky-600" />
-            <span>Telegram: t.me/Chandanstoresupport</span>
-          </a>
+        <div className="p-3.5 border-t border-slate-100 bg-slate-50 text-[11px] text-slate-500 text-center">
+          <span>Gandhi Nagar, Dukan No. 12, Patna</span>
         </div>
       </div>
     </div>

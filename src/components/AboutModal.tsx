@@ -10,8 +10,7 @@ import {
   Mail,
   ArrowLeft,
   Sparkles,
-  Users,
-  Send
+  Users
 } from 'lucide-react';
 
 interface AboutModalProps {
@@ -128,15 +127,6 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               Gandhi Nagar, Dukan No. 12, Patna, Bihar
             </p>
             <div className="flex flex-wrap gap-4 pt-1 text-[11px]">
-              <a
-                href="https://t.me/Chandanstoresupport"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 font-bold text-sky-700 hover:text-sky-800"
-              >
-                <Send className="w-3.5 h-3.5 text-sky-600" />
-                <span>Telegram: t.me/Chandanstoresupport</span>
-              </a>
               <span className="flex items-center gap-1 text-slate-500">
                 <Clock className="w-3.5 h-3.5 text-slate-400" />
                 <span>Open Mon–Sun: 9:00 AM – 9:00 PM IST</span>

@@ -38,10 +38,11 @@ import {
   syncWithdrawalToFirestore,
   syncLedgerToFirestore
 } from './lib/firestoreService';
-import { saveUserToSupabase } from './lib/supabase';
+import { saveUserToSupabase, isSupabaseConfigured } from './lib/supabase';
 import { RushLanding } from './components/rushpay/RushLanding';
 import { RushDashboard } from './components/rushpay/RushDashboard';
 import { RushAuthModal } from './components/rushpay/RushAuthModal';
+import { RazyPayAdminDashboard } from './components/rushpay/RazyPayAdminDashboard';
 import { rushApi } from './utils/rushApi';
 import { UserProfile, WalletBalances, BuyOrder, SellWithdrawRequest, LedgerEntry, ExchangeRateConfig, RushPayPlatformConfig } from './types/rushpay';
 import {
@@ -148,7 +149,7 @@ export function App() {
       tagline: 'High-Performance Financial Operating System & Verified INR Settlement',
       supportEmail: 'support@razypay.network',
       supportPhone: '+91 9572918366',
-      telegramSupportUrl: 'https://t.me/Razypay07',
+      telegramSupportUrl: 'https://t.me/RAZYPAYCUSTOMER',
       minDepositInr: 100,
       maxDepositInr: 500000,
       minWithdrawInr: 500,
@@ -156,7 +157,7 @@ export function App() {
       defaultBuyFeePercent: 0.5,
       defaultSellFeePercent: 0.75,
       referralRewardPaise: 10000,
-      depositUpiId: 'razypey@ptyes',
+      depositUpiId: 'razypy@ptyes',
       merchantName: 'Razy Pay Global Services',
       isMaintenanceMode: false
     }
@@ -176,17 +177,19 @@ export function App() {
           // Permanently sync User, Wallet, Orders, and Ledger to Cloud Firestore & Supabase Backend
           try {
             syncUserToFirestore({ profile: d.profile, wallet: d.wallet });
-            saveUserToSupabase({
-              id: d.profile.id,
-              mobile: d.profile.mobile,
-              email: d.profile.email,
-              fullName: d.profile.fullName,
-              referralCode: d.profile.referralCode,
-              role: d.profile.role,
-              accountStatus: d.profile.accountStatus,
-              kycStatus: d.profile.kycStatus,
-              createdAt: d.profile.createdAt
-            }).catch((err) => console.warn('[Supabase Sync Note]:', err));
+            if (isSupabaseConfigured()) {
+              saveUserToSupabase({
+                id: d.profile.id,
+                mobile: d.profile.mobile,
+                email: d.profile.email,
+                fullName: d.profile.fullName,
+                referralCode: d.profile.referralCode,
+                role: d.profile.role,
+                accountStatus: d.profile.accountStatus,
+                kycStatus: d.profile.kycStatus,
+                createdAt: d.profile.createdAt
+              }).catch(() => {});
+            }
 
             if (Array.isArray(d.recentOrders)) {
               d.recentOrders.forEach((o) => syncOrderToFirestore(o));
@@ -235,9 +238,8 @@ export function App() {
 
       if (refCode) {
         localStorage.setItem('rush_pending_ref', refCode.trim().toUpperCase());
-        // If user is not logged in, trigger registration modal with code
+        // If user is not logged in, trigger unified sign-in modal
         if (!rushApi.getToken()) {
-          setRushAuthMode('register');
           setRushAuthOpen(true);
         }
       }
@@ -1089,11 +1091,9 @@ export function App() {
             config={rushPublicInfo.config}
             isLoggedIn={!!rushUser}
             onOpenLogin={() => {
-              setRushAuthMode('login');
               setRushAuthOpen(true);
             }}
             onOpenRegister={() => {
-              setRushAuthMode('register');
               setRushAuthOpen(true);
             }}
             onOpenDashboard={loadRushData}
@@ -1115,16 +1115,13 @@ export function App() {
           />
         )}
 
-        {/* Secure Admin Dashboard Modal (Protected Server-Side) */}
+        {/* Secure Comprehensive RazyPay Admin Dashboard Portal */}
         {isAdminOpen && (
-          <AdminDashboardModal
-            initialTab={adminInitialTab}
+          <RazyPayAdminDashboard
             onClose={handleModalClose}
-            onRefreshData={loadStoreData}
-            onTabChange={(tab) => {
-              setAdminInitialTab(tab);
-              window.history.replaceState(null, '', `#admin/${tab}`);
-              setActiveSection(`admin-${tab}`);
+            onRefreshData={() => {
+              loadRushData();
+              loadStoreData();
             }}
           />
         )}

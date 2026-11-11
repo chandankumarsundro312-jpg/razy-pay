@@ -82,3 +82,29 @@ button, a {
     opacity: 0;
   }
 }
+
+/* 3D Card Flip Animation Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.card-flip-transition {
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+

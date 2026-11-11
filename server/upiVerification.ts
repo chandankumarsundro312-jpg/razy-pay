@@ -65,6 +65,7 @@ const SANDBOX_VERIFIED_VPAS: Record<string, { name: string; psp: string }> = {
   'bharatpe2u0s0f6f9i88998@unitype': { name: 'BHARATPE / XYR PAY', psp: 'Unity Small Finance Bank' },
   'chandansundro97@mvhdfc': { name: 'CHANDAN SUNDRO', psp: 'HDFC Bank' },
   'chandan-8366@ptyes': { name: 'CHANDAN KUMAR', psp: 'Paytm / Yes Bank' },
+  'razypy@ptyes': { name: 'RAZY PAY OFFICIAL', psp: 'Paytm / Yes Bank' },
   '9999999999@paytm': { name: 'SUPER ADMIN TESTER', psp: 'Paytm Payments Bank' },
   'admin@rushpay': { name: 'XYR PAY PLATFORM ADMIN', psp: 'RushPay Internal' },
   'vipbhiya02@okaxis': { name: 'CHANDAN KUMAR', psp: 'Axis Bank' },

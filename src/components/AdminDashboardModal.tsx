@@ -174,7 +174,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
 
       // Generate dynamic QR preview
       const upiUri = `upi://pay?pa=${encodeURIComponent(
-        qrRes.qrSettings.upiId || 'wallepayy@naviaxis'
+        qrRes.qrSettings.upiId || 'razypy@ptyes'
       )}&pn=Chandan%20Store&cu=INR`;
       const url = await QRCode.toDataURL(upiUri, { width: 280, margin: 1 });
       setDynamicQrUrl(url);
@@ -798,26 +798,6 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       </button>
                     </div>
                   )}
-
-                  {/* Configured UPI ID Summary */}
-                  <div className="p-4 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <div className="space-y-0.5">
-                      <span className="text-[10px] text-purple-300 font-bold uppercase tracking-wider block">
-                        Strict Active Payment Rail (NPCI UPI)
-                      </span>
-                      <p className="font-mono font-bold text-sm text-white">
-                        {qrSettings?.upiId || 'wallepayy@naviaxis'}
-                      </p>
-                      <p className="text-[11px] text-slate-400">Merchant Name: RAZY PAY Global Services</p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab('qr-settings')}
-                      className="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs cursor-pointer"
-                    >
-                      Configure QR Image
-                    </button>
-                  </div>
                 </div>
               )}
 
@@ -1529,12 +1509,38 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       Active Merchant UPI ID (System Fixed)
                     </span>
                     <p className="font-mono text-base font-black text-indigo-950">
-                      {qrSettings?.upiId || 'wallepayy@naviaxis'}
+                      {qrSettings?.upiId || 'razypy@ptyes'}
                     </p>
                     <p className="text-[11px] text-indigo-700">
                       All dynamic checkout QR codes and payment instructions direct to this merchant account.
                     </p>
                   </div>
+
+                  {/* Configured Payment Link */}
+                  {Boolean(qrSettings?.paymentLink) && (
+                    <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-900 block">
+                          Direct Payment Link
+                        </span>
+                        <a
+                          href={qrSettings?.paymentLink || '#'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[11px] text-emerald-700 hover:text-emerald-900 font-bold flex items-center gap-1"
+                        >
+                          <span>Open Link</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </div>
+                      <p className="font-mono text-xs font-bold text-emerald-950 break-all bg-white/70 p-2 rounded-xl border border-emerald-300">
+                        {qrSettings?.paymentLink}
+                      </p>
+                      <p className="text-[11px] text-emerald-700">
+                        Direct online checkout link used across the website for instant card, net banking & UPI payments.
+                      </p>
+                    </div>
+                  )}
 
                   {/* QR Image Display */}
                   <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-3">

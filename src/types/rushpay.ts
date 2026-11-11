@@ -2,7 +2,7 @@
 // All balances represented in integer paise (₹1 = 100 paise) for exact financial arithmetic
 
 export type UserRole = 'user' | 'merchant' | 'admin' | 'superadmin';
-export type AccountStatus = 'pending_verification' | 'active' | 'suspended' | 'locked';
+export type AccountStatus = 'pending_verification' | 'active' | 'suspended' | 'locked' | 'blocked';
 export type KycStatus = 'not_submitted' | 'pending' | 'verified' | 'rejected';
 
 export interface UserProfile {
@@ -66,6 +66,12 @@ export interface BuyOrder {
   reviewedBy?: string;
   createdAt: string;
   updatedAt: string;
+  payUnits?: number;
+  utrNumber?: string;
+  paymentProofUrl?: string;
+  approvedAt?: string;
+  adminReviewer?: string;
+  rejectedReason?: string;
 }
 
 export type PayoutStatus = 'pending' | 'under_review' | 'processing' | 'completed' | 'rejected' | 'cancelled';
@@ -96,6 +102,13 @@ export interface SellWithdrawRequest {
   reviewedBy?: string;
   createdAt: string;
   updatedAt: string;
+  payUnits?: number;
+  payoutPaise?: number;
+  payoutType?: 'upi' | 'bank';
+  destinationUpiId?: string;
+  bankAccountNumber?: string;
+  bankIfsc?: string;
+  bankAccountName?: string;
 }
 
 export type LedgerEntryType =
@@ -114,6 +127,7 @@ export interface LedgerEntry {
   userId: string;
   relatedOrderId?: string;
   entryType: LedgerEntryType;
+  type?: string;
   amountPaise: number; // positive or negative
   balanceBeforePaise: number;
   balanceAfterPaise: number;
@@ -183,4 +197,77 @@ export interface RushPayPlatformConfig {
   depositUpiId: string;
   merchantName: string;
   isMaintenanceMode: boolean;
+  logoUrl?: string;
+  homepageBanner?: string;
+  announcementBar?: string;
+  termsAndConditions?: string;
+  privacyPolicy?: string;
+  contactAddress?: string;
 }
+
+export interface NotificationRecord {
+  id: string;
+  targetType: 'all' | 'user';
+  targetUserId?: string;
+  targetUserName?: string;
+  title: string;
+  message: string;
+  type: 'announcement' | 'transaction' | 'payment' | 'security';
+  createdAt: string;
+  createdBy: string;
+}
+
+export type AdminRole = 'superadmin' | 'manager' | 'support';
+
+export interface AdminAccount {
+  id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  role: AdminRole;
+  permissions: string[];
+  status: 'active' | 'suspended';
+  createdAt: string;
+  lastLoginAt?: string;
+}
+
+export interface TransactionChartPoint {
+  label: string;
+  date?: string;
+  revenueInr: number;
+  buyVolumeRp: number;
+  sellVolumeRp: number;
+  txCount: number;
+}
+
+export interface AdminDashboardOverviewData {
+  totalRegisteredUsers: number;
+  totalActiveUsers: number;
+  totalWalletBalancePaise: number;
+  totalRpSoldUnits: number;
+  totalRpPurchasedUnits: number;
+  totalTransactions: number;
+  pendingTransactions: number;
+  todayRevenuePaise: number;
+  totalProfitPaise: number;
+  suspendedAccounts: number;
+  charts: {
+    daily: TransactionChartPoint[];
+    weekly: TransactionChartPoint[];
+    monthly: TransactionChartPoint[];
+  };
+}
+
+export interface AdminAuditLog {
+  id: string;
+  adminName: string;
+  adminRole?: string;
+  action: string;
+  category: 'users' | 'wallets' | 'buy_rp' | 'sell_rp' | 'settings' | 'security' | 'notifications' | 'support' | 'staff';
+  targetId?: string;
+  targetName?: string;
+  details: string;
+  ipAddress?: string;
+  timestamp: string;
+}
+

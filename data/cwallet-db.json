@@ -12,7 +12,7 @@
       "isBlocked": false,
       "role": "admin",
       "isKycVerified": false,
-      "upiId": "chandan-8366@ptyes",
+      "upiId": "razypy@ptyes",
       "salt": "6b7f5878f6f222c5d19c519c62bbbbf0",
       "passwordHash": "e171f7ae99b58e6d8b7d406e9616f33cebd45b28c289b6b95b2382e2689dc104c0112593175cf1eb39abbe3d6503519dac5a7187cfef551f98d58656fb187905"
     }
@@ -94,7 +94,7 @@
       "method": "UPI",
       "accountDetails": {
         "method": "UPI",
-        "upiId": "chandan-8366@ptyes"
+        "upiId": "razypy@ptyes"
       },
       "status": "Approved",
       "createdAt": "2026-09-25T00:47:52.555Z",
@@ -119,7 +119,7 @@
       "type": "withdrawal",
       "amount": 200,
       "status": "Completed",
-      "description": "Withdrawal via UPI (chandan-8366@ptyes)",
+      "description": "Withdrawal via UPI (razypy@ptyes)",
       "paymentMethod": "UPI",
       "referenceId": "wth_1790297272555_btns",
       "createdAt": "2026-09-25T00:47:52.555Z"

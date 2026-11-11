@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Clock,
-  Send,
   Smartphone
 } from 'lucide-react';
 
@@ -29,27 +28,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenLegal }) =
             </div>
 
             <div className="space-y-3 text-xs text-slate-300">
-              {/* Official Telegram Support Link */}
-              <div id="telegram-support" className="flex items-center gap-3 scroll-mt-24 p-2 rounded-xl transition-colors hover:bg-white/5">
-                <div className="w-9 h-9 rounded-xl bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
-                  <Send className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 block uppercase font-bold">Official Telegram Support</span>
-                  <a
-                    href="https://t.me/Chandanstoresupport"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-bold text-sky-300 hover:text-sky-200 flex items-center gap-1.5 transition-colors"
-                  >
-                    <span>t.me/Chandanstoresupport</span>
-                    <span className="px-2 py-0.5 rounded-full bg-sky-500 text-white text-[10px] font-black tracking-wide">
-                      Connect
-                    </span>
-                  </a>
-                </div>
-              </div>
-
               <div id="operating-hours" className="flex items-center gap-3 scroll-mt-24 p-2 rounded-xl transition-colors hover:bg-white/5">
                 <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 shrink-0">
                   <Clock className="w-4 h-4" />

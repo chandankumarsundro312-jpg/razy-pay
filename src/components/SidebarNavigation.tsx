@@ -10,7 +10,6 @@ import {
   PhoneCall,
   CheckCircle2,
   ExternalLink,
-  Send,
   Zap
 } from 'lucide-react';
 import { USER_NAV_GROUPS, ADMIN_NAV_GROUPS, NavItem } from '../config/navigation';
@@ -338,16 +337,6 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
 
       {/* Sidebar Footer Info */}
       <div className={`p-3 border-t border-slate-100 bg-slate-50/60 text-[11px] text-slate-500 ${isCollapsed ? 'flex justify-center' : 'space-y-1.5'}`}>
-        <a
-          href="https://t.me/Chandanstoresupport"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-1.5 font-bold text-sky-700 hover:text-sky-800 transition-colors"
-          title="Telegram Support: @Chandanstoresupport"
-        >
-          <Send className="w-4 h-4 text-sky-600 shrink-0" />
-          {!isCollapsed && <span>Telegram Support</span>}
-        </a>
         {!isCollapsed && (
           <p className="text-[10px] text-slate-400">
             Gandhi Nagar, Dukan No. 12, Patna

@@ -486,7 +486,7 @@
     }
   ],
   "qrConfig": {
-    "upiId": "chandan-8366@ptyes",
+    "upiId": "razypy@ptyes",
     "customQrImageUrl": "",
     "payeeName": "AI Video Bundles",
     "instructions": "1. Open any UPI App (GPay, PhonePe, Paytm, BHIM, etc.).\n2. Scan this QR Code or pay to the UPI ID.\n3. Make the exact payment.\n4. Copy the 12-digit UTR/Reference Number and submit below."

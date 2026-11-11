@@ -12,39 +12,59 @@ const getBrowserEnv = (key: string): string | undefined => {
 
 const envProjectId = (typeof process !== 'undefined' && process.env?.SUPABASE_PROJECT_ID) ||
   getBrowserEnv('VITE_SUPABASE_PROJECT_ID') ||
-  'fwhsgsdqqexytpsyfqfm';
+  '';
 
 const envUrl = (typeof process !== 'undefined' && process.env?.SUPABASE_URL) ||
   getBrowserEnv('VITE_SUPABASE_URL') ||
   (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_URL) ||
-  `https://${envProjectId}.supabase.co`;
+  (envProjectId ? `https://${envProjectId}.supabase.co` : '');
 
 const envKey = (typeof process !== 'undefined' && process.env?.SUPABASE_ANON_KEY) ||
   (typeof process !== 'undefined' && process.env?.SUPABASE_KEY) ||
   getBrowserEnv('VITE_SUPABASE_ANON_KEY') ||
   getBrowserEnv('VITE_SUPABASE_KEY') ||
   (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY) ||
-  'sb_publishable_avbit2qwpbQFtzUxf491QA_2_qJziv1';
+  '';
+
+export const isSupabaseConfigured = (): boolean => {
+  if (!envUrl || !envKey) return false;
+  // Ignore dummy/placeholder strings that fail DNS resolution
+  if (
+    envProjectId === 'fwhsgsdqqexytpsyfqfm' ||
+    envUrl.includes('fwhsgsdqqexytpsyfqfm') ||
+    envKey.includes('sb_publishable_avbit2qwpbQFtzUxf491QA_2_qJziv1') ||
+    envUrl.includes('placeholder') ||
+    envKey.includes('placeholder')
+  ) {
+    return false;
+  }
+  return true;
+};
 
 export const SUPABASE_PROJECT_ID = envProjectId;
 export const SUPABASE_URL = envUrl;
 export const SUPABASE_ANON_KEY = envKey;
 export const SUPABASE_KEY = envKey;
 
-// Create Supabase client singleton
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  auth: {
-    persistSession: false,
-    autoRefreshToken: false
-  }
-});
+// Create Supabase client singleton only when properly configured
+export const supabase = isSupabaseConfigured()
+  ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      }
+    })
+  : null;
 
 /**
  * Health check utility to test Supabase connection
  */
 export async function testSupabaseConnection(): Promise<{ ok: boolean; message: string; details?: any }> {
+  if (!isSupabaseConfigured() || !supabase) {
+    return { ok: false, message: 'Supabase is optional and currently unconfigured. Cloud Firestore is the active database.' };
+  }
   try {
-    const { data, error } = await supabase.from('users').select('count', { count: 'exact', head: true });
+    const { error } = await supabase.from('users').select('count', { count: 'exact', head: true });
     if (error) {
       return { ok: false, message: error.message, details: error };
     }
@@ -82,6 +102,11 @@ export async function saveUserToSupabase(user: {
   password?: string;
   createdAt?: string;
 }): Promise<{ success: boolean; data?: any; error?: string }> {
+  // If Supabase is not configured with real live credentials, gracefully skip
+  if (!isSupabaseConfigured() || !supabase) {
+    return { success: true, data: null };
+  }
+
   try {
     const payload: SupabaseRegistrationPayload = {
       user_id: user.id,
@@ -101,11 +126,8 @@ export async function saveUserToSupabase(user: {
       .upsert(payload, { onConflict: 'mobile' });
 
     if (!usersError) {
-      console.log(`[Supabase] Successfully saved user ${user.mobile} to 'users' table`);
       return { success: true, data: usersData };
     }
-
-    console.warn(`[Supabase] Note on 'users' table: ${usersError.message}, trying 'registrations'...`);
 
     // Fallback/secondary attempt into 'registrations' or 'profiles' table
     const { data: regData, error: regError } = await supabase
@@ -113,14 +135,12 @@ export async function saveUserToSupabase(user: {
       .upsert(payload, { onConflict: 'mobile' });
 
     if (!regError) {
-      console.log(`[Supabase] Successfully saved user ${user.mobile} to 'registrations' table`);
       return { success: true, data: regData };
     }
 
-    console.warn(`[Supabase] Supabase table insert note: ${regError.message}`);
     return { success: false, error: regError.message };
   } catch (err: any) {
-    console.error(`[Supabase] Sync error:`, err?.message || err);
+    // Graceful error handling without throwing or spamming logs
     return { success: false, error: err?.message || 'Failed to sync to Supabase' };
   }
 }

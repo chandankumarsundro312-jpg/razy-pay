@@ -61,19 +61,7 @@ export const RushLanding: React.FC<RushLandingProps> = ({
             </div>
           </div>
 
-          {/* Action CTAs (Top header) */}
-          {isLoggedIn && (
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={onOpenDashboard}
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-blue-600/25 transition-all cursor-pointer"
-              >
-                <span>Go to Dashboard</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
+          {/* Action CTAs (Top header) - 'Go to Dashboard' hidden per request */}
         </div>
       </header>
 
@@ -85,19 +73,11 @@ export const RushLanding: React.FC<RushLandingProps> = ({
             <div className="flex flex-col items-center justify-center gap-3 pt-2 max-w-sm mx-auto w-full">
               <button
                 type="button"
-                onClick={onOpenRegister}
-                className="w-full py-4 px-6 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98"
-              >
-                <span>REGISTER</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <button
-                type="button"
                 onClick={onOpenLogin}
-                className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer pt-1"
+                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98 border border-white/20"
               >
-                Already have an account? <span className="text-blue-400 font-bold hover:underline">Sign In</span>
+                <span>SIGN IN</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
